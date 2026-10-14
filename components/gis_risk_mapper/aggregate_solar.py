@@ -22,10 +22,10 @@ def clean(v):
     return ZW.sub("", str(v)).strip() if v is not None else None
 
 
-def norm_sin(v):
-    """'U011' and '011' -> 'U011'."""
+def sin_num(v):
+    """'R011' and '011' -> 11 (detail table has digits only)."""
     m = re.search(r"(\d+)", clean(v) or "")
-    return f"U{int(m.group(1)):03d}" if m else None
+    return int(m.group(1)) if m else None
 
 
 def num(v):
@@ -61,7 +61,8 @@ def tidy(df):
     for c in ("gss", "feeder", "section", "scheme", "csc"):
         if c in df:
             df[c] = df[c].map(clean)
-    df["sin"] = df["sin"].map(norm_sin)
+    df["sin"] = df["sin"].map(clean)          # keep the real letter: R/U/S/W + digits
+    df["sin_num"] = df["sin"].map(sin_num)
     df["kw"] = df["kw"].map(num)
     if "kva" in df:
         df["kva"] = df["kva"].map(num)
@@ -75,10 +76,10 @@ def main(folder, out_csv):
         s_all.append(s)
         d_all.append(d)
     S, D = tidy(pd.concat(s_all)), tidy(pd.concat(d_all))
-    key = ["csc", "gss", "feeder", "section", "sin"]
+    key = ["csc", "gss", "feeder", "section", "sin_num"]
 
     # transformer total = sum of all scheme capacities on the same SIN
-    tr = S.groupby(key, as_index=False).agg(kva=("kva", "max"), solar_kw=("kw", "sum"))
+    tr = S.groupby(key, as_index=False).agg(sin=("sin", "first"), kva=("kva", "max"), solar_kw=("kw", "sum"))
     tr["solar_to_kva"] = (tr["solar_kw"] / tr["kva"]).round(3)
     sch = S.pivot_table(index=key, columns="scheme", values="kw", aggfunc="sum", fill_value=0).reset_index()
     tr = tr.merge(sch, on=key)
@@ -88,15 +89,15 @@ def main(folder, out_csv):
     tr = tr.merge(chk, on=key, how="left")
     tr["match"] = (tr["solar_kw"] - tr["detail_kw"]).abs() < 0.05
 
+    tr = tr[["csc","gss","feeder","section","sin"] + [c for c in tr.columns if c not in ("csc","gss","feeder","section","sin","sin_num")]]
     tr.to_csv(out_csv, index=False)
     print(f"transformers: {len(tr)} | total solar kW: {tr.solar_kw.sum():.1f}")
     print(f"summary vs detail match: {tr.match.sum()}/{len(tr)}")
     bad = tr[~tr.match]
     if len(bad):
-        print("MISMATCHES:\n", bad[key + ["solar_kw", "detail_kw"]].to_string(index=False))
+        print("MISMATCHES:\n", bad[["csc", "section", "sin", "solar_kw", "detail_kw"]].to_string(index=False))
     # SIN codes repeating across different sections need a section-aware join later
-    dup = tr.groupby("sin").size()
-    print(f"SIN codes used in >1 section/feeder: {(dup > 1).sum()}")
+    print(f"unique SIN codes: {tr['sin'].nunique()} of {len(tr)} transformers")
 
 
 if __name__ == "__main__":
