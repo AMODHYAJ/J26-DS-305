@@ -4,7 +4,7 @@ import hashlib
 import json
 
 import pandas as pd
-import matplotlib.pyplot as plt
+
 
 
 # ---------------------------------------------------------
@@ -363,90 +363,12 @@ small_rule_details.to_csv(
 )
 
 
-# ---------------------------------------------------------
-# PLOT 1 — LABEL COUNTS
-# ---------------------------------------------------------
-
-plot_df = summary_df.copy()
-
-x_positions = range(len(plot_df))
-
-plt.figure(figsize=(12, 6))
-
-plt.plot(
-    x_positions,
-    plot_df["low_count"],
-    marker="o",
-    label="Low"
-)
-
-plt.plot(
-    x_positions,
-    plot_df["medium_count"],
-    marker="o",
-    label="Medium"
-)
-
-plt.plot(
-    x_positions,
-    plot_df["high_count"],
-    marker="o",
-    label="High"
-)
-
-plt.xticks(
-    x_positions,
-    plot_df["scenario"],
-    rotation=90
-)
-
-plt.xlabel("Threshold scenario")
-plt.ylabel("Number of transformers")
-plt.title(
-    "Risk Label Counts Under Different Ratio Thresholds"
-)
-
-plt.legend()
-plt.tight_layout()
-
-plt.savefig(
-    OUTPUT_DIR / "label_counts_by_threshold.png",
-    dpi=300
-)
-
-plt.close()
 
 
-# ---------------------------------------------------------
-# PLOT 2 — CHANGE FROM BASELINE
-# ---------------------------------------------------------
 
-plt.figure(figsize=(12, 6))
 
-plt.bar(
-    plot_df["scenario"],
-    plot_df["changed_pct"]
-)
 
-plt.xticks(rotation=90)
 
-plt.xlabel("Threshold scenario")
-plt.ylabel(
-    "Transformers changed from baseline (%)"
-)
-
-plt.title(
-    "Sensitivity of Risk Labels to Threshold Selection"
-)
-
-plt.tight_layout()
-
-plt.savefig(
-    OUTPUT_DIR / "label_change_from_baseline.png",
-    dpi=300
-)
-
-plt.close()
 
 
 # ---------------------------------------------------------
