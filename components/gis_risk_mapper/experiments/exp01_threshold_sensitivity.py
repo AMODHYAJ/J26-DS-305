@@ -139,7 +139,14 @@ print(baseline_counts)
 summary_records = []
 
 all_scenario_labels = pd.DataFrame({
-    SIN_COL: df[SIN_COL],
+    "csc": df["csc"],
+    "gss": df["gss"],
+    "feeder": df["feeder"],
+    "section": df["section"],
+    "sin": df["sin"],
+    "kva": df["kva"],
+    "solar_kw": df["solar_kw"],
+    "n_accounts": df["n_accounts"],
     "solar_to_kva_ratio": df["solar_to_kva_ratio"],
     "baseline_label": df["baseline_label"]
 })
@@ -259,7 +266,14 @@ stability_df = pd.concat(
     [
         all_scenario_labels[
             [
-                SIN_COL,
+                "csc",
+                "gss",
+                "feeder",
+                "section",
+                "sin",
+                "kva",
+                "solar_kw",
+                "n_accounts",
                 "solar_to_kva_ratio",
                 "baseline_label"
             ]
