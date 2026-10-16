@@ -8,7 +8,7 @@ import os
 import numpy as np
 import pandas as pd
 
-def generate_synthetic_plant(output_path='/data/raw/synthetic_plant_1min.csv'):
+def generate_synthetic_plant(output_path='data/raw/synthetic_plant_1min.csv'):
     print("Generating 1-minute synthetic solar plant data...")
 
     # 1. Create 1-minute datetime index for 30 days
