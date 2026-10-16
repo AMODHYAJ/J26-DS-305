@@ -1,0 +1,21 @@
+csc,gss,feeder,section,sin,kva,solar_kw,solar_to_kva,model_load_kw,min_exposure,mean_exposure,median_exposure,max_exposure,reverse_scenarios,reverse_scenario_pct,exposure_rank,solar_only_rank,rank_change,absolute_rank_change,scenario_status
+Godakawela,Balangoda,Feeder 03,GSSM0550,S049,100.0,455.45,4.5545,9.52658028709326,4.003784,4.231509,4.231509,4.459234,3,100.0,1,1,0,0,Reverse condition in all tested PV scenarios
+Godakawela,Balangoda,Feeder 03,GSSM0080,S139,160.0,480.0,3.0,9.059583316048473,2.643378,2.793378,2.793378,2.943378,3,100.0,2,2,0,0,Reverse condition in all tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0020,R176,250.0,544.0,2.176,31.792320000000004,1.831231,1.940031,1.940031,2.048831,3,100.0,3,3,0,0,Reverse condition in all tested PV scenarios
+Godakawela,Balangoda,Feeder 03,GSSM0190,S059,100.0,180.0,1.8,5.54929676719023,1.564507,1.654507,1.654507,1.744507,3,100.0,4,4,0,0,Reverse condition in all tested PV scenarios
+Godakawela,Balangoda,Feeder 03,GSSM0085,S063,250.0,430.99,1.72396,22.149647871016228,1.462965,1.549163,1.549163,1.635361,3,100.0,5,5,0,0,Reverse condition in all tested PV scenarios
+Godakawela,Balangoda,Feeder 03,GSSM0085,S129,100.0,160.0,1.6,0.9999999999999988,1.43,1.51,1.51,1.59,3,100.0,6,7,1,1,Reverse condition in all tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 04,UWSM0310,W046,160.0,250.0,1.5625,40.8740000000001,1.150787,1.228912,1.228912,1.307037,3,100.0,7,8,1,1,Reverse condition in all tested PV scenarios
+Kolonna,Embilipitiya,Feeder 02,KUSM0380,U067,100.0,120.0,1.2,15.79852121906982,0.922015,0.982015,0.982015,1.042015,3,100.0,8,11,3,3,Reverse condition in all tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W072,160.0,160.0,1.0,0.3031116,0.898106,0.948106,0.948106,0.998106,3,100.0,9,22,13,13,Reverse condition in all tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0510,R202,160.0,160.0,1.0,0.6761999999999999,0.895774,0.945774,0.945774,0.995774,3,100.0,10,22,12,12,Reverse condition in all tested PV scenarios
+Godakawela,Balangoda,Feeder 03,GSSM0120,S118,160.0,160.0,1.0,1.7810604,0.888868,0.9388679999999999,0.938868,0.988868,3,100.0,11,22,11,11,Reverse condition in all tested PV scenarios
+Godakawela,Balangoda,Feeder 03,GSSM0050,S016,100.0,115.66,1.1566,16.64819228768121,0.874458,0.9322880000000001,0.932288,0.990118,3,100.0,12,12,0,0,Reverse condition in all tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W073,100.0,169.95,1.6994999999999998,70.1583600291375,0.827966,0.912941,0.912941,0.997916,3,100.0,13,6,-7,7,Reverse condition in all tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R118,160.0,196.88,1.2305,41.440272309219,0.848448,0.9099729999999999,0.909973,0.971498,3,100.0,14,10,-4,4,Reverse condition in all tested PV scenarios
+Godakawela,Balangoda,Feeder 03,GSSM0085,S065,100.0,109.25,1.0925,13.53667081789752,0.847883,0.9025080000000001,0.902508,0.957133,3,100.0,15,15,0,0,Reverse condition in all tested PV scenarios
+Godakawela,Balangoda,Feeder 03,GSSM0020,S132,100.0,100.0,1.0,6.999999999999989,0.83,0.88,0.88,0.93,3,100.0,16,22,6,6,Reverse condition in all tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0310,R192,250.0,225.0,0.9,3.1455,0.797418,0.842418,0.842418,0.887418,3,100.0,17,38,21,21,Reverse condition in all tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0415,R026,160.0,142.35,0.8896875,1.1769408,0.793363,0.8378473333333334,0.837847,0.882332,3,100.0,18,43,25,25,Reverse condition in all tested PV scenarios
+Kolonna,Embilipitiya,Feeder 02,KUSM0270,U018,100.0,95.5,0.955,8.47892854072974,0.774711,0.822461,0.822461,0.870211,3,100.0,19,30,11,11,Reverse condition in all tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R196,160.0,160.0,1.0,21.999999999999996,0.7625,0.8125,0.8125,0.8625,3,100.0,20,22,2,2,Reverse condition in all tested PV scenarios
