@@ -1,0 +1,28 @@
+EXPERIMENT 02 - PHYSICS-BASED CONTINUOUS SEVERITY
+============================================================
+
+Transformers analysed: 357
+Scenarios tested per transformer: 21
+Total transformer-scenario observations: 7497
+
+Reverse-flow robustness status:
+reverse_flow_status
+Reverse in all tested scenarios      222
+Scenario-dependent                   112
+Never reverse in tested scenarios     23
+
+Transformers above nameplate screening level in at least one scenario: 21
+Transformers above nameplate screening level in every scenario: 9
+
+Maximum difference between stored solar_to_kva and recalculated ratio: 0.0005000000
+
+Baseline labels vs physics robustness:
+reverse_flow_status  Never reverse in tested scenarios  Reverse in all tested scenarios  Scenario-dependent  All
+baseline_label                                                                                                  
+High                                                 0                               32                   0   32
+Low                                                 23                               43                 112  178
+Medium                                               0                              147                   0  147
+All                                                 23                              222                 112  357
+
+IMPORTANT:
+This experiment does not claim actual measured reverse power flow. It tests transformer exposure under a defined grid of plausible operating assumptions.
