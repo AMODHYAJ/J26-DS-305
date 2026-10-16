@@ -1,0 +1,21 @@
+EXPERIMENT 03 - LOAD-INFORMED RANKING
+=======================================================
+
+Transformers in input: 357
+Transformers with usable modelled load: 309
+
+Rank correlation between solar-only and load-informed methods: 0.5592
+
+Top-N overlap:
+ top_n  overlap_count  overlap_pct
+    10              3         30.0
+    20              6         30.0
+    50             25         50.0
+
+Median absolute rank change: 48.00
+Mean absolute rank change: 63.99
+Transformers moving >=25 positions: 214
+Transformers moving >=50 positions: 153
+
+IMPORTANT:
+The modelled load is not measured historical demand. This experiment tests whether load information adds useful discrimination to the screening process; it does not establish actual reverse power flow.
