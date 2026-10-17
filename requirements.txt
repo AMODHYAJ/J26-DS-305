@@ -5,6 +5,7 @@ streamlit
 numpy
 # Add when starting Component 3 (GIS Risk Mapper) work:
 openpyxl
+pyproj
 # dss-python
 # geopandas
 # folium
