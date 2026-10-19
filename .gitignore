@@ -1,8 +1,25 @@
-﻿venv/
+﻿.idea/
+.venv/
+.env
 __pycache__/
 *.pyc
-components/solar_forecaster/artifacts/
+# IDE and virtual environment
 .idea/
-data/ceb_raw/
+.venv/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Sensitive and generated datasets
+/data/
+components/solar_forecasting/data/
+*.parquet
+
+# Model artifacts
+components/solar_forecaster/artifacts/
+
+# C3 generated outputs
 components/gis_risk_mapper/output/transformer_risk.json
 components/gis_risk_mapper/frontend/public/data/transformer_risk.json
