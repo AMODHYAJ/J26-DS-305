@@ -4,4 +4,5 @@ __pycache__/
 components/solar_forecaster/artifacts/
 .idea/
 data/ceb_raw/
-
+components/gis_risk_mapper/output/transformer_risk.json
+components/gis_risk_mapper/frontend/public/data/transformer_risk.json
