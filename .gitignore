@@ -8,3 +8,8 @@ __pycache__/
 /data/
 components/solar_forecasting/data/
 *.parquet
+
+# CEB / plant-owner file formats
+*.xlsx
+*.xls
+*.mdb
