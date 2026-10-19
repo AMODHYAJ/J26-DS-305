@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
-  Activity, AlertTriangle, ArrowDownUp, BarChart3, BrainCircuit,
-  CheckCircle2, CircleHelp, Database, Filter, MapPin, Search,
-  ShieldCheck, Sun, Zap,
+  AlertTriangle, Search, Zap,
 } from 'lucide-react';
 import {
   MapContainer, TileLayer, CircleMarker, Tooltip as MapTooltip,
@@ -13,7 +11,7 @@ import 'leaflet/dist/leaflet.css';
 import './App.css';
 
 const DATA_URL = '/data/transformer_risk.json';
-const TIER_COLORS = { High: '#e65a67', Medium: '#e5a13b', Low: '#259a80' };
+const TIER_COLORS = { High: '#FF8F87', Medium: '#E4C58A', Low: '#D7FA75' };
 const number = (value, digits = 0) =>
   typeof value === 'number' && Number.isFinite(value)
     ? value.toLocaleString(undefined, { minimumFractionDigits: digits, maximumFractionDigits: digits })
@@ -43,10 +41,12 @@ function Pill({ tier }) {
   return <span className={`tier-pill tier-${String(tier).toLowerCase()}`}>{tier || 'Unknown'}</span>;
 }
 
-function Stat({ icon: Icon, label, value, detail, tone }) {
+function Stat({ label, value, detail, tone }) {
   return (
-    <div className="stat-card">
-      <div className="stat-top"><span>{label}</span><span className={`stat-icon ${tone || ''}`}><Icon size={19} /></span></div>
+    <div className={`stat-card ${tone ? `stat-${tone}` : ''}`}>
+      <div className="stat-top">
+        <span className="stat-label">{label}</span>
+      </div>
       <div className="stat-value">{value}</div>
       <div className="stat-detail">{detail}</div>
     </div>
@@ -121,7 +121,7 @@ export default function App() {
   const goTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const clearFilters = () => { setSearch(''); setCsc('All'); setFeeder('All'); setTier('All'); setSort('rank'); };
 
-  if (loading) return <div className="loading-screen"><Sun className="spin-slow" size={32} /> Preparing your C3 dashboard…</div>;
+  if (loading) return <div className="loading-screen">Preparing your C3 dashboard…</div>;
   if (error || !payload) return (
     <div className="error-screen">
       <AlertTriangle size={36} />
@@ -135,45 +135,43 @@ export default function App() {
   const metadata = payload.metadata;
   return (
     <div className="app-shell">
-      <aside className="sidebar">
-        <div className="brand-row"><div className="brand-symbol"><Zap size={22} fill="currentColor" /></div><div><strong>S-GISM</strong><span>GRID INTELLIGENCE</span></div></div>
-        <div className="sidebar-tag">COMPONENT 03</div>
-        <div className="side-section-label">WORKSPACE</div>
-        <nav className="side-nav" aria-label="Dashboard navigation">
-          <button onClick={() => goTo('overview')}><BarChart3 size={18} /> Overview</button>
-          <button onClick={() => goTo('gis-map')}><MapPin size={18} /> GIS map</button>
-          <button onClick={() => goTo('rankings')}><ArrowDownUp size={18} /> Transformer rankings</button>
-          <button onClick={() => goTo('methodology')}><CircleHelp size={18} /> Methodology</button>
-        </nav>
-        <div className="side-bottom">
-          <div className="side-data-pill"><span className="pulse-dot" /> LOCAL RESEARCH PROTOTYPE</div>
-          <p>CEB infrastructure attributes are confidential. Simulation results are not verified grid events.</p>
-          <div className="side-footer">C3 · Predictive GIS Risk Assessment</div>
+      <header className="app-header">
+        <div className="brand-row">
+          <div className="brand-symbol"><Zap size={20} fill="currentColor" /></div>
+          <div><strong>SOLAVERA</strong><span>GRID INTELLIGENCE </span></div>
         </div>
-      </aside>
+        <nav className="header-nav" aria-label="Dashboard navigation">
+          <button className="nav-active" onClick={() => goTo('overview')}>Overview</button>
+          <button onClick={() => goTo('gis-map')}>GIS Map</button>
+          <button onClick={() => goTo('rankings')}>Rankings</button>
+          <button onClick={() => goTo('methodology')}>Methodology</button>
+        </nav>
+        <div className="header-right">
+
+        </div>
+      </header>
 
       <main className="main-content">
-        <div className="topbar"><span>Research prototype <span className="crumb">/</span> Component 03</span><div className="topbar-badge"><ShieldCheck size={15} /> SYNTHETIC SCENARIOS</div></div>
         <section id="overview" className="page-intro">
           <div>
-            <div className="eyebrow">CEB DISTRIBUTION NETWORK · EMBILIPITIYA STUDY</div>
-            <h1>Transformer Exposure Intelligence</h1>
-            <p>Explore simulated midday export predictions and transformer-level spatial priorities, grounded in actual CEB infrastructure attributes.</p>
+            <div className="eyebrow"><span className="eyebrow-dot" /> DISTRIBUTION NETWORK INTELLIGENCE </div>
+            <h1>Transformer <span>Intelligence </span></h1>
+            <p>Explore predicted midday export conditions and spatial priorities across the CEB study area.</p>
           </div>
-          <div className="snapshot-box"><span>MODEL SNAPSHOT</span><strong>Simulation day {metadata.simulated_day_index}</strong><small>{metadata.simulated_date} · Predicted 11:00–14:00</small></div>
+          <div className="snapshot-box"><span>ACTIVE SIMULATION</span><strong>Day {metadata.simulated_day_index}</strong><small>{metadata.simulated_date} · 11:00–14:00 window</small><div className="snapshot-bottom">SYNTHETIC SCENARIO <span>↗</span></div></div>
         </section>
 
-        <div className="notice"><AlertTriangle size={18} /><span><strong>Simulation-only results.</strong> Predicted probabilities, tiers and exposure scores use synthetic operating conditions—not measured reverse flow or validated real-world risk.</span></div>
+        <div className="notice"><AlertTriangle size={17} /><span><strong>Research simulation</strong> — Predictions, exposure tiers and scores use synthetic operating scenarios, not measured reverse power flow or validated operational risk.</span><span className="notice-tag">SYNTHETIC</span></div>
 
         <section className="stats-grid" aria-label="Dashboard statistics">
-          <Stat icon={Database} label="Transformers" value={number(filtered.length)} detail={`of ${transformers.length} total · current filters`} />
-          <Stat icon={MapPin} label="Locations mapped" value={number(locations.length)} detail={`of ${filtered.length} selected transformers`} tone="blue" />
-          <Stat icon={BrainCircuit} label="Predicted export" value={number(predictedPositive)} detail="selected simulated day · 11:00–14:00" tone="purple" />
-          <Stat icon={Activity} label="High exposure tier" value={number(highCount)} detail="49-day synthetic scenario summary" tone="red" />
+          <Stat label="Total transformers" value={number(filtered.length)} detail={`of ${transformers.length} CEB records · filtered`} />
+          <Stat label="Mapped locations" value={number(locations.length)} detail={`of ${filtered.length} current transformer records`} tone="blue" />
+          <Stat label="Predicted export" value={number(predictedPositive)} detail="simulation day · 11:00–14:00" tone="purple" />
+          <Stat label="High exposure tier" value={number(highCount)} detail="49-day simulated summary" tone="lime" />
         </section>
 
         <section className="filters-panel" aria-label="Transformer filters">
-          <div className="panel-heading"><div><Filter size={17} /><strong>Explore transformers</strong></div><button className="text-button" onClick={clearFilters}>Reset filters</button></div>
+          <div className="panel-heading"><div><strong>Explore transformers</strong></div><button className="text-button" onClick={clearFilters}>Reset filters</button></div>
           <div className="filter-grid">
             <label className="search-control"><span>Search transformer</span><div className="search-input"><Search size={17} /><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="SIN, section or feeder…" /></div></label>
             <label><span>CSC area</span><select value={csc} onChange={(e) => { setCsc(e.target.value); setFeeder('All'); }}><option>All</option>{cscOptions.map((v) => <option key={v}>{v}</option>)}</select></label>
@@ -193,7 +191,7 @@ export default function App() {
                   {locations.map((point) => (
                     <CircleMarker key={point.id} center={[point.latitude, point.longitude]}
                       radius={point.id === chosen?.id ? 10 : 6}
-                      pathOptions={{ color: '#fff', weight: point.id === chosen?.id ? 3 : 1.8, fillColor: TIER_COLORS[tierOf(point)] || '#8290a3', fillOpacity: 0.94 }}
+                      pathOptions={{ color: '#212322', weight: point.id === chosen?.id ? 3 : 1.8, fillColor: TIER_COLORS[tierOf(point)] || '#999A9B', fillOpacity: 0.94 }}
                       eventHandlers={{ click: () => setSelectedId(point.id) }}>
                       <MapTooltip direction="top"><strong>{point.sin}</strong> · {point.csc}<br />Tier: {tierOf(point)} · Rank #{rankOf(point)}</MapTooltip>
                     </CircleMarker>
@@ -201,7 +199,7 @@ export default function App() {
                 </MapContainer>
                 <div className="map-legend">{['Low','Medium','High'].map((t) => <span key={t}><i style={{ background: TIER_COLORS[t] }} />{t}</span>)}</div>
               </div>
-            ) : <div className="map-empty"><MapPin size={28} /><strong>No mapped locations</strong><span>Try broadening your filters. Unmapped transformers remain in the table.</span></div>}
+            ) : <div className="map-empty"><strong>No mapped locations</strong><span>Try broadening your filters. Unmapped transformers remain in the table.</span></div>}
             <div className="map-footnote">Map coverage: {metadata.mapped_count} of {metadata.transformer_count} total transformers. Missing coordinates are never estimated.</div>
           </div>
 
@@ -218,24 +216,24 @@ export default function App() {
                 <div><span>Simulated export frequency</span><strong>{percentage(chosen.synthetic_summary?.export_frequency)}</strong></div>
                 <div><span>Map coordinates</span><strong>{chosen.has_coordinates ? 'Available' : 'Unavailable'}</strong></div>
               </div>
-              <div className="detail-note"><CircleHelp size={16} />The tier and exposure score summarize the full synthetic period. The probability applies only to the selected simulated day.</div>
+              <div className="detail-note">The tier and exposure score summarize the full synthetic period. The probability applies only to the selected simulated day.</div>
             </> : <div className="detail-empty">No transformers match these filters.</div>}
           </div>
         </section>
 
         <section className="panel chart-panel">
           <div className="panel-header"><div><h2>Simulated exposure distribution</h2><p>Counts of Low / Medium / High tiers by CSC within current filters</p></div></div>
-          {breakdown.length ? <div className="chart-wrap"><ResponsiveContainer width="100%" height="100%"><BarChart data={breakdown} margin={{ top: 8, right: 12, bottom: 0, left: -16 }}><CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#e8edf4" /><XAxis dataKey="name" tick={{ fill: '#64748b', fontSize: 12 }} axisLine={false} tickLine={false} /><YAxis allowDecimals={false} tick={{ fill: '#64748b', fontSize: 12 }} axisLine={false} tickLine={false} /><Tooltip /><Legend /><Bar dataKey="Low" stackId="tiers" fill={TIER_COLORS.Low} /><Bar dataKey="Medium" stackId="tiers" fill={TIER_COLORS.Medium} /><Bar dataKey="High" stackId="tiers" fill={TIER_COLORS.High} radius={[4,4,0,0]} /></BarChart></ResponsiveContainer></div> : <p className="empty-inline">No data for this selection.</p>}
+          {breakdown.length ? <div className="chart-wrap"><ResponsiveContainer width="100%" height="100%"><BarChart data={breakdown} margin={{ top: 8, right: 12, bottom: 0, left: -16 }}><CartesianGrid strokeDasharray="3 6" vertical={false} stroke="#383B39" /><XAxis dataKey="name" tick={{ fill: '#A6A8A3', fontSize: 12 }} axisLine={false} tickLine={false} /><YAxis allowDecimals={false} tick={{ fill: '#A6A8A3', fontSize: 12 }} axisLine={false} tickLine={false} /><Tooltip contentStyle={{ background: '#282B29', border: '1px solid #454844', borderRadius: 12, color: '#F4F5EE' }} cursor={{ fill: '#ffffff08' }} /><Legend iconType="circle" wrapperStyle={{ color: '#D5D7CE', fontSize: 12 }} /><Bar dataKey="Low" stackId="tiers" fill={TIER_COLORS.Low} /><Bar dataKey="Medium" stackId="tiers" fill={TIER_COLORS.Medium} /><Bar dataKey="High" stackId="tiers" fill={TIER_COLORS.High} radius={[4,4,0,0]} /></BarChart></ResponsiveContainer></div> : <p className="empty-inline">No data for this selection.</p>}
         </section>
 
         <section id="rankings" className="panel rankings-panel">
-          <div className="panel-header"><div><h2>Transformer priority rankings</h2><p>All transformers included, whether mapped or unmapped</p></div><label className="sort-control"><ArrowDownUp size={15} /><select value={sort} onChange={(e) => setSort(e.target.value)} aria-label="Sort transformers"><option value="rank">Priority rank</option><option value="probability">Predicted probability</option><option value="solar">Connected solar capacity</option></select></label></div>
-          <div className="table-scroll"><table><thead><tr><th>Rank</th><th>Transformer</th><th>CSC / feeder</th><th>Rating</th><th>Solar capacity</th><th>Exposure tier</th><th>Predicted export</th><th>Mapped</th></tr></thead><tbody>{filtered.map((item) => <tr key={item.id} className={chosen?.id === item.id ? 'selected-row' : ''} onClick={() => setSelectedId(item.id)}><td className="rank-cell">#{number(item.synthetic_summary?.priority_rank)}</td><td><strong>{item.sin}</strong></td><td>{item.csc}<small>{item.feeder}</small></td><td>{number(item.kva)} kVA</td><td>{number(item.solar_kw, 2)} kW</td><td><Pill tier={tierOf(item)} /></td><td><strong>{percentage(probOf(item))}</strong></td><td>{item.has_coordinates ? <CheckCircle2 size={17} color="#259a80" /> : <span className="muted">—</span>}</td></tr>)}</tbody></table>{filtered.length === 0 && <p className="empty-inline">No matching transformers. Reset your filters to see all records.</p>}</div>
+          <div className="panel-header"><div><h2>Transformer priority rankings</h2><p>All transformers included, whether mapped or unmapped</p></div><label className="sort-control"><select value={sort} onChange={(e) => setSort(e.target.value)} aria-label="Sort transformers"><option value="rank">Priority rank</option><option value="probability">Predicted probability</option><option value="solar">Connected solar capacity</option></select></label></div>
+          <div className="table-scroll"><table><thead><tr><th>Rank</th><th>Transformer</th><th>CSC / feeder</th><th>Rating</th><th>Solar capacity</th><th>Exposure tier</th><th>Predicted export</th><th>Mapped</th></tr></thead><tbody>{filtered.map((item) => <tr key={item.id} className={chosen?.id === item.id ? 'selected-row' : ''} onClick={() => setSelectedId(item.id)}><td className="rank-cell">#{number(item.synthetic_summary?.priority_rank)}</td><td><strong>{item.sin}</strong></td><td>{item.csc}<small>{item.feeder}</small></td><td>{number(item.kva)} kVA</td><td>{number(item.solar_kw, 2)} kW</td><td><Pill tier={tierOf(item)} /></td><td><strong>{percentage(probOf(item))}</strong></td><td>{item.has_coordinates ? <span className="mapped-text">Yes</span> : <span className="muted">—</span>}</td></tr>)}</tbody></table>{filtered.length === 0 && <p className="empty-inline">No matching transformers. Reset your filters to see all records.</p>}</div>
           <div className="table-footer">Showing {filtered.length} of {transformers.length} transformers · Click any row to inspect its details</div>
         </section>
 
-        <section id="methodology" className="methodology-panel"><div><ShieldCheck size={21} /><h2>Methodology & data provenance</h2></div><p><strong>Real CEB attributes:</strong> transformer identifiers, connected PV capacities, ratings, feeder details and available coordinates. <strong>Synthetic:</strong> simulated demand and PV conditions, exposure tiers, ranking and Random Forest export probabilities. Forecast inputs are limited to 10:00 and preceding simulated days; the target window is 11:00–14:00. The unverified <code>Loads.xlsx</code> is not used in this dashboard.</p><p><strong>Research limitation:</strong> these are simulated-condition results, not observations or validated operational risk probabilities. No prediction accuracy on real CEB measurements is implied.</p></section>
-        <footer className="page-footer">S-GISM · Component 03 · Local research demonstration</footer>
+        <section id="methodology" className="methodology-panel"><div><h2>Methodology & data provenance</h2></div><p><strong>Real CEB attributes:</strong> transformer identifiers, connected PV capacities, ratings, feeder details and available coordinates. <strong>Synthetic:</strong> simulated demand and PV conditions, exposure tiers, ranking and Random Forest export probabilities. Forecast inputs are limited to 10:00 and preceding simulated days; the target window is 11:00–14:00. The unverified <code>Loads.xlsx</code> is not used in this dashboard.</p><p><strong>Research limitation:</strong> these are simulated-condition results, not observations or validated operational risk probabilities. No prediction accuracy on real CEB measurements is implied.</p></section>
+        <footer className="page-footer"><span>S-GISM © 2026 · C3 Research Prototype</span><span>CEB infrastructure · Local and confidential</span></footer>
       </main>
     </div>
   );
