@@ -1,0 +1,23 @@
+EXPERIMENT 01 - THRESHOLD SENSITIVITY
+==================================================
+
+Transformers analysed: 357
+Scenarios tested: 16
+
+Baseline thresholds:
+Low < 0.5
+Medium 0.5 to < 1.0
+High >= 1.0
+
+Baseline label counts:
+baseline_label
+Low       178
+Medium    147
+High       32
+
+Transformers classified identically in every scenario: 194
+Strongly scenario-dependent transformers (stability < 75%): 60
+
+Small-transformer escalation rule:
+ transformers_total  transformers_changed_by_rule  changed_pct
+                357                            24         6.72

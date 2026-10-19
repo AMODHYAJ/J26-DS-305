@@ -1,0 +1,33 @@
+
+VALIDATION
+Records: 2002
+Positive target rate: 60.1%
+Random Forest: Accuracy=0.962, Precision=0.987, Recall=0.949, F1=0.968
+Solar-only logistic baseline: Accuracy=0.814, Precision=0.860, Recall=0.825, F1=0.842
+Previous-day persistence: Accuracy=0.927, Precision=0.944, Recall=0.933, F1=0.939
+Random Forest ROC-AUC: 0.996
+RF confusion matrix [[TN, FP], [FN, TP]]:
+[[ 783   15]
+ [  61 1143]]
+
+FUTURE-DAY TEST
+Records: 2002
+Positive target rate: 61.6%
+Random Forest: Accuracy=0.960, Precision=0.986, Recall=0.949, F1=0.967
+Solar-only logistic baseline: Accuracy=0.824, Precision=0.881, Recall=0.826, F1=0.853
+Previous-day persistence: Accuracy=0.926, Precision=0.943, Recall=0.936, F1=0.939
+Random Forest ROC-AUC: 0.996
+RF confusion matrix [[TN, FP], [FN, TP]]:
+[[ 752   17]
+ [  63 1170]]
+
+UNSEEN-TRANSFORMER TEST
+Records: 497
+Positive target rate: 66.0%
+Random Forest: Accuracy=0.962, Precision=0.978, Recall=0.963, F1=0.971
+Solar-only logistic baseline: Accuracy=0.801, Precision=0.899, Recall=0.787, F1=0.839
+Previous-day persistence: Accuracy=0.930, Precision=0.951, Recall=0.942, F1=0.946
+Random Forest ROC-AUC: 0.994
+RF confusion matrix [[TN, FP], [FN, TP]]:
+[[162   7]
+ [ 12 316]]

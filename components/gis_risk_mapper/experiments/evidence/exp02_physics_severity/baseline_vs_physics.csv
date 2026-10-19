@@ -1,0 +1,5 @@
+baseline_label,Never reverse in tested scenarios,Reverse in all tested scenarios,Scenario-dependent,All
+High,0,32,0,32
+Low,23,43,112,178
+Medium,0,147,0,147
+All,23,222,112,357

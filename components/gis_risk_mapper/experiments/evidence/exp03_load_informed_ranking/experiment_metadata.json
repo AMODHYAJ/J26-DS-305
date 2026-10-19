@@ -1,0 +1,12 @@
+{
+    "experiment": "EXP03 Load-Informed Transformer Ranking",
+    "run_time": "2026-10-16T13:58:06.609785",
+    "input_file": "D:\\RESEARCH PROJECT- SOLAR ENERGY CONSUMPTION\\solar-research\\J26-DS-305\\components\\gis_risk_mapper\\output\\solar_loads_matched.csv",
+    "input_sha256": "34a14e8ad5741fdf132929542fe25fa77c7f048edbddc746c76a326dec411c17",
+    "transformers_in_file": 357,
+    "usable_load_matches": 309,
+    "solar_only_indicator": "solar_kw / transformer_kva",
+    "load_informed_indicator": "solar_kw / modelled_load_kw",
+    "purpose": "Test whether including modelled local load materially changes transformer prioritisation compared with solar-to-transformer-rating alone.",
+    "limitation": "The load values are network-model loads, not measured time-series demand. The experiment therefore compares screening indicators and does not measure actual reverse power flow."
+}
