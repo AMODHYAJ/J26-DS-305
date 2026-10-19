@@ -1,5 +1,10 @@
-﻿venv/
+﻿.idea/
+.venv/
+.env
 __pycache__/
 *.pyc
-components/solar_forecaster/artifacts/
-.idea/
+
+# Data: never commit CEB, plant-owner, raw or processed data
+/data/
+components/solar_forecasting/data/
+*.parquet
