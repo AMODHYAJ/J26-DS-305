@@ -134,3 +134,23 @@ class SolarPlantInput(BaseModel):
         description="Known control or operational status",
     )
 
+
+class CurtailmentRequest(BaseModel):
+    """Operator requirements for a curtailment assessment."""
+
+    event_id: str = Field(
+        ...,
+        description="Identifier of the ramp event being assessed",
+    )
+
+    target_reduction_mw: float = Field(
+        ...,
+        gt=0,
+        description="Required reduction in solar generation in MW",
+    )
+
+    operator_authorized: bool = Field(
+        default=False,
+        description="Whether the operator has authorized curtailment",
+    )
+
