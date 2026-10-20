@@ -1,8 +1,3 @@
-﻿.idea/
-.venv/
-.env
-__pycache__/
-*.pyc
 # IDE and virtual environment
 .idea/
 .venv/
@@ -17,8 +12,13 @@ __pycache__/
 components/solar_forecasting/data/
 *.parquet
 
+# CEB / plant-owner file formats
+*.xlsx
+*.xls
+*.mdb
+
 # Model artifacts
-components/solar_forecaster/artifacts/
+components/solar_forecasting/artifacts/
 
 # C3 generated outputs
 components/gis_risk_mapper/output/transformer_risk.json
