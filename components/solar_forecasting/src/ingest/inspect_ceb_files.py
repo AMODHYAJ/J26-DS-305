@@ -27,20 +27,38 @@ def find_files(folder: Path) -> list[Path]:
     return sorted(p for p in folder.rglob("*") if p.suffix.lower() in EXTS and not p.name.startswith("~$"))
 
 
-def guess_time_column(df: pd.DataFrame) -> str | None:
+def read_csv_smart(path: Path) -> pd.DataFrame:
+    """CSV reader that skips a '-BEGIN HEADER- ... -END HEADER-' block (NASA POWER style)."""
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        head = [next(fh, "") for _ in range(200)]
+    skip = next((i + 1 for i, line in enumerate(head) if "END HEADER" in line), 0)
+    if skip:
+        print(f"  (skipped {skip} header lines)")
+    return pd.read_csv(path, skiprows=skip, low_memory=False)
+
+
+def time_series_of(df: pd.DataFrame):
+    """Return (label, timestamps) for the first usable time information, else (None, None)."""
     for col in df.columns:
         if pd.api.types.is_datetime64_any_dtype(df[col]):
-            return col
+            return str(col), df[col]
     for col in df.columns:
         if any(h in str(col).lower() for h in TIME_HINTS):
             parsed = pd.to_datetime(df[col], errors="coerce")
             if parsed.notna().mean() > 0.8:
-                return col
-    return None
+                return str(col), parsed
+    lower = {str(c).lower(): c for c in df.columns}
+    if {"year", "mo", "dy"} <= set(lower):  # NASA POWER style split columns
+        parts = {"year": df[lower["year"]], "month": df[lower["mo"]], "day": df[lower["dy"]]}
+        if "hr" in lower:
+            parts["hour"] = df[lower["hr"]]
+        return "YEAR/MO/DY/HR", pd.to_datetime(parts, errors="coerce")
+    return None, None
 
 
-def describe_time(df: pd.DataFrame, col: str) -> None:
-    t = pd.to_datetime(df[col], errors="coerce").dropna().sort_values()
+def describe_time(label: str, series: pd.Series) -> None:
+    col = label
+    t = pd.to_datetime(series, errors="coerce").dropna().sort_values()
     if len(t) < 2:
         print(f"  time column '{col}': fewer than 2 valid timestamps")
         return
@@ -59,15 +77,21 @@ def describe_frame(df: pd.DataFrame, show_rows: bool) -> None:
     df = df.dropna(how="all").dropna(axis=1, how="all")
     for col in df.columns:
         s = df[col]
+        fill = int((s == -999).sum()) if pd.api.types.is_numeric_dtype(s) else 0
+        if fill:
+            s = s.where(s != -999)  # -999 is a common "no data" code (NASA POWER)
         line = f"  - {str(col)[:45]:45s} {str(s.dtype):14s} missing {s.isna().mean():6.1%}"
         if pd.api.types.is_numeric_dtype(s) and s.notna().any():
-            line += f"  min {s.min():.4g}  max {s.max():.4g}  negative {int((s < 0).sum())} ({float((s < 0).mean()):.2%})  zero {float((s == 0).mean()):.1%}"
+            line += (f"  min {s.min():.4g}  max {s.max():.4g}  negative {int((s < 0).sum())} "
+                     f"({float((s < 0).mean()):.2%})  zero {float((s == 0).mean()):.1%}")
+            if fill:
+                line += f"  [-999 codes treated as missing: {fill}]"
         elif any(h in str(col).lower() for h in ID_HINTS):
             line += f"  distinct {s.nunique()}"
         print(line)
-    tcol = guess_time_column(df)
-    if tcol is not None:
-        describe_time(df, tcol)
+    label, ts = time_series_of(df)
+    if label is not None:
+        describe_time(label, ts)
     else:
         print("  no time column found (static table or unusual header row)")
     if show_rows:
@@ -89,7 +113,7 @@ def main() -> int:
         print("\n" + "=" * 70 + f"\n{path.relative_to(folder)}\n" + "=" * 70)
         try:
             if path.suffix.lower() == ".csv":
-                describe_frame(pd.read_csv(path, low_memory=False), args.show_rows)
+                describe_frame(read_csv_smart(path), args.show_rows)
             else:
                 xls = pd.ExcelFile(path)
                 print(f"sheets: {xls.sheet_names}")
