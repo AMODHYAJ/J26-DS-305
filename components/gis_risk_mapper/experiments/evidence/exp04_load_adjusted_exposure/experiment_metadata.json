@@ -1,0 +1,21 @@
+{
+    "experiment": "EXP04 Load-Adjusted Continuous Exposure",
+    "run_time": "2026-10-16T14:45:33.571136",
+    "input_file": "D:\\RESEARCH PROJECT- SOLAR ENERGY CONSUMPTION\\solar-research\\J26-DS-305\\components\\gis_risk_mapper\\output\\solar_loads_matched.csv",
+    "input_sha256": "34a14e8ad5741fdf132929542fe25fa77c7f048edbddc746c76a326dec411c17",
+    "input_transformers": 357,
+    "usable_transformers": 309,
+    "pv_factors": [
+        0.9,
+        0.95,
+        1.0
+    ],
+    "exposure_formula": "(solar_kw * pv_factor - model_load_kw) / kva",
+    "final_provisional_score": "median exposure across tested PV factors",
+    "limitations": [
+        "Modelled load is not measured historical transformer demand.",
+        "PV generation is estimated using simple PV output factors.",
+        "The score is a screening exposure indicator and does not represent confirmed reverse power flow.",
+        "Voltage, feeder impedance, losses, power factor and phase imbalance are not represented."
+    ]
+}

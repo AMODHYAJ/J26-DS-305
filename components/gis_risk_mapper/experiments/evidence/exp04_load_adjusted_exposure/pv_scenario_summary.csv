@@ -1,0 +1,4 @@
+pv_factor,transformers,reverse_condition_count,reverse_condition_pct,mean_exposure,median_exposure,max_exposure
+0.9,309,197,63.75,0.1234475922330097,0.105697,4.003784
+0.95,309,202,65.37,0.15059126213592233,0.118732,4.231509
+1.0,309,208,67.31,0.1777349644012945,0.139572,4.459234
