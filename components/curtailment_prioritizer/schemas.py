@@ -1,0 +1,56 @@
+
+from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel, Field
+
+
+class RampEventInput(BaseModel):
+    """Ramp event forecast received from Component 1."""
+
+    event_id: str = Field(
+        ...,
+        description="Unique identifier for the forecast event",
+    )
+
+    forecast_timestamp: datetime = Field(
+        ...,
+        description="Time when the forecast was generated",
+    )
+
+    predicted_event_time: datetime = Field(
+        ...,
+        description="Expected time of the ramp event",
+    )
+
+    event_direction: Literal[
+        "RAMP_UP",
+        "RAMP_DOWN",
+        "NO_EVENT",
+    ] = Field(
+        ...,
+        description="Predicted direction of the solar ramp",
+    )
+
+    forecast_horizon_minutes: int = Field(
+        ...,
+        ge=0,
+        description="Forecast lead time in minutes",
+    )
+
+    predicted_change_mw: float | None = Field(
+        default=None,
+        description="Expected change in solar generation in MW",
+    )
+
+    geographic_scope: str = Field(
+        ...,
+        description="Area covered by the forecast",
+    )
+
+    confidence: float | None = Field(
+        default=None,
+        ge=0,
+        le=1,
+        description="Forecast confidence between 0 and 1, if available",
+    )

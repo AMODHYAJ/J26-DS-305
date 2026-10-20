@@ -8,3 +8,4 @@ components/solar_forecaster/artifacts/
 .venv/
 components/curtailment_prioritizer/data/
 components/curtailment_prioritizer/artifacts/
+data/
