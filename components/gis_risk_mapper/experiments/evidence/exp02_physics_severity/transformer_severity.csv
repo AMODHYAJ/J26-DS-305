@@ -1,0 +1,358 @@
+csc,gss,feeder,section,sin,kva,solar_kw,solar_to_kva,baseline_label,scenarios_tested,reverse_flow_scenarios,reverse_flow_pct,above_nameplate_scenarios,above_nameplate_pct,min_reverse_loading_ratio,mean_reverse_loading_ratio,median_reverse_loading_ratio,max_reverse_loading_ratio,max_reverse_export_kw,reverse_flow_status,severity_rank
+Godakawela,Balangoda,Feeder 03,GSSM0550,S049,100.0,455.45,4.554,High,21,21,100.0,21,100.0,3.74905,4.126774999999999,4.126775,4.5045,450.45,Reverse in all tested scenarios,1
+Godakawela,Balangoda,Feeder 03,GSSM0080,S139,160.0,480.0,3.0,High,21,21,100.0,21,100.0,2.35,2.65,2.65,2.95,472.0,Reverse in all tested scenarios,2
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0020,R176,250.0,544.0,2.176,High,21,21,100.0,21,100.0,1.6084,1.8672,1.8672,2.126,531.5,Reverse in all tested scenarios,3
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0102,R185,100.0,196.9,1.969,High,21,21,100.0,21,100.0,1.4221,1.67055,1.67055,1.919,191.9,Reverse in all tested scenarios,4
+Godakawela,Balangoda,Feeder 03,GSSM0190,S059,100.0,180.0,1.8,High,21,21,100.0,21,100.0,1.27,1.51,1.51,1.75,175.0,Reverse in all tested scenarios,5
+Godakawela,Balangoda,Feeder 03,GSSM0085,S063,250.0,430.99,1.724,High,21,21,100.0,21,100.0,1.201564,1.437762,1.437762,1.67396,418.49,Reverse in all tested scenarios,6
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W073,100.0,169.95,1.699,High,21,21,100.0,21,100.0,1.17955,1.414525,1.414525,1.6495,164.95,Reverse in all tested scenarios,7
+Godakawela,Balangoda,Feeder 03,GSSM0085,S129,100.0,160.0,1.6,High,21,21,100.0,21,100.0,1.09,1.3199999999999998,1.32,1.55,155.0,Reverse in all tested scenarios,8
+Udawalawa,Embilipitiya,Feeder 04,UWSM0310,W046,160.0,250.0,1.562,High,21,21,100.0,21,100.0,1.05625,1.284375,1.284375,1.5125,242.0,Reverse in all tested scenarios,9
+Udawalawa,Embilipitiya,Feeder 06,UWSM0050,W099,100.0,125.0,1.25,High,21,21,100.0,10,47.62,0.775,0.9875,0.9875,1.2,120.0,Reverse in all tested scenarios,10
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R135,100.0,124.65,1.247,High,21,21,100.0,9,42.86,0.77185,0.9841749999999999,0.984175,1.1965,119.65,Reverse in all tested scenarios,11
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R118,160.0,196.88,1.23,High,21,21,100.0,9,42.86,0.75745,0.968975,0.968975,1.1805,188.88,Reverse in all tested scenarios,12
+Kolonna,Embilipitiya,Feeder 02,KUSM0380,U067,100.0,120.0,1.2,High,21,21,100.0,7,33.33,0.73,0.94,0.94,1.15,115.0,Reverse in all tested scenarios,13
+Godakawela,Balangoda,Feeder 03,GSSM0050,S016,100.0,115.66,1.157,High,21,21,100.0,4,19.05,0.69094,0.89877,0.89877,1.1066,110.66,Reverse in all tested scenarios,14
+Udawalawa,Embilipitiya,Feeder 04,UWSM0440,W009,100.0,110.0,1.1,High,21,21,100.0,2,9.52,0.64,0.8450000000000001,0.845,1.05,105.0,Reverse in all tested scenarios,15
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0110,R184,100.0,109.58,1.096,High,21,21,100.0,1,4.76,0.63622,0.84101,0.84101,1.0458,104.58,Reverse in all tested scenarios,16
+Godakawela,Balangoda,Feeder 03,GSSM0085,S065,100.0,109.25,1.092,High,21,21,100.0,1,4.76,0.63325,0.837875,0.837875,1.0425,104.25,Reverse in all tested scenarios,17
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0030,R057,160.0,172.57,1.079,High,21,21,100.0,1,4.76,0.620706,0.8246341428571429,0.824634,1.028563,164.57,Reverse in all tested scenarios,18
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0510,R018,100.0,107.2,1.072,High,21,21,100.0,1,4.76,0.6148,0.8183999999999999,0.8184,1.022,102.2,Reverse in all tested scenarios,19
+Udawalawa,Embilipitiya,Feeder 04,UWSM0420,W017,100.0,105.0,1.05,High,21,21,100.0,1,4.76,0.595,0.7975,0.7975,1.0,100.0,Reverse in all tested scenarios,20
+Udawalawa,Embilipitiya,Feeder 06,UWSM0155,W080,100.0,105.0,1.05,High,21,21,100.0,1,4.76,0.595,0.7975,0.7975,1.0,100.0,Reverse in all tested scenarios,20
+Godakawela,Balangoda,Feeder 02,GSSM0325,S067,100.0,102.0,1.02,High,21,21,100.0,0,0.0,0.568,0.769,0.769,0.97,97.0,Reverse in all tested scenarios,22
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R038,400.0,400.5,1.001,High,21,21,100.0,0,0.0,0.551125,0.7511873333333333,0.751187,0.95125,380.5,Reverse in all tested scenarios,23
+Godakawela,Balangoda,Feeder 03,GSSM0020,S134,100.0,100.05,1.0,High,21,21,100.0,0,0.0,0.55045,0.750475,0.750475,0.9505,95.05,Reverse in all tested scenarios,24
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0120,R055,100.0,100.0,1.0,High,21,21,100.0,0,0.0,0.55,0.75,0.75,0.95,95.0,Reverse in all tested scenarios,25
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0103,R084,400.0,400.0,1.0,High,21,21,100.0,0,0.0,0.55,0.75,0.75,0.95,380.0,Reverse in all tested scenarios,25
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R195,100.0,100.0,1.0,High,21,21,100.0,0,0.0,0.55,0.75,0.75,0.95,95.0,Reverse in all tested scenarios,25
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R196,160.0,160.0,1.0,High,21,21,100.0,0,0.0,0.55,0.75,0.75,0.95,152.0,Reverse in all tested scenarios,25
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0510,R202,160.0,160.0,1.0,High,21,21,100.0,0,0.0,0.55,0.75,0.75,0.95,152.0,Reverse in all tested scenarios,25
+Godakawela,Balangoda,Feeder 03,GSSM0120,S118,160.0,160.0,1.0,High,21,21,100.0,0,0.0,0.55,0.75,0.75,0.95,152.0,Reverse in all tested scenarios,25
+Godakawela,Balangoda,Feeder 03,GSSM0020,S132,100.0,100.0,1.0,High,21,21,100.0,0,0.0,0.55,0.75,0.75,0.95,95.0,Reverse in all tested scenarios,25
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W072,160.0,160.0,1.0,High,21,21,100.0,0,0.0,0.55,0.75,0.75,0.95,152.0,Reverse in all tested scenarios,25
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0103,R208,100.0,97.0,0.97,Medium,21,21,100.0,0,0.0,0.523,0.7215,0.7215,0.92,92.0,Reverse in all tested scenarios,33
+Kolonna,Embilipitiya,Feeder 02,KUSM0270,U018,100.0,95.5,0.955,Medium,21,21,100.0,0,0.0,0.5095,0.7072499999999999,0.70725,0.905,90.5,Reverse in all tested scenarios,34
+Udawalawa,Embilipitiya,Feeder 04,UWSM0370,W029,100.0,95.0,0.95,Medium,21,21,100.0,0,0.0,0.505,0.7025,0.7025,0.9,90.0,Reverse in all tested scenarios,35
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R215,100.0,92.78,0.928,Medium,21,21,100.0,0,0.0,0.48502,0.68141,0.68141,0.8778,87.78,Reverse in all tested scenarios,36
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W061,100.0,92.0,0.92,Medium,21,21,100.0,0,0.0,0.478,0.674,0.674,0.87,87.0,Reverse in all tested scenarios,37
+Godakawela,Balangoda,Feeder 03,GSSM0190,S131,160.0,146.2,0.914,Medium,21,21,100.0,0,0.0,0.472375,0.6680623333333333,0.668062,0.86375,138.2,Reverse in all tested scenarios,38
+Udawalawa,Embilipitiya,Feeder 06,UWSM0050,W100,160.0,145.6,0.91,Medium,21,21,100.0,0,0.0,0.469,0.6645,0.6645,0.86,137.6,Reverse in all tested scenarios,39
+Kolonna,Embilipitiya,Feeder 02,KUSM0310,U021,160.0,145.0,0.906,Medium,21,21,100.0,0,0.0,0.465625,0.6609375238095238,0.660937,0.85625,137.0,Reverse in all tested scenarios,40
+Godakawela,Balangoda,Feeder 03,GSSM0500,S076,160.0,144.95,0.906,Medium,21,21,100.0,0,0.0,0.465344,0.6606406666666667,0.660641,0.855937,136.95,Reverse in all tested scenarios,41
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0102,R120,160.0,144.4,0.903,Medium,21,21,100.0,0,0.0,0.46225,0.6573749999999999,0.657375,0.8525,136.4,Reverse in all tested scenarios,42
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0310,R192,250.0,225.0,0.9,Medium,21,21,100.0,0,0.0,0.46,0.655,0.655,0.85,212.5,Reverse in all tested scenarios,43
+Udawalawa,Embilipitiya,Feeder 06,UWSM0060,W088,160.0,144.0,0.9,Medium,21,21,100.0,0,0.0,0.46,0.655,0.655,0.85,136.0,Reverse in all tested scenarios,43
+Udawalawa,Embilipitiya,Feeder 06,UWSM0160,W104,100.0,89.9,0.899,Medium,21,21,100.0,0,0.0,0.4591,0.65405,0.65405,0.849,84.9,Reverse in all tested scenarios,45
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0391,R028,100.0,89.6,0.896,Medium,21,21,100.0,0,0.0,0.4564,0.6512,0.6512,0.846,84.6,Reverse in all tested scenarios,46
+Udawalawa,Embilipitiya,Feeder 04,UWSM0340,W040,100.0,89.0,0.89,Medium,21,21,100.0,0,0.0,0.451,0.6455,0.6455,0.84,84.0,Reverse in all tested scenarios,47
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0415,R026,160.0,142.35,0.89,Medium,21,21,100.0,0,0.0,0.450719,0.6452030476190477,0.645203,0.839687,134.35,Reverse in all tested scenarios,48
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R062,160.0,141.4,0.884,Medium,21,21,100.0,0,0.0,0.445375,0.6395626666666667,0.639563,0.83375,133.4,Reverse in all tested scenarios,49
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R046,100.0,85.86,0.859,Medium,21,21,100.0,0,0.0,0.42274,0.6156699999999999,0.61567,0.8086,80.86,Reverse in all tested scenarios,50
+Godakawela,Balangoda,Feeder 03,GSSM0140,S020,100.0,85.32,0.853,Medium,21,21,100.0,0,0.0,0.41788,0.61054,0.61054,0.8032,80.32,Reverse in all tested scenarios,51
+Embilipitiya,Embilipitiya,Feeder 01,ERSM0540,R010,100.0,85.0,0.85,Medium,21,21,100.0,0,0.0,0.415,0.6075,0.6075,0.8,80.0,Reverse in all tested scenarios,52
+Godakawela,Balangoda,Feeder 03,GSSM0230,S057,100.0,85.0,0.85,Medium,21,21,100.0,0,0.0,0.415,0.6075,0.6075,0.8,80.0,Reverse in all tested scenarios,52
+Kolonna,Embilipitiya,Feeder 02,KUSM0330,U061,100.0,85.0,0.85,Medium,21,21,100.0,0,0.0,0.415,0.6075,0.6075,0.8,80.0,Reverse in all tested scenarios,52
+Udawalawa,Embilipitiya,Feeder 04,UWSM0510,W003,100.0,85.0,0.85,Medium,21,21,100.0,0,0.0,0.415,0.6075,0.6075,0.8,80.0,Reverse in all tested scenarios,52
+Udawalawa,Embilipitiya,Feeder 04,UWSM0421,W121,100.0,85.0,0.85,Medium,21,21,100.0,0,0.0,0.415,0.6075,0.6075,0.8,80.0,Reverse in all tested scenarios,52
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0035,R216,100.0,84.95,0.85,Medium,21,21,100.0,0,0.0,0.41455,0.6070249999999999,0.607025,0.7995,79.95,Reverse in all tested scenarios,57
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R207,160.0,134.8,0.842,Medium,21,21,100.0,0,0.0,0.40825,0.600375,0.600375,0.7925,126.8,Reverse in all tested scenarios,58
+Udawalawa,Embilipitiya,Feeder 04,UWSM0540,W116,160.0,134.04000000000002,0.838,Medium,21,21,100.0,0,0.0,0.403975,0.5958626666666667,0.595863,0.78775,126.04,Reverse in all tested scenarios,59
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0510,R019,400.0,323.98,0.81,Medium,21,21,100.0,0,0.0,0.378955,0.5694525238095238,0.569453,0.75995,303.98,Reverse in all tested scenarios,60
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0080,R059,100.0,80.0,0.8,Medium,21,21,100.0,0,0.0,0.37,0.5599999999999999,0.56,0.75,75.0,Reverse in all tested scenarios,61
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R076,100.0,80.0,0.8,Medium,21,21,100.0,0,0.0,0.37,0.5599999999999999,0.56,0.75,75.0,Reverse in all tested scenarios,61
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0101,R088,100.0,80.0,0.8,Medium,21,21,100.0,0,0.0,0.37,0.5599999999999999,0.56,0.75,75.0,Reverse in all tested scenarios,61
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R179,100.0,80.0,0.8,Medium,21,21,100.0,0,0.0,0.37,0.5599999999999999,0.56,0.75,75.0,Reverse in all tested scenarios,61
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0210,R212,100.0,80.0,0.8,Medium,21,21,100.0,0,0.0,0.37,0.5599999999999999,0.56,0.75,75.0,Reverse in all tested scenarios,61
+Godakawela,Balangoda,Feeder 03,GSSM0160,S023,100.0,80.0,0.8,Medium,21,21,100.0,0,0.0,0.37,0.5599999999999999,0.56,0.75,75.0,Reverse in all tested scenarios,61
+Godakawela,Balangoda,Feeder 02,GSSM0240,S037,100.0,80.0,0.8,Medium,21,21,100.0,0,0.0,0.37,0.5599999999999999,0.56,0.75,75.0,Reverse in all tested scenarios,61
+Udawalawa,Embilipitiya,Feeder 04,UWSM0305,W044,100.0,80.0,0.8,Medium,21,21,100.0,0,0.0,0.37,0.5599999999999999,0.56,0.75,75.0,Reverse in all tested scenarios,61
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R049,100.0,79.8,0.798,Medium,21,21,100.0,0,0.0,0.3682,0.5581,0.5581,0.748,74.8,Reverse in all tested scenarios,69
+Udawalawa,Embilipitiya,Feeder 06,UWSM0050,W110,160.0,127.65,0.798,Medium,21,21,100.0,0,0.0,0.368031,0.5579219523809524,0.557922,0.747812,119.65,Reverse in all tested scenarios,70
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0410,R174,160.0,126.44,0.79,Medium,21,21,100.0,0,0.0,0.361225,0.550737380952381,0.550737,0.74025,118.44,Reverse in all tested scenarios,71
+Udawalawa,Embilipitiya,Feeder 04,UWSM0420,W016,160.0,125.74,0.786,Medium,21,21,100.0,0,0.0,0.357287,0.5465810952380953,0.546581,0.735875,117.74,Reverse in all tested scenarios,72
+Kolonna,Embilipitiya,Feeder 02,KUSM0160,U011,160.0,125.0,0.781,Medium,21,21,100.0,0,0.0,0.353125,0.5421875714285714,0.542188,0.73125,117.0,Reverse in all tested scenarios,73
+Udawalawa,Embilipitiya,Feeder 04,UWSM0480,W006,160.0,125.0,0.781,Medium,21,21,100.0,0,0.0,0.353125,0.5421875714285714,0.542188,0.73125,117.0,Reverse in all tested scenarios,73
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0040,R068,100.0,78.0,0.78,Medium,21,21,100.0,0,0.0,0.352,0.541,0.541,0.73,73.0,Reverse in all tested scenarios,75
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W062,160.0,124.8,0.78,Medium,21,21,100.0,0,0.0,0.352,0.541,0.541,0.73,116.8,Reverse in all tested scenarios,75
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R058,160.0,124.6,0.779,Medium,21,21,100.0,0,0.0,0.350875,0.5398123333333333,0.539812,0.72875,116.6,Reverse in all tested scenarios,77
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0103,R031,250.0,192.03,0.768,Medium,21,21,100.0,0,0.0,0.341308,0.529714,0.529714,0.71812,179.53,Reverse in all tested scenarios,78
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0171,R221,250.0,192.0,0.768,Medium,21,21,100.0,0,0.0,0.3412,0.5296000000000001,0.5296,0.718,179.5,Reverse in all tested scenarios,79
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R045,250.0,191.1,0.764,Medium,21,21,100.0,0,0.0,0.33796,0.52618,0.52618,0.7144,178.6,Reverse in all tested scenarios,80
+Embilipitiya,Embilipitiya,Feeder 01,ERSM0550,R011,100.0,75.55,0.756,Medium,21,21,100.0,0,0.0,0.32995,0.517725,0.517725,0.7055,70.55,Reverse in all tested scenarios,81
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0190,R205,100.0,75.23,0.752,Medium,21,21,100.0,0,0.0,0.32707,0.514685,0.514685,0.7023,70.23,Reverse in all tested scenarios,82
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0190,R123,100.0,75.18,0.752,Medium,21,21,100.0,0,0.0,0.32662,0.5142100000000001,0.51421,0.7018,70.18,Reverse in all tested scenarios,83
+Godakawela,Balangoda,Feeder 03,GSSM0140,S022,100.0,75.03,0.75,Medium,21,21,100.0,0,0.0,0.32527,0.512785,0.512785,0.7003,70.03,Reverse in all tested scenarios,84
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0470,R211,100.0,75.0,0.75,Medium,21,21,100.0,0,0.0,0.325,0.5125,0.5125,0.7,70.0,Reverse in all tested scenarios,85
+Godakawela,Balangoda,Feeder 03,GSSM0020,S011,160.0,120.0,0.75,Medium,21,21,100.0,0,0.0,0.325,0.5125,0.5125,0.7,112.0,Reverse in all tested scenarios,85
+Kolonna,Embilipitiya,Feeder 02,KUSM0200,U040,100.0,75.0,0.75,Medium,21,21,100.0,0,0.0,0.325,0.5125,0.5125,0.7,70.0,Reverse in all tested scenarios,85
+Udawalawa,Embilipitiya,Feeder 04,UWSM0425,W014,160.0,120.0,0.75,Medium,21,21,100.0,0,0.0,0.325,0.5125,0.5125,0.7,112.0,Reverse in all tested scenarios,85
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0190,R042,160.0,119.95,0.75,Medium,21,21,100.0,0,0.0,0.324719,0.5122032380952382,0.512203,0.699688,111.95,Reverse in all tested scenarios,89
+Kolonna,Embilipitiya,Feeder 02,KUSM0380,U069,160.0,119.8,0.749,Medium,21,21,100.0,0,0.0,0.323875,0.5113123333333334,0.511312,0.69875,111.8,Reverse in all tested scenarios,90
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0430,R016,160.0,118.18,0.739,Medium,21,21,100.0,0,0.0,0.314763,0.501694,0.501694,0.688625,110.18,Reverse in all tested scenarios,91
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0450,R172,100.0,73.5,0.735,Medium,21,21,100.0,0,0.0,0.3115,0.49825,0.49825,0.685,68.5,Reverse in all tested scenarios,92
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0175,R040,250.0,183.56,0.734,Medium,21,21,100.0,0,0.0,0.310816,0.497528,0.497528,0.68424,171.06,Reverse in all tested scenarios,93
+Kolonna,Embilipitiya,Feeder 02,KUSM0440,U023,100.0,72.68,0.727,Medium,21,21,100.0,0,0.0,0.30412,0.49045999999999995,0.49046,0.6768,67.68,Reverse in all tested scenarios,94
+Kolonna,Embilipitiya,Feeder 02,KUSM0270,U059,100.0,72.0,0.72,Medium,21,21,100.0,0,0.0,0.298,0.484,0.484,0.67,67.0,Reverse in all tested scenarios,95
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0191,R072,160.0,115.0,0.719,Medium,21,21,100.0,0,0.0,0.296875,0.4828124285714286,0.482812,0.66875,107.0,Reverse in all tested scenarios,96
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0520,R198,160.0,114.97,0.719,Medium,21,21,100.0,0,0.0,0.296706,0.4826341904761905,0.482634,0.668562,106.97,Reverse in all tested scenarios,97
+Kolonna,Embilipitiya,Feeder 02,KUSM0240,U014,100.0,71.5,0.715,Medium,21,21,100.0,0,0.0,0.2935,0.47924999999999995,0.47925,0.665,66.5,Reverse in all tested scenarios,98
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0172,R194,160.0,114.27,0.714,Medium,21,21,100.0,0,0.0,0.292769,0.4784780476190476,0.478478,0.664187,106.27,Reverse in all tested scenarios,99
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0172,R073,160.0,114.17,0.714,Medium,21,21,100.0,0,0.0,0.292206,0.47788419047619046,0.477884,0.663563,106.17,Reverse in all tested scenarios,100
+Godakawela,Balangoda,Feeder 03,GSSM0080,S018,250.0,177.9,0.712,Medium,21,21,100.0,0,0.0,0.29044,0.47602,0.47602,0.6616,165.4,Reverse in all tested scenarios,101
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R053,250.0,177.01999999999998,0.708,Medium,21,21,100.0,0,0.0,0.287272,0.47267600000000004,0.472676,0.65808,164.52,Reverse in all tested scenarios,102
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0480,R113,100.0,70.25,0.702,Medium,21,21,100.0,0,0.0,0.28225,0.46737500000000004,0.467375,0.6525,65.25,Reverse in all tested scenarios,103
+Godakawela,Balangoda,Feeder 03,GSSM0190,S048,400.0,281.0,0.702,Medium,21,21,100.0,0,0.0,0.28225,0.46737500000000004,0.467375,0.6525,261.0,Reverse in all tested scenarios,103
+Godakawela,Balangoda,Feeder 02,GSSM0330,S028,100.0,70.12,0.701,Medium,21,21,100.0,0,0.0,0.28108,0.46614,0.46614,0.6512,65.12,Reverse in all tested scenarios,105
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0010,R066,100.0,70.03,0.7,Medium,21,21,100.0,0,0.0,0.28027,0.465285,0.465285,0.6503,65.03,Reverse in all tested scenarios,106
+Kolonna,Embilipitiya,Feeder 02,KUSM0370,U037,100.0,70.0,0.7,Medium,21,21,100.0,0,0.0,0.28,0.465,0.465,0.65,65.0,Reverse in all tested scenarios,107
+Udawalawa,Embilipitiya,Feeder 06,UWSM0290,W114,100.0,70.0,0.7,Medium,21,21,100.0,0,0.0,0.28,0.465,0.465,0.65,65.0,Reverse in all tested scenarios,107
+Udawalawa,Embilipitiya,Feeder 04,UWSM0435,W120,100.0,70.0,0.7,Medium,21,21,100.0,0,0.0,0.28,0.465,0.465,0.65,65.0,Reverse in all tested scenarios,107
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0515,R027,100.0,69.6,0.696,Medium,21,21,100.0,0,0.0,0.2764,0.4612,0.4612,0.646,64.6,Reverse in all tested scenarios,110
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0103,R122,100.0,69.46000000000001,0.695,Medium,21,21,100.0,0,0.0,0.27514,0.45987,0.45987,0.6446,64.46,Reverse in all tested scenarios,111
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0037,R213,100.0,69.36,0.694,Medium,21,21,100.0,0,0.0,0.27424,0.45892000000000005,0.45892,0.6436,64.36,Reverse in all tested scenarios,112
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0510,R020,160.0,109.1,0.682,Medium,21,21,100.0,0,0.0,0.263687,0.4477810952380953,0.447781,0.631875,101.1,Reverse in all tested scenarios,113
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R169,160.0,108.82,0.68,Medium,21,21,100.0,0,0.0,0.262113,0.44611890476190474,0.446119,0.630125,100.82,Reverse in all tested scenarios,114
+Kolonna,Embilipitiya,Feeder 02,KUSM0410,U028,160.0,108.66,0.679,Medium,21,21,100.0,0,0.0,0.261212,0.4451687619047619,0.445169,0.629125,100.66,Reverse in all tested scenarios,115
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0510,R197,160.0,108.65,0.679,Medium,21,21,100.0,0,0.0,0.261156,0.44510928571428576,0.445109,0.629063,100.65,Reverse in all tested scenarios,116
+Udawalawa,Embilipitiya,Feeder 06,UWSM0060,W089,100.0,67.0,0.67,Medium,21,21,100.0,0,0.0,0.253,0.43649999999999994,0.4365,0.62,62.0,Reverse in all tested scenarios,117
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0020,R063,160.0,106.43,0.665,Medium,21,21,100.0,0,0.0,0.248669,0.4319282857142857,0.431928,0.615187,98.43,Reverse in all tested scenarios,118
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0110,R054,160.0,105.96,0.662,Medium,21,21,100.0,0,0.0,0.246025,0.42913733333333337,0.429137,0.61225,97.96,Reverse in all tested scenarios,119
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R035,250.0,164.81,0.659,Medium,21,21,100.0,0,0.0,0.243316,0.42627800000000005,0.426278,0.60924,152.31,Reverse in all tested scenarios,120
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0180,R032,250.0,164.75,0.659,Medium,21,21,100.0,0,0.0,0.2431,0.42605000000000004,0.42605,0.609,152.25,Reverse in all tested scenarios,121
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0171,R217,160.0,105.21,0.658,Medium,21,21,100.0,0,0.0,0.241806,0.4246840476190476,0.424684,0.607563,97.21,Reverse in all tested scenarios,122
+Godakawela,Balangoda,Feeder 02,GSSM0350,S031,160.0,105.0,0.656,Medium,21,21,100.0,0,0.0,0.240625,0.4234375714285714,0.423438,0.60625,97.0,Reverse in all tested scenarios,123
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R061,100.0,65.0,0.65,Medium,21,21,100.0,0,0.0,0.235,0.4175,0.4175,0.6,60.0,Reverse in all tested scenarios,124
+Godakawela,Balangoda,Feeder 03,GSSM0020,S010,100.0,65.0,0.65,Medium,21,21,100.0,0,0.0,0.235,0.4175,0.4175,0.6,60.0,Reverse in all tested scenarios,124
+Godakawela,Balangoda,Feeder 03,GSSM0160,S024,100.0,65.0,0.65,Medium,21,21,100.0,0,0.0,0.235,0.4175,0.4175,0.6,60.0,Reverse in all tested scenarios,124
+Godakawela,Balangoda,Feeder 03,GSSM0470,S087,100.0,65.0,0.65,Medium,21,21,100.0,0,0.0,0.235,0.4175,0.4175,0.6,60.0,Reverse in all tested scenarios,124
+Udawalawa,Embilipitiya,Feeder 04,UWSM0430,W018,100.0,65.0,0.65,Medium,21,21,100.0,0,0.0,0.235,0.4175,0.4175,0.6,60.0,Reverse in all tested scenarios,124
+Udawalawa,Embilipitiya,Feeder 06,UWSM0190,W102,100.0,65.0,0.65,Medium,21,21,100.0,0,0.0,0.235,0.4175,0.4175,0.6,60.0,Reverse in all tested scenarios,124
+Kolonna,Embilipitiya,Feeder 02,KUSM0200,U015,160.0,101.8,0.636,Medium,21,21,100.0,0,0.0,0.222625,0.4044373333333333,0.404437,0.58625,93.8,Reverse in all tested scenarios,130
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0270,R069,630.0,400.0,0.635,Medium,21,21,100.0,0,0.0,0.221429,0.403175,0.403175,0.584921,368.5,Reverse in all tested scenarios,131
+Godakawela,Balangoda,Feeder 03,GSSM0050,S013,160.0,101.5,0.634,Medium,21,21,100.0,0,0.0,0.220938,0.40265633333333334,0.402656,0.584375,93.5,Reverse in all tested scenarios,132
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R050,160.0,100.88,0.63,Medium,21,21,100.0,0,0.0,0.21745,0.39897499999999997,0.398975,0.5805,92.88,Reverse in all tested scenarios,133
+Udawalawa,Embilipitiya,Feeder 06,UWSM0290,W111,160.0,100.2,0.626,Medium,21,21,100.0,0,0.0,0.213625,0.39493738095238096,0.394937,0.57625,92.2,Reverse in all tested scenarios,134
+Godakawela,Balangoda,Feeder 03,GSSM0080,S017,160.0,100.0,0.625,Medium,21,21,100.0,0,0.0,0.2125,0.39375000000000004,0.39375,0.575,92.0,Reverse in all tested scenarios,135
+Kolonna,Deniyaya,Feeder 05,KUSM0150,U009,160.0,100.0,0.625,Medium,21,21,100.0,0,0.0,0.2125,0.39375000000000004,0.39375,0.575,92.0,Reverse in all tested scenarios,135
+Kolonna,Embilipitiya,Feeder 02,KUSM0160,U013,400.0,250.0,0.625,Medium,21,21,100.0,0,0.0,0.2125,0.39375000000000004,0.39375,0.575,230.0,Reverse in all tested scenarios,135
+Kolonna,Embilipitiya,Feeder 02,KUSM0380,U025,160.0,100.0,0.625,Medium,21,21,100.0,0,0.0,0.2125,0.39375000000000004,0.39375,0.575,92.0,Reverse in all tested scenarios,135
+Kolonna,Embilipitiya,Feeder 02,KUSM0380,U027,160.0,100.0,0.625,Medium,21,21,100.0,0,0.0,0.2125,0.39375000000000004,0.39375,0.575,92.0,Reverse in all tested scenarios,135
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W107,160.0,99.83,0.624,Medium,21,21,100.0,0,0.0,0.211544,0.39274076190476187,0.392741,0.573937,91.83,Reverse in all tested scenarios,140
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0135,R006,100.0,60.0,0.6,Medium,21,21,100.0,0,0.0,0.19,0.37,0.37,0.55,55.0,Reverse in all tested scenarios,141
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0440,R161,100.0,60.0,0.6,Medium,21,21,100.0,0,0.0,0.19,0.37,0.37,0.55,55.0,Reverse in all tested scenarios,141
+Godakawela,Balangoda,Feeder 03,GSSM0145,S019,100.0,60.0,0.6,Medium,21,21,100.0,0,0.0,0.19,0.37,0.37,0.55,55.0,Reverse in all tested scenarios,141
+Godakawela,Balangoda,Feeder 03,GSSM0220,S060,100.0,60.0,0.6,Medium,21,21,100.0,0,0.0,0.19,0.37,0.37,0.55,55.0,Reverse in all tested scenarios,141
+Godakawela,Balangoda,Feeder 03,GSSM0070,S128,100.0,60.0,0.6,Medium,21,21,100.0,0,0.0,0.19,0.37,0.37,0.55,55.0,Reverse in all tested scenarios,141
+Kolonna,Embilipitiya,Feeder 02,KUSM0170,U062,100.0,60.0,0.6,Medium,21,21,100.0,0,0.0,0.19,0.37,0.37,0.55,55.0,Reverse in all tested scenarios,141
+Udawalawa,Embilipitiya,Feeder 06,UWSM0290,W042,100.0,60.0,0.6,Medium,21,21,100.0,0,0.0,0.19,0.37,0.37,0.55,55.0,Reverse in all tested scenarios,141
+Udawalawa,Embilipitiya,Feeder 04,UWSM0300,W105,100.0,60.0,0.6,Medium,21,21,100.0,0,0.0,0.19,0.37,0.37,0.55,55.0,Reverse in all tested scenarios,141
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0510,R075,100.0,59.96,0.6,Medium,21,21,100.0,0,0.0,0.18964,0.36962,0.36962,0.5496,54.96,Reverse in all tested scenarios,149
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W064,160.0,95.5,0.597,Medium,21,21,100.0,0,0.0,0.187188,0.3670312857142857,0.367031,0.546875,87.5,Reverse in all tested scenarios,150
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0250,R121,100.0,59.6,0.596,Medium,21,21,100.0,0,0.0,0.1864,0.36619999999999997,0.3662,0.546,54.6,Reverse in all tested scenarios,151
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0020,R064,250.0,146.0,0.584,Medium,21,21,100.0,0,0.0,0.1756,0.3548,0.3548,0.534,133.5,Reverse in all tested scenarios,152
+Kolonna,Embilipitiya,Feeder 02,KUSM0400,U026,100.0,58.0,0.58,Medium,21,21,100.0,0,0.0,0.172,0.35100000000000003,0.351,0.53,53.0,Reverse in all tested scenarios,153
+Udawalawa,Embilipitiya,Feeder 06,UWSM0050,W090,160.0,92.0,0.575,Medium,21,21,100.0,0,0.0,0.1675,0.34625,0.34625,0.525,84.0,Reverse in all tested scenarios,154
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0490,R159,100.0,57.150000000000006,0.572,Medium,21,21,100.0,0,0.0,0.16435,0.342925,0.342925,0.5215,52.15,Reverse in all tested scenarios,155
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0220,R218,160.0,91.2,0.57,Medium,21,21,100.0,0,0.0,0.163,0.3415,0.3415,0.52,83.2,Reverse in all tested scenarios,156
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0220,R044,160.0,89.77,0.561,Medium,21,21,100.0,0,0.0,0.154956,0.333009,0.333009,0.511062,81.77,Reverse in all tested scenarios,157
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0530,R022,250.0,140.0,0.56,Medium,21,21,100.0,0,0.0,0.154,0.33199999999999996,0.332,0.51,127.5,Reverse in all tested scenarios,158
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0110,R082,160.0,89.34,0.558,Medium,21,21,100.0,0,0.0,0.152538,0.33045633333333335,0.330456,0.508375,81.34,Reverse in all tested scenarios,159
+Kolonna,Embilipitiya,Feeder 02,KUSM0260,U056,100.0,55.2,0.552,Medium,21,21,100.0,0,0.0,0.1468,0.3244,0.3244,0.502,50.2,Reverse in all tested scenarios,160
+Godakawela,Balangoda,Feeder 03,GSSM0025,S085,100.0,55.0,0.55,Medium,21,21,100.0,0,0.0,0.145,0.3225,0.3225,0.5,50.0,Reverse in all tested scenarios,161
+Kolonna,Embilipitiya,Feeder 02,KUSM0370,U071,100.0,55.0,0.55,Medium,21,21,100.0,0,0.0,0.145,0.3225,0.3225,0.5,50.0,Reverse in all tested scenarios,161
+Udawalawa,Embilipitiya,Feeder 06,ERSM0030,W113,100.0,55.0,0.55,Medium,21,21,100.0,0,0.0,0.145,0.3225,0.3225,0.5,50.0,Reverse in all tested scenarios,161
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R004,160.0,87.17,0.545,Medium,21,21,100.0,0,0.0,0.140331,0.31757185714285713,0.317572,0.494812,79.17,Reverse in all tested scenarios,164
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0410,R014,250.0,133.65,0.535,Medium,21,21,100.0,0,0.0,0.13114,0.30787000000000003,0.30787,0.4846,121.15,Reverse in all tested scenarios,165
+Udawalawa,Embilipitiya,Feeder 04,UWSM0520,W001,160.0,85.0,0.531,Medium,21,21,100.0,0,0.0,0.128125,0.3046875238095238,0.304688,0.48125,77.0,Reverse in all tested scenarios,166
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W063,160.0,85.0,0.531,Medium,21,21,100.0,0,0.0,0.128125,0.3046875238095238,0.304688,0.48125,77.0,Reverse in all tested scenarios,166
+Udawalawa,Embilipitiya,Feeder 04,UWSM0310,W047,100.0,52.85,0.528,Medium,21,21,100.0,0,0.0,0.12565,0.30207500000000004,0.302075,0.4785,47.85,Reverse in all tested scenarios,168
+Godakawela,Balangoda,Feeder 02,GSSM0340,S030,160.0,84.0,0.525,Medium,21,21,100.0,0,0.0,0.1225,0.29874999999999996,0.29875,0.475,76.0,Reverse in all tested scenarios,169
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0110,R220,160.0,83.25,0.52,Medium,21,21,100.0,0,0.0,0.118281,0.29429680952380954,0.294297,0.470313,75.25,Reverse in all tested scenarios,170
+Udawalawa,Embilipitiya,Feeder 06,UWSM0150,W079,250.0,129.53,0.518,Medium,21,21,100.0,0,0.0,0.116308,0.292214,0.292214,0.46812,117.03,Reverse in all tested scenarios,171
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W074,160.0,80.95,0.506,Medium,21,21,100.0,0,0.0,0.105344,0.2806409523809524,0.280641,0.455937,72.95,Reverse in all tested scenarios,172
+Udawalawa,Embilipitiya,Feeder 04,UWSM0360,W026,100.0,50.35,0.504,Medium,21,21,100.0,0,0.0,0.10315,0.278325,0.278325,0.4535,45.35,Reverse in all tested scenarios,173
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R052,160.0,80.35,0.502,Medium,21,21,100.0,0,0.0,0.101969,0.277078,0.277078,0.452187,72.35,Reverse in all tested scenarios,174
+Godakawela,Balangoda,Feeder 03,GSSM0085,S142,100.0,50.04,0.5,Medium,21,21,100.0,0,0.0,0.10036,0.27538,0.27538,0.4504,45.04,Reverse in all tested scenarios,175
+Godakawela,Balangoda,Feeder 02,GSSM0380,S036,100.0,50.0,0.5,Medium,21,21,100.0,0,0.0,0.1,0.275,0.275,0.45,45.0,Reverse in all tested scenarios,176
+Godakawela,Balangoda,Feeder 03,GSSM0080,S113,100.0,50.0,0.5,Medium,21,21,100.0,0,0.0,0.1,0.275,0.275,0.45,45.0,Reverse in all tested scenarios,176
+Udawalawa,Embilipitiya,Feeder 06,UWSM0180,W071,100.0,50.0,0.5,Medium,21,21,100.0,0,0.0,0.1,0.275,0.275,0.45,45.0,Reverse in all tested scenarios,176
+Udawalawa,Embilipitiya,Feeder 06,UWSM0070,W086,100.0,50.0,0.5,Medium,21,21,100.0,0,0.0,0.1,0.275,0.275,0.45,45.0,Reverse in all tested scenarios,176
+Udawalawa,Embilipitiya,Feeder 04,UWSM0440,W010,100.0,49.0,0.49,Low,21,21,100.0,0,0.0,0.091,0.2655,0.2655,0.44,44.0,Reverse in all tested scenarios,180
+Udawalawa,Embilipitiya,Feeder 06,UWSM0030,W106,100.0,48.86,0.489,Low,21,21,100.0,0,0.0,0.08974,0.26417,0.26417,0.4386,43.86,Reverse in all tested scenarios,181
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0410,R013,160.0,76.99,0.481,Low,21,21,100.0,0,0.0,0.083069,0.257128,0.257128,0.431187,68.99,Reverse in all tested scenarios,182
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R037,250.0,113.83,0.455,Low,21,21,100.0,0,0.0,0.059788,0.23255399999999998,0.232554,0.40532,101.33,Reverse in all tested scenarios,183
+Godakawela,Balangoda,Feeder 03,GSSM0050,S140,100.0,45.22,0.452,Low,21,21,100.0,0,0.0,0.05698,0.22959000000000002,0.22959,0.4022,40.22,Reverse in all tested scenarios,184
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0010,R067,100.0,45.06,0.451,Low,21,21,100.0,0,0.0,0.05554,0.22807,0.22807,0.4006,40.06,Reverse in all tested scenarios,185
+Godakawela,Balangoda,Feeder 02,GSSM0320,S033,100.0,45.0,0.45,Low,21,21,100.0,0,0.0,0.055,0.22749999999999998,0.2275,0.4,40.0,Reverse in all tested scenarios,186
+Kolonna,Embilipitiya,Feeder 02,KUSM0350,U050,100.0,45.0,0.45,Low,21,21,100.0,0,0.0,0.055,0.22749999999999998,0.2275,0.4,40.0,Reverse in all tested scenarios,186
+Udawalawa,Embilipitiya,Feeder 04,UWSM0380,W027,100.0,45.0,0.45,Low,21,21,100.0,0,0.0,0.055,0.22749999999999998,0.2275,0.4,40.0,Reverse in all tested scenarios,186
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R030,160.0,70.56,0.441,Low,21,21,100.0,0,0.0,0.0469,0.21895,0.21895,0.391,62.56,Reverse in all tested scenarios,189
+Godakawela,Balangoda,Feeder 03,GSSM0140,S021,160.0,70.0,0.438,Low,21,21,100.0,0,0.0,0.04375,0.215625,0.215625,0.3875,62.0,Reverse in all tested scenarios,190
+Godakawela,Balangoda,Feeder 02,GSSM0410,S044,160.0,70.0,0.438,Low,21,21,100.0,0,0.0,0.04375,0.215625,0.215625,0.3875,62.0,Reverse in all tested scenarios,190
+Udawalawa,Embilipitiya,Feeder 06,UWSM0050,W092,160.0,70.0,0.438,Low,21,21,100.0,0,0.0,0.04375,0.215625,0.215625,0.3875,62.0,Reverse in all tested scenarios,190
+Udawalawa,Embilipitiya,Feeder 06,UWSM0040,W096,160.0,70.0,0.438,Low,21,21,100.0,0,0.0,0.04375,0.215625,0.215625,0.3875,62.0,Reverse in all tested scenarios,190
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W108,160.0,70.0,0.438,Low,21,21,100.0,0,0.0,0.04375,0.215625,0.215625,0.3875,62.0,Reverse in all tested scenarios,190
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0270,R110,160.0,69.55,0.435,Low,21,21,100.0,0,0.0,0.041219,0.21295299999999998,0.212953,0.384687,61.55,Reverse in all tested scenarios,195
+Kolonna,Deniyaya,Feeder 05,KUSM0090,U064,100.0,43.3,0.433,Low,21,21,100.0,0,0.0,0.0397,0.21134999999999998,0.21135,0.383,38.3,Reverse in all tested scenarios,196
+Udawalawa,Embilipitiya,Feeder 04,UWSM0330,W035,160.0,68.2,0.426,Low,21,21,100.0,0,0.0,0.033625,0.20493766666666666,0.204938,0.37625,60.2,Reverse in all tested scenarios,197
+Godakawela,Balangoda,Feeder 03,GSSM0085,S064,160.0,68.0,0.425,Low,21,21,100.0,0,0.0,0.0325,0.20375,0.20375,0.375,60.0,Reverse in all tested scenarios,198
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W059,250.0,105.59,0.422,Low,21,21,100.0,0,0.0,0.030124,0.201242,0.201242,0.37236,93.09,Reverse in all tested scenarios,199
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R181,160.0,67.35,0.421,Low,21,21,100.0,0,0.0,0.028844,0.19989066666666666,0.199891,0.370937,59.35,Reverse in all tested scenarios,200
+Udawalawa,Embilipitiya,Feeder 04,UWSM0410,W008,160.0,67.28999999999999,0.421,Low,21,21,100.0,0,0.0,0.028506,0.19953400000000002,0.199534,0.370562,59.29,Reverse in all tested scenarios,201
+Kolonna,Embilipitiya,Feeder 02,KUSM0380,U049,100.0,40.68,0.407,Low,21,21,100.0,0,0.0,0.01612,0.18646,0.18646,0.3568,35.68,Reverse in all tested scenarios,202
+Kolonna,Embilipitiya,Feeder 02,KUSM0270,U017,160.0,65.0,0.406,Low,21,21,100.0,0,0.0,0.015625,0.18593752380952383,0.185938,0.35625,57.0,Reverse in all tested scenarios,203
+Udawalawa,Embilipitiya,Feeder 04,UWSM0460,W011,160.0,65.0,0.406,Low,21,21,100.0,0,0.0,0.015625,0.18593752380952383,0.185938,0.35625,57.0,Reverse in all tested scenarios,203
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0460,R017,160.0,64.95,0.406,Low,21,21,100.0,0,0.0,0.015344,0.185641,0.185641,0.355938,56.95,Reverse in all tested scenarios,205
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R007,100.0,40.26,0.403,Low,21,21,100.0,0,0.0,0.01234,0.18247,0.18247,0.3526,35.26,Reverse in all tested scenarios,206
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0090,R180,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0280,R204,250.0,100.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,87.5,Reverse in all tested scenarios,207
+Godakawela,Balangoda,Feeder 03,GSSM0170,S025,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Godakawela,Balangoda,Feeder 03,GSSM0620,S086,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Godakawela,Balangoda,Feeder 03,GSSM0140,S135,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Kolonna,Embilipitiya,Feeder 02,KUSM0460,U031,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Kolonna,Embilipitiya,Feeder 02,KUSM0290,U057,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Udawalawa,Embilipitiya,Feeder 04,UWSM0530,W002,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Udawalawa,Embilipitiya,Feeder 04,UWSM0360,W030,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Udawalawa,Embilipitiya,Feeder 04,UWSM0360,W032,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Udawalawa,Embilipitiya,Feeder 04,UWSM0330,W036,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Udawalawa,Embilipitiya,Feeder 06,UWSM0260,W050,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Udawalawa,Balangoda,Feeder 02,UWSM0120,W082,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W119,100.0,40.0,0.4,Low,21,21,100.0,0,0.0,0.01,0.18000000000000002,0.18,0.35,35.0,Reverse in all tested scenarios,207
+Udawalawa,Embilipitiya,Feeder 04,UWSM0500,W004,160.0,63.4,0.396,Low,21,21,100.0,0,0.0,0.006625,0.17643738095238096,0.176437,0.34625,55.4,Reverse in all tested scenarios,221
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0110,R008,160.0,63.23,0.395,Low,21,21,100.0,0,0.0,0.005669,0.175428,0.175428,0.345187,55.23,Reverse in all tested scenarios,222
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R186,160.0,62.19,0.389,Low,21,20,95.24,0,0.0,0.0,0.16926161904761905,0.169253,0.338687,54.19,Scenario-dependent,223
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0130,R111,100.0,38.0,0.38,Low,21,20,95.24,0,0.0,0.0,0.1613809523809524,0.161,0.33,33.0,Scenario-dependent,224
+Embilipitiya,Embilipitiya,Feeder 02,ERSM0290,R130,250.0,95.0,0.38,Low,21,20,95.24,0,0.0,0.0,0.1613809523809524,0.161,0.33,82.5,Scenario-dependent,224
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0110,R056,250.0,94.0,0.376,Low,21,20,95.24,0,0.0,0.0,0.15775238095238095,0.1572,0.326,81.5,Scenario-dependent,226
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0103,R222,800.0,300.78,0.376,Low,21,20,95.24,0,0.0,0.0,0.1577295714285714,0.157176,0.325975,260.78,Scenario-dependent,227
+Godakawela,Balangoda,Feeder 03,GSSM0610,S117,160.0,60.0,0.375,Low,21,20,95.24,0,0.0,0.0,0.1568452380952381,0.15625,0.325,52.0,Scenario-dependent,228
+Udawalawa,Embilipitiya,Feeder 06,UWSM0210,W068,160.0,60.0,0.375,Low,21,20,95.24,0,0.0,0.0,0.1568452380952381,0.15625,0.325,52.0,Scenario-dependent,228
+Udawalawa,Embilipitiya,Feeder 06,UWSM0030,W094,160.0,60.0,0.375,Low,21,20,95.24,0,0.0,0.0,0.1568452380952381,0.15625,0.325,52.0,Scenario-dependent,228
+Embilipitiya,Embilipitiya,Feeder 04,ERSM0360,R002,160.0,59.8,0.374,Low,21,20,95.24,0,0.0,0.0,0.15571114285714285,0.155062,0.32375,51.8,Scenario-dependent,231
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R039,400.0,145.79,0.364,Low,21,19,90.48,0,0.0,0.0,0.14747585714285713,0.146251,0.314475,125.79,Scenario-dependent,232
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0110,R199,160.0,56.0,0.35,Low,21,18,85.71,0,0.0,0.0,0.135,0.1325,0.3,48.0,Scenario-dependent,233
+Kolonna,Embilipitiya,Feeder 02,KUSM0260,U036,100.0,35.0,0.35,Low,21,18,85.71,0,0.0,0.0,0.135,0.1325,0.3,30.0,Scenario-dependent,233
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0440,R114,160.0,55.0,0.344,Low,21,18,85.71,0,0.0,0.0,0.12991066666666667,0.126562,0.29375,47.0,Scenario-dependent,235
+Godakawela,Balangoda,Feeder 03,GSSM0190,S145,160.0,55.0,0.344,Low,21,18,85.71,0,0.0,0.0,0.12991066666666667,0.126562,0.29375,47.0,Scenario-dependent,235
+Udawalawa,Embilipitiya,Feeder 06,UWSM0190,W067,160.0,55.0,0.344,Low,21,18,85.71,0,0.0,0.0,0.12991066666666667,0.126562,0.29375,47.0,Scenario-dependent,235
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0500,R158,100.0,33.0,0.33,Low,21,17,80.95,0,0.0,0.0,0.11885714285714286,0.1135,0.28,28.0,Scenario-dependent,238
+Godakawela,Balangoda,Feeder 03,GSSM0520,S114,100.0,32.0,0.32,Low,21,17,80.95,0,0.0,0.0,0.11114285714285714,0.104,0.27,27.0,Scenario-dependent,239
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0280,R108,630.0,200.0,0.317,Low,21,17,80.95,0,0.0,0.0,0.10918342857142857,0.101587,0.26746,168.5,Scenario-dependent,240
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W048,250.0,78.8,0.315,Low,21,16,76.19,0,0.0,0.0,0.10746666666666667,0.09944,0.2652,66.3,Scenario-dependent,241
+Godakawela,Balangoda,Feeder 02,GSSM0280,S109,160.0,50.0,0.312,Low,21,16,76.19,0,0.0,0.0,0.1055059523809524,0.096875,0.2625,42.0,Scenario-dependent,242
+Udawalawa,Embilipitiya,Feeder 06,UWSM0290,W043,160.0,50.0,0.312,Low,21,16,76.19,0,0.0,0.0,0.1055059523809524,0.096875,0.2625,42.0,Scenario-dependent,242
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0180,R033,250.0,75.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,62.5,Scenario-dependent,244
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0410,R160,100.0,30.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,25.0,Scenario-dependent,244
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0150,R162,100.0,30.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,25.0,Scenario-dependent,244
+Godakawela,Balangoda,Feeder 03,GSSM0030,S009,100.0,30.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,25.0,Scenario-dependent,244
+Godakawela,Balangoda,Feeder 02,GSSM0240,S040,100.0,30.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,25.0,Scenario-dependent,244
+Godakawela,Balangoda,Feeder 03,GSSM0620,S054,100.0,30.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,25.0,Scenario-dependent,244
+Godakawela,Balangoda,Feeder 02,GSSM0430,S089,100.0,30.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,25.0,Scenario-dependent,244
+Udawalawa,Embilipitiya,Feeder 04,UWSM0330,W034,100.0,30.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,25.0,Scenario-dependent,244
+Udawalawa,Embilipitiya,Feeder 04,UWSM0340,W039,100.0,30.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,25.0,Scenario-dependent,244
+Udawalawa,Balangoda,Feeder 02,UWSM0130,W083,100.0,30.0,0.3,Low,21,15,71.43,0,0.0,0.0,0.09642857142857142,0.085,0.25,25.0,Scenario-dependent,244
+Kolonna,Embilipitiya,Feeder 02,KUSM0160,U066,100.0,29.0,0.29,Low,21,15,71.43,0,0.0,0.0,0.08964285714285715,0.0755,0.24,24.0,Scenario-dependent,254
+Udawalawa,Embilipitiya,Feeder 04,UWSM0420,W015,160.0,45.0,0.281,Low,21,15,71.43,0,0.0,0.0,0.08370538095238096,0.067187,0.23125,37.0,Scenario-dependent,255
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W077,160.0,44.8,0.28,Low,21,15,71.43,0,0.0,0.0,0.08285714285714285,0.066,0.23,36.8,Scenario-dependent,256
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0120,R219,100.0,27.0,0.27,Low,21,14,66.67,0,0.0,0.0,0.0764047619047619,0.0565,0.22,22.0,Scenario-dependent,257
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R047,250.0,65.0,0.26,Low,21,13,61.9,0,0.0,0.0,0.07019047619047619,0.047,0.21,52.5,Scenario-dependent,258
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0200,R168,100.0,25.28,0.253,Low,21,13,61.9,0,0.0,0.0,0.06593904761904762,0.04016,0.2028,20.28,Scenario-dependent,259
+Udawalawa,Balangoda,Feeder 02,UWSM0140,W084,100.0,25.25,0.252,Low,21,13,61.9,0,0.0,0.0,0.06576190476190476,0.039875,0.2025,20.25,Scenario-dependent,260
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0260,R125,100.0,25.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,20.0,Scenario-dependent,261
+Godakawela,Balangoda,Feeder 03,GSSM0185,S027,160.0,40.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,32.0,Scenario-dependent,261
+Godakawela,Balangoda,Feeder 03,GSSM0230,S058,100.0,25.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,20.0,Scenario-dependent,261
+Godakawela,Balangoda,Feeder 03,GSSM0500,S111,160.0,40.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,32.0,Scenario-dependent,261
+Godakawela,Balangoda,Feeder 03,GSSM0190,S144,160.0,40.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,32.0,Scenario-dependent,261
+Kolonna,Deniyaya,Feeder 05,KUSM0145,U012,160.0,40.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,32.0,Scenario-dependent,261
+Kolonna,Embilipitiya,Feeder 02,KUSM0440,U024,100.0,25.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,20.0,Scenario-dependent,261
+Kolonna,Embilipitiya,Feeder 02,KUSM0430,U029,100.0,25.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,20.0,Scenario-dependent,261
+Kolonna,Embilipitiya,Feeder 02,KUSM0180,U063,160.0,40.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,32.0,Scenario-dependent,261
+Udawalawa,Embilipitiya,Feeder 04,UWSM0440,W012,100.0,25.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,20.0,Scenario-dependent,261
+Udawalawa,Balangoda,Feeder 02,UWSM0110,W081,100.0,25.0,0.25,Low,21,12,57.14,0,0.0,0.0,0.0642857142857143,0.0375,0.2,20.0,Scenario-dependent,261
+Kolonna,Embilipitiya,Feeder 02,KUSM0340,U022,160.0,39.8,0.249,Low,21,12,57.14,0,0.0,0.0,0.06360704761904762,0.036312,0.19875,31.8,Scenario-dependent,272
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R165,160.0,39.78,0.249,Low,21,12,57.14,0,0.0,0.0,0.0635392380952381,0.036194,0.198625,31.78,Scenario-dependent,273
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0260,R126,100.0,24.5,0.245,Low,21,12,57.14,0,0.0,0.0,0.06157142857142857,0.03275,0.195,19.5,Scenario-dependent,274
+Kolonna,Embilipitiya,Feeder 02,KUSM0370,U038,160.0,38.5,0.241,Low,21,12,57.14,0,0.0,0.0,0.05919642857142857,0.028594,0.190625,30.5,Scenario-dependent,275
+Udawalawa,Embilipitiya,Feeder 06,UWSM0200,W066,100.0,24.0,0.24,Low,21,12,57.14,0,0.0,0.0,0.05885714285714286,0.028,0.19,19.0,Scenario-dependent,276
+Udawalawa,Embilipitiya,Feeder 06,UWSM0160,W076,400.0,95.0,0.238,Low,21,12,57.14,0,0.0,0.0,0.0575,0.025625,0.1875,75.0,Scenario-dependent,277
+Kolonna,Embilipitiya,Feeder 02,KUSM0440,U043,100.0,23.56,0.236,Low,21,12,57.14,0,0.0,0.0,0.05646857142857143,0.02382,0.1856,18.56,Scenario-dependent,278
+Udawalawa,Embilipitiya,Feeder 04,UWSM0540,W007,100.0,22.85,0.228,Low,21,12,57.14,0,0.0,0.0,0.05261428571428571,0.017075,0.1785,17.85,Scenario-dependent,279
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0050,R137,100.0,22.1,0.221,Low,21,11,52.38,0,0.0,0.0,0.048595238095238094,0.00995,0.171,17.1,Scenario-dependent,280
+Kolonna,Deniyaya,Feeder 05,KUSM0140,U060,160.0,35.0,0.219,Low,21,11,52.38,0,0.0,0.0,0.0474702380952381,0.007812,0.16875,27.0,Scenario-dependent,281
+Udawalawa,Embilipitiya,Feeder 06,UWSM0155,W051,160.0,35.0,0.219,Low,21,11,52.38,0,0.0,0.0,0.0474702380952381,0.007812,0.16875,27.0,Scenario-dependent,281
+Embilipitiya,Embilipitiya,Feeder 04,ERSM0370,R003,100.0,3.3,0.033,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Embilipitiya,Embilipitiya,Feeder 01,ERSM0540,R009,160.0,20.0,0.125,Low,21,6,28.57,0,0.0,0.0,0.0125,0.0,0.075,12.0,Scenario-dependent,283
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0530,R024,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0530,R025,400.0,5.0,0.012,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0180,R034,630.0,40.0,0.063,Low,21,3,14.29,0,0.0,0.0,0.001473904761904762,0.0,0.013492,8.5,Scenario-dependent,283
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R051,160.0,5.0,0.031,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R060,630.0,108.7,0.173,Low,21,9,42.86,0,0.0,0.0,0.027391285714285712,0.0,0.12254,77.2,Scenario-dependent,283
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R074,160.0,19.72,0.123,Low,21,6,28.57,0,0.0,0.0,0.01202495238095238,0.0,0.07325,11.72,Scenario-dependent,283
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R078,160.0,25.0,0.156,Low,21,7,33.33,0,0.0,0.0,0.021279761904761905,0.0,0.10625,17.0,Scenario-dependent,283
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0102,R086,160.0,20.28,0.127,Low,21,6,28.57,0,0.0,0.0,0.012975047619047619,0.0,0.07675,12.28,Scenario-dependent,283
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0280,R107,100.0,8.13,0.081,Low,21,3,14.29,0,0.0,0.0,0.0038907142857142855,0.0,0.0313,3.13,Scenario-dependent,283
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0130,R112,100.0,14.0,0.14,Low,21,6,28.57,0,0.0,0.0,0.01657142857142857,0.0,0.09,9.0,Scenario-dependent,283
+Embilipitiya,Embilipitiya,Feeder 08,ERSM0210,R127,160.0,20.0,0.125,Low,21,6,28.57,0,0.0,0.0,0.0125,0.0,0.075,12.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0120,S001,160.0,5.0,0.031,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 03,GSSM0090,S003,160.0,24.0,0.15,Low,21,6,28.57,0,0.0,0.0,0.019285714285714288,0.0,0.1,16.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0030,S006,160.0,33.0,0.206,Low,21,10,47.62,0,0.0,0.0,0.041413619047619046,0.0,0.15625,25.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0030,S007,100.0,19.8,0.198,Low,21,9,42.86,0,0.0,0.0,0.03775714285714286,0.0,0.148,14.8,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0030,S008,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 03,GSSM0060,S012,100.0,5.35,0.054,Low,21,2,9.52,0,0.0,0.0,0.000205952380952381,0.0,0.0035,0.35,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 02,GSSM0330,S029,160.0,5.0,0.031,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 02,GSSM0360,S032,160.0,6.6,0.041,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 02,GSSM0380,S034,100.0,3.0,0.03,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 02,GSSM0260,S039,100.0,10.0,0.1,Low,21,3,14.29,0,0.0,0.0,0.006428571428571429,0.0,0.05,5.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 02,GSSM0280,S041,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 02,GSSM0300,S043,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0470,S046,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0500,S047,100.0,10.0,0.1,Low,21,3,14.29,0,0.0,0.0,0.006428571428571429,0.0,0.05,5.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0560,S051,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0600,S053,160.0,20.0,0.125,Low,21,6,28.57,0,0.0,0.0,0.0125,0.0,0.075,12.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0620,S055,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 03,GSSM0200,S061,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 02,GSSM0420,S066,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 03,GSSM0085,S070,160.0,5.0,0.031,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 02,GSSM0320,S072,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Godakawela,Embilipitiya,Feeder 06,GSSM0540,S073,160.0,5.0,0.031,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 03,GSSM0150,S093,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 02,GSSM0360,S095,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 02,GSSM0270,S096,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 03,GSSM0080,S098,160.0,20.0,0.125,Low,21,6,28.57,0,0.0,0.0,0.0125,0.0,0.075,12.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0100,S101,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 02,GSSM0370,S110,160.0,20.0,0.125,Low,21,6,28.57,0,0.0,0.0,0.0125,0.0,0.075,12.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0150,S123,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0230,S141,100.0,10.0,0.1,Low,21,3,14.29,0,0.0,0.0,0.006428571428571429,0.0,0.05,5.0,Scenario-dependent,283
+Godakawela,Balangoda,Feeder 03,GSSM0230,S143,160.0,5.0,0.031,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Godakawela,Balangoda,Feeder 03,GSSM0200,S146,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Kolonna,Deniyaya,Feeder 05,KUSM0010,U002,100.0,5.5,0.055,Low,21,2,9.52,0,0.0,0.0,0.00034523809523809523,0.0,0.005,0.5,Scenario-dependent,283
+Kolonna,Deniyaya,Feeder 05,KUSM0090,U004,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Kolonna,Deniyaya,Feeder 05,KUSM0080,U005,160.0,20.0,0.125,Low,21,6,28.57,0,0.0,0.0,0.0125,0.0,0.075,12.0,Scenario-dependent,283
+Kolonna,Deniyaya,Feeder 05,KUSM0070,U008,160.0,30.0,0.188,Low,21,9,42.86,0,0.0,0.0,0.033482142857142856,0.0,0.1375,22.0,Scenario-dependent,283
+Kolonna,Embilipitiya,Feeder 02,KUSM0210,U010,160.0,15.0,0.094,Low,21,3,14.29,0,0.0,0.0,0.005580333333333333,0.0,0.04375,7.0,Scenario-dependent,283
+Kolonna,Embilipitiya,Feeder 02,KUSM0330,U020,160.0,30.0,0.188,Low,21,9,42.86,0,0.0,0.0,0.033482142857142856,0.0,0.1375,22.0,Scenario-dependent,283
+Kolonna,Embilipitiya,Feeder 02,KUSM0300,U032,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Kolonna,Embilipitiya,Feeder 02,KUSM0250,U033,160.0,20.0,0.125,Low,21,6,28.57,0,0.0,0.0,0.0125,0.0,0.075,12.0,Scenario-dependent,283
+Kolonna,Embilipitiya,Feeder 02,KUSM0420,U034,160.0,15.0,0.094,Low,21,3,14.29,0,0.0,0.0,0.005580333333333333,0.0,0.04375,7.0,Scenario-dependent,283
+Kolonna,Embilipitiya,Feeder 02,KUSM0390,U039,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Kolonna,Deniyaya,Feeder 05,KUSM0080,U044,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Kolonna,Deniyaya,Feeder 05,KUSM0040,U047,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Kolonna,Embilipitiya,Feeder 02,KUSM0180,U053,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Kolonna,Embilipitiya,Feeder 02,KUSM0460,U065,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Kolonna,Deniyaya,Feeder 05,KUSM0100,U075,100.0,10.0,0.1,Low,21,3,14.29,0,0.0,0.0,0.006428571428571429,0.0,0.05,5.0,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 04,UWSM0450,W013,100.0,3.0,0.03,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Udawalawa,Embilipitiya,Feeder 04,UWSM0400,W023,250.0,15.98,0.064,Low,21,3,14.29,0,0.0,0.0,0.001532,0.0,0.01392,3.48,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 04,UWSM0370,W028,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 04,UWSM0330,W037,100.0,5.12,0.051,Low,21,1,4.76,0,0.0,0.0,5.7142857142857135e-05,0.0,0.0012,0.12,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 04,UWSM0350,W041,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 06,UWSM0250,W049,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 06,UWSM0290,W053,160.0,11.0,0.069,Low,21,3,14.29,0,0.0,0.0,0.00218747619047619,0.0,0.01875,3.0,Scenario-dependent,283
+Udawalawa,Balangoda,Feeder 02,UWSM0105,W056,630.0,50.0,0.079,Low,21,3,14.29,0,0.0,0.0,0.0036281428571428567,0.0,0.029365,18.5,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W060,160.0,10.0,0.062,Low,21,3,14.29,0,0.0,0.0,0.0013392857142857143,0.0,0.0125,2.0,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W075,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283
+Udawalawa,Embilipitiya,Feeder 06,UWSM0080,W085,160.0,20.0,0.125,Low,21,6,28.57,0,0.0,0.0,0.0125,0.0,0.075,12.0,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 06,UWSM0060,W087,100.0,8.9,0.089,Low,21,3,14.29,0,0.0,0.0,0.0049357142857142855,0.0,0.039,3.9,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 06,UWSM0270,W101,100.0,20.0,0.2,Low,21,9,42.86,0,0.0,0.0,0.038571428571428576,0.0,0.15,15.0,Scenario-dependent,283
+Udawalawa,Balangoda,Feeder 02,UWSM0100,W109,160.0,20.0,0.125,Low,21,6,28.57,0,0.0,0.0,0.0125,0.0,0.075,12.0,Scenario-dependent,283
+Udawalawa,Embilipitiya,Feeder 04,UWSM0500,W123,100.0,5.0,0.05,Low,21,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0,Never reverse in tested scenarios,283

@@ -1,0 +1,21 @@
+csc,gss,feeder,section,sin,kva,solar_kw,solar_to_kva,baseline_label,scenarios_tested,reverse_flow_scenarios,reverse_flow_pct,above_nameplate_scenarios,above_nameplate_pct,min_reverse_loading_ratio,mean_reverse_loading_ratio,median_reverse_loading_ratio,max_reverse_loading_ratio,max_reverse_export_kw,reverse_flow_status,severity_rank
+Godakawela,Balangoda,Feeder 03,GSSM0550,S049,100.0,455.45,4.554,High,21,21,100.0,21,100.0,3.74905,4.126774999999999,4.126775,4.5045,450.45,Reverse in all tested scenarios,1
+Godakawela,Balangoda,Feeder 03,GSSM0080,S139,160.0,480.0,3.0,High,21,21,100.0,21,100.0,2.35,2.65,2.65,2.95,472.0,Reverse in all tested scenarios,2
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0020,R176,250.0,544.0,2.176,High,21,21,100.0,21,100.0,1.6084,1.8672,1.8672,2.126,531.5,Reverse in all tested scenarios,3
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0102,R185,100.0,196.9,1.969,High,21,21,100.0,21,100.0,1.4221,1.67055,1.67055,1.919,191.9,Reverse in all tested scenarios,4
+Godakawela,Balangoda,Feeder 03,GSSM0190,S059,100.0,180.0,1.8,High,21,21,100.0,21,100.0,1.27,1.51,1.51,1.75,175.0,Reverse in all tested scenarios,5
+Godakawela,Balangoda,Feeder 03,GSSM0085,S063,250.0,430.99,1.724,High,21,21,100.0,21,100.0,1.201564,1.437762,1.437762,1.67396,418.49,Reverse in all tested scenarios,6
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W073,100.0,169.95,1.699,High,21,21,100.0,21,100.0,1.17955,1.414525,1.414525,1.6495,164.95,Reverse in all tested scenarios,7
+Godakawela,Balangoda,Feeder 03,GSSM0085,S129,100.0,160.0,1.6,High,21,21,100.0,21,100.0,1.09,1.3199999999999998,1.32,1.55,155.0,Reverse in all tested scenarios,8
+Udawalawa,Embilipitiya,Feeder 04,UWSM0310,W046,160.0,250.0,1.562,High,21,21,100.0,21,100.0,1.05625,1.284375,1.284375,1.5125,242.0,Reverse in all tested scenarios,9
+Udawalawa,Embilipitiya,Feeder 06,UWSM0050,W099,100.0,125.0,1.25,High,21,21,100.0,10,47.62,0.775,0.9875,0.9875,1.2,120.0,Reverse in all tested scenarios,10
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R135,100.0,124.65,1.247,High,21,21,100.0,9,42.86,0.77185,0.9841749999999999,0.984175,1.1965,119.65,Reverse in all tested scenarios,11
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0100,R118,160.0,196.88,1.23,High,21,21,100.0,9,42.86,0.75745,0.968975,0.968975,1.1805,188.88,Reverse in all tested scenarios,12
+Kolonna,Embilipitiya,Feeder 02,KUSM0380,U067,100.0,120.0,1.2,High,21,21,100.0,7,33.33,0.73,0.94,0.94,1.15,115.0,Reverse in all tested scenarios,13
+Godakawela,Balangoda,Feeder 03,GSSM0050,S016,100.0,115.66,1.157,High,21,21,100.0,4,19.05,0.69094,0.89877,0.89877,1.1066,110.66,Reverse in all tested scenarios,14
+Udawalawa,Embilipitiya,Feeder 04,UWSM0440,W009,100.0,110.0,1.1,High,21,21,100.0,2,9.52,0.64,0.8450000000000001,0.845,1.05,105.0,Reverse in all tested scenarios,15
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0110,R184,100.0,109.58,1.096,High,21,21,100.0,1,4.76,0.63622,0.84101,0.84101,1.0458,104.58,Reverse in all tested scenarios,16
+Godakawela,Balangoda,Feeder 03,GSSM0085,S065,100.0,109.25,1.092,High,21,21,100.0,1,4.76,0.63325,0.837875,0.837875,1.0425,104.25,Reverse in all tested scenarios,17
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0030,R057,160.0,172.57,1.079,High,21,21,100.0,1,4.76,0.620706,0.8246341428571429,0.824634,1.028563,164.57,Reverse in all tested scenarios,18
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0510,R018,100.0,107.2,1.072,High,21,21,100.0,1,4.76,0.6148,0.8183999999999999,0.8184,1.022,102.2,Reverse in all tested scenarios,19
+Udawalawa,Embilipitiya,Feeder 04,UWSM0420,W017,100.0,105.0,1.05,High,21,21,100.0,1,4.76,0.595,0.7975,0.7975,1.0,100.0,Reverse in all tested scenarios,20

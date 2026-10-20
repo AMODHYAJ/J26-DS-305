@@ -1,0 +1,31 @@
+csc,gss,feeder,section,sin,kva,solar_kw,solar_to_kva,model_load_kw,min_exposure,mean_exposure,median_exposure,max_exposure,reverse_scenarios,reverse_scenario_pct,exposure_rank,solar_only_rank,rank_change,absolute_rank_change,scenario_status
+Embilipitiya,Embilipitiya,Feeder 01,ERSM0540,R010,100.0,85.0,0.85,300.622932415476,-2.241229,-2.198729,-2.198729,-2.156229,0,0.0,309,47,-262,262,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0160,W104,100.0,89.9,0.899,112.5314035750431,-0.316214,-0.271264,-0.271264,-0.226314,0,0.0,269,40,-229,229,No reverse condition in tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 01,ERSM0550,R011,100.0,75.55,0.7555,132.0758913095661,-0.640809,-0.603034,-0.603034,-0.565259,0,0.0,297,70,-227,227,No reverse condition in tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R062,160.0,141.4,0.88375,169.7379678124293,-0.265487,-0.22129966666666667,-0.2213,-0.177112,0,0.0,262,44,-218,218,No reverse condition in tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0080,R059,100.0,80.0,0.8,106.5829091075649,-0.345829,-0.30582899999999996,-0.305829,-0.265829,0,0.0,273,55,-218,218,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W062,160.0,124.8,0.78,173.8116790399278,-0.384323,-0.34532300000000005,-0.345323,-0.306323,0,0.0,276,65,-211,211,No reverse condition in tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R058,160.0,124.6,0.7787499999999999,149.3630701427034,-0.232644,-0.19370666666666667,-0.193707,-0.154769,0,0.0,254,67,-187,187,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0290,W111,160.0,100.2,0.62625,249.3111271228962,-0.99457,-0.9632573333333333,-0.963257,-0.931945,0,0.0,304,117,-187,187,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0050,W100,160.0,145.6,0.91,145.0609464668829,-0.087631,-0.042131,-0.042131,0.003369,1,33.33,220,34,-186,186,PV-factor dependent
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0070,R061,100.0,65.0,0.65,114.0639143699526,-0.555639,-0.523139,-0.523139,-0.490639,0,0.0,291,108,-183,183,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 04,UWSM0340,W040,100.0,89.0,0.89,90.5243197773393,-0.104243,-0.059743,-0.059743,-0.015243,0,0.0,223,42,-181,181,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 04,UWSM0480,W006,160.0,125.0,0.78125,139.4488794937905,-0.16843,-0.12936766666666666,-0.129368,-0.090305,0,0.0,243,63,-180,180,No reverse condition in tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 07,ERSM0170,R049,100.0,79.8,0.7979999999999999,85.6468371551856,-0.138268,-0.098368,-0.098368,-0.058468,0,0.0,238,61,-177,177,No reverse condition in tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0020,R063,160.0,106.43,0.6651875,148.390927389534,-0.328775,-0.29551533333333335,-0.295515,-0.262256,0,0.0,271,102,-169,169,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 04,UWSM0420,W016,160.0,125.74,0.785875,133.2109084466532,-0.125281,-0.085987,-0.085987,-0.046693,0,0.0,231,62,-169,169,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0150,W079,250.0,129.53,0.51812,322.275821553198,-0.822795,-0.7968890000000001,-0.796889,-0.770983,0,0.0,300,148,-152,152,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W107,160.0,99.83,0.6239375,145.29570044743951,-0.346554,-0.31535766666666665,-0.315358,-0.284161,0,0.0,274,123,-151,151,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W063,160.0,85.0,0.53125,153.096803902356,-0.47873,-0.4521676666666667,-0.452168,-0.425605,0,0.0,286,143,-143,143,No reverse condition in tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0010,R066,100.0,70.03,0.7003,75.3195037531191,-0.122925,-0.08791,-0.08791,-0.052895,0,0.0,234,93,-141,141,No reverse condition in tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 05,ERSM0510,R020,160.0,109.1,0.681875,119.6704351293852,-0.134253,-0.100159,-0.100159,-0.066065,0,0.0,239,99,-140,140,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0170,W074,160.0,80.95,0.5059375,152.0852191599366,-0.495189,-0.469892,-0.469892,-0.444595,0,0.0,288,149,-139,139,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 04,UWSM0420,W017,100.0,105.0,1.05,88.0620961496184,0.064379,0.116879,0.116879,0.169379,3,100.0,156,18,-138,138,Reverse condition in all tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0010,R067,100.0,45.06,0.4506,95.7207818130795,-0.551668,-0.529138,-0.529138,-0.506608,0,0.0,293,160,-133,133,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0050,W090,160.0,92.0,0.575,125.3797788907812,-0.266124,-0.237374,-0.237374,-0.208624,0,0.0,266,135,-131,131,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 04,UWSM0520,W001,160.0,85.0,0.53125,129.1781967909036,-0.329239,-0.3026763333333333,-0.302676,-0.276114,0,0.0,272,143,-129,129,No reverse condition in tested PV scenarios
+Kolonna,Deniyaya,Feeder 05,KUSM0090,U064,100.0,43.3,0.433,99.2502409487454,-0.602802,-0.581152,-0.581152,-0.559502,0,0.0,295,171,-124,124,No reverse condition in tested PV scenarios
+Udawalawa,Embilipitiya,Feeder 06,UWSM0240,W064,160.0,95.5,0.596875,115.2910346162982,-0.183381,-0.15353766666666666,-0.153538,-0.123694,0,0.0,251,131,-120,120,No reverse condition in tested PV scenarios
+Godakawela,Balangoda,Feeder 03,GSSM0090,S003,160.0,24.0,0.15,2.4827616,0.119483,0.12698299999999998,0.126983,0.134483,3,100.0,153,268,115,115,Reverse condition in all tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0030,R057,160.0,172.57,1.0785625,130.1671706980638,0.157161,0.21108966666666665,0.21109,0.265018,3,100.0,129,16,-113,113,Reverse condition in all tested PV scenarios
+Embilipitiya,Embilipitiya,Feeder 06,ERSM0020,R064,250.0,146.0,0.584,172.7140958710506,-0.165256,-0.13605599999999998,-0.136056,-0.106856,0,0.0,244,133,-111,111,No reverse condition in tested PV scenarios

@@ -1,0 +1,24 @@
+{
+    "experiment": "EXP01 Threshold Sensitivity",
+    "run_time": "2026-10-15T19:07:22.267755",
+    "input_file": "D:\\RESEARCH PROJECT- SOLAR ENERGY CONSUMPTION\\solar-research\\J26-DS-305\\components\\gis_risk_mapper\\output\\solar_by_transformer.csv",
+    "input_sha256": "0f9a4b5a09905b0c383eda48c978c38d93028766aab2370e56ddafd6a9612787",
+    "transformer_count": 357,
+    "baseline": {
+        "low_threshold": 0.5,
+        "high_threshold": 1.0
+    },
+    "tested_low_thresholds": [
+        0.3,
+        0.4,
+        0.5,
+        0.6
+    ],
+    "tested_high_thresholds": [
+        0.8,
+        1.0,
+        1.2,
+        1.5
+    ],
+    "purpose": "Evaluate how sensitive Low/Medium/High transformer classifications are to solar-to-kVA ratio threshold selection."
+}

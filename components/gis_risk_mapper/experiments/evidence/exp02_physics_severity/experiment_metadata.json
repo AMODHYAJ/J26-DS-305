@@ -1,0 +1,30 @@
+{
+    "experiment": "EXP02 Physics-Based Continuous Severity",
+    "run_time": "2026-10-15T23:04:28.663437",
+    "input_file": "D:\\RESEARCH PROJECT- SOLAR ENERGY CONSUMPTION\\solar-research\\J26-DS-305\\components\\gis_risk_mapper\\output\\solar_by_transformer.csv",
+    "input_sha256": "0f9a4b5a09905b0c383eda48c978c38d93028766aab2370e56ddafd6a9612787",
+    "transformers": 357,
+    "load_fractions": [
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35
+    ],
+    "pv_factors": [
+        0.9,
+        0.95,
+        1.0
+    ],
+    "scenario_count": 21,
+    "formula": "reverse_loading_ratio = max(0, solar_kw * pv_factor - kva * load_fraction) / kva",
+    "important_limitations": [
+        "Load fractions are scenario assumptions, not measured transformer demand.",
+        "PV factors are scenario assumptions, not measured PV output.",
+        "The calculation is a screening approximation and not an AC power-flow study.",
+        "kW is compared with transformer kVA only as an approximate screening indicator.",
+        "Voltage, losses, phase imbalance, power factor and feeder impedance are not modelled."
+    ]
+}
