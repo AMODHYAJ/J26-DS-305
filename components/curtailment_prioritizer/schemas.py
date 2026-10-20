@@ -154,3 +154,100 @@ class CurtailmentRequest(BaseModel):
         description="Whether the operator has authorized curtailment",
     )
 
+
+class PlantCurtailmentRecommendation(BaseModel):
+    """Explainable curtailment recommendation for one solar plant."""
+
+    plant_id: str = Field(
+        ...,
+        description="Identifier of the recommended solar plant",
+    )
+
+    plant_name: str | None = Field(
+        default=None,
+        description="Readable name of the solar plant",
+    )
+
+    priority_rank: int = Field(
+        ...,
+        ge=1,
+        description="Priority ranking, with 1 being the highest priority",
+    )
+
+    available_generation_mw: float = Field(
+        ...,
+        ge=0,
+        description="Available generation assumed for the assessment, in MW",
+    )
+
+    recommended_reduction_mw: float = Field(
+        ...,
+        ge=0,
+        description="Proposed reduction in solar generation, in MW",
+    )
+
+    reason: str = Field(
+        ...,
+        description="Explanation for the plant's priority",
+    )
+
+
+class CurtailmentAssessmentOutput(BaseModel):
+    """Overall result of a curtailment assessment."""
+
+    event_id: str = Field(
+        ...,
+        description="Identifier of the ramp event being assessed",
+    )
+
+    assessment_status: Literal[
+        "ASSESSMENT_COMPLETE",
+        "TARGET_MET",
+        "TARGET_NOT_MET",
+        "RAMP_DOWN_WARNING",
+        "NO_ACTION_REQUIRED",
+        "INSUFFICIENT_DATA",
+    ] = Field(
+        ...,
+        description="Outcome or status of the assessment",
+    )
+
+    target_reduction_mw: float = Field(
+        ...,
+        ge=0,
+        description="Requested reduction in solar generation, in MW",
+    )
+
+    proposed_total_reduction_mw: float = Field(
+        ...,
+        ge=0,
+        description="Total proposed reduction across recommended plants, in MW",
+    )
+
+    remaining_shortfall_mw: float = Field(
+        ...,
+        ge=0,
+        description="Unmet portion of the requested reduction, in MW",
+    )
+
+    target_met: bool = Field(
+        ...,
+        description="Whether the requested reduction target is achievable by the recommendations",
+    )
+
+    operator_authorized: bool = Field(
+        ...,
+        description="Whether operator authorisation was recorded",
+    )
+
+    recommendations: list[PlantCurtailmentRecommendation] = Field(
+        default_factory=list,
+        description="Ranked plant curtailment recommendations",
+    )
+
+    limitations: list[str] = Field(
+        default_factory=list,
+        description="Data gaps, assumptions, or constraints affecting the assessment",
+    )
+
+
