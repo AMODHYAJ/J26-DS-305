@@ -1,10 +1,13 @@
-﻿.idea/
+﻿# IDE and virtual environment
+.idea/
 .venv/
 .env
+
+# Python cache
 __pycache__/
 *.pyc
 
-# Data: never commit CEB, plant-owner, raw or processed data
+# Sensitive and generated datasets
 /data/
 components/solar_forecasting/data/
 *.parquet
@@ -13,3 +16,16 @@ components/solar_forecasting/data/
 *.xlsx
 *.xls
 *.mdb
+
+# Model artifacts
+components/solar_forecasting/artifacts/
+
+# C3 generated outputs
+components/gis_risk_mapper/output/transformer_risk.json
+components/gis_risk_mapper/frontend/public/data/transformer_risk.json
+
+# Frontend dependencies
+node_modules/
+
+# Frontend build outputs
+dist/
