@@ -88,3 +88,49 @@ class GridRiskInput(BaseModel):
         description="Risk category assigned by Component 3",
     )
 
+
+class SolarPlantInput(BaseModel):
+    """Solar plant information for curtailment assessment."""
+
+    plant_id: str = Field(
+        ...,
+        description="Unique identifier for the solar plant",
+    )
+
+    plant_name: str | None = Field(
+        default=None,
+        description="Readable name of the solar plant",
+    )
+
+    feeder_id: str | None = Field(
+        default=None,
+        description="Identifier of the connected feeder",
+    )
+
+    transformer_id: str | None = Field(
+        default=None,
+        description="Identifier of the connected transformer",
+    )
+
+    installed_capacity_mw: float = Field(
+        ...,
+        gt=0,
+        description="Installed solar capacity in MW",
+    )
+
+    available_generation_mw: float | None = Field(
+        default=None,
+        ge=0,
+        description="Current available generation in MW, if known",
+    )
+
+    curtailment_eligible: bool = Field(
+        ...,
+        description="Whether the plant is eligible for curtailment",
+    )
+
+    control_status: str | None = Field(
+        default=None,
+        description="Known control or operational status",
+    )
+
