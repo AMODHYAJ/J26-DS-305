@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 components/solar_forecaster/artifacts/
 .idea/
+
+# C4
+.venv/
+components/curtailment_prioritizer/data/
+components/curtailment_prioritizer/artifacts/
