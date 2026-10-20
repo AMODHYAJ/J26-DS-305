@@ -54,3 +54,37 @@ class RampEventInput(BaseModel):
         le=1,
         description="Forecast confidence between 0 and 1, if available",
     )
+
+
+class GridRiskInput(BaseModel):
+    """Grid risk assessment received from Component 3."""
+
+    asset_id: str = Field(
+        ...,
+        description="Identifier of the affected network asset",
+    )
+
+    asset_type: Literal[
+        "TRANSFORMER",
+        "FEEDER",
+    ] = Field(
+        ...,
+        description="Type of network asset being assessed",
+    )
+
+    risk_score: float = Field(
+        ...,
+        ge=0,
+        le=100,
+        description="Risk score on a proposed 0-100 scale",
+    )
+
+    risk_category: Literal[
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+    ] = Field(
+        ...,
+        description="Risk category assigned by Component 3",
+    )
+
