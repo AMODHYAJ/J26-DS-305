@@ -23,3 +23,9 @@ components/solar_forecasting/artifacts/
 # C3 generated outputs
 components/gis_risk_mapper/output/transformer_risk.json
 components/gis_risk_mapper/frontend/public/data/transformer_risk.json
+
+# Frontend dependencies
+node_modules/
+
+# Frontend build outputs
+dist/
