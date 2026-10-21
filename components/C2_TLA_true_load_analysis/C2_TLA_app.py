@@ -14,9 +14,12 @@ from C2_TLA_synthetic import generate
 
 st.set_page_config(page_title='C2 • True Load Analysis',page_icon='⚡',layout='wide')
 st.markdown('''<style>
-.stApp {background: #f5f8fc;} h1,h2,h3 {color:#102a43;}
-[data-testid="stMetric"] {background:white;border:1px solid #dce5ef;border-radius:12px;padding:16px;}
-[data-testid="stSidebar"] {background:#e8eff7;}
+[data-testid="stMetric"] {
+    background:var(--secondary-background-color);
+    border:1px solid rgba(128,128,128,.35);
+    border-radius:12px;
+    padding:16px;
+}
 </style>''',unsafe_allow_html=True)
 
 

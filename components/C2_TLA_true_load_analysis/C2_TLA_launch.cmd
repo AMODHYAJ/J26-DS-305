@@ -11,7 +11,7 @@ if not exist "%C2_TLA_PY%" (
 set "PYTHONPATH=%CD%\%C2_TLA_DIR%;%CD%"
 set "PYTHONUTF8=1"
 if /i "%~1"=="ui" (
-  "%C2_TLA_PY%" -m streamlit run "%C2_TLA_DIR%\C2_TLA_app.py" --server.address 127.0.0.1 --server.headless true --browser.gatherUsageStats false
+  "%C2_TLA_PY%" -m streamlit run "%C2_TLA_DIR%\C2_TLA_app.py" --server.address 127.0.0.1 --server.headless true --browser.gatherUsageStats false --theme.base dark --theme.primaryColor "#ff4b4b" --theme.backgroundColor "#0e1117" --theme.secondaryBackgroundColor "#262730" --theme.textColor "#fafafa"
   exit /b
 )
 if /i "%~1"=="api" (

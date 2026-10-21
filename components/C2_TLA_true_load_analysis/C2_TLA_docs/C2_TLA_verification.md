@@ -12,6 +12,8 @@ Final run result: **19 passed, one upstream deprecation warning, 129.59 seconds*
 
 The dependency stack emits one upstream Starlette deprecation warning about its HTTPX TestClient transport. API tests pass; no dependency warnings are suppressed.
 
+UI contrast follow-up: removed fixed light-background CSS that conflicted with Streamlit's dark text palette. The launcher now uses the user's preferred dark theme consistently. Both UI application tests passed again (76.71 seconds). Installed Chrome was also driven headlessly to inspect the rendered page and capture screenshots: title/metric text is RGB(250,250,250) on RGB(14,17,23), and sidebar labels use the same foreground on RGB(38,39,48). The corrected screenshot was visually reviewed; the initial browser context reported no JavaScript page errors. Browser testing tools and screenshots stay in ignored local scratch storage.
+
 ## Executed pipelines and data audit
 
 The actual CEB and synthetic training/evaluation pipelines ran, including model saving/reloading and explanation generation. Full local logs: `C2_TLA_outputs/C2_TLA_pipeline_run.txt` and `C2_TLA_outputs/C2_TLA_test_run.txt`. Private machine-readable results and full audit stay ignored. The audit covers **11 input files, 91 worksheets and 99 Access user tables**. Office ACE was invoked read-only. A sandbox-nested invocation timed out; the directly completed audit was reused only after verifying the database SHA-256. The code now records provider errors/timeouts instead of blocking the other analytical outputs indefinitely.
