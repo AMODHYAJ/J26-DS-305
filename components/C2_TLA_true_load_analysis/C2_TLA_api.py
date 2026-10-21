@@ -94,3 +94,22 @@ def run(request: Request):
         return Response(records=records)
     except (ValueError,TypeError,KeyError) as e:
         raise HTTPException(422,str(e)) from e
+
+
+# Same-origin React workbench; no CORS service or separate development server needed.
+from pathlib import Path
+from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from C2_TLA_dashboard import create_router
+
+app.include_router(create_router(authorize))
+WEB=Path(__file__).resolve().parent/'C2_TLA_web'
+app.mount('/C2_TLA_assets',StaticFiles(directory=WEB/'C2_TLA_assets',check_dir=False),name='C2_TLA_assets')
+
+
+@app.get('/',include_in_schema=False)
+def workbench():
+    index=WEB/'C2_TLA_index.html'
+    if not index.exists():
+        return HTMLResponse('<h1>C2 React UI needs a build</h1><p>Run C2_TLA_launch.cmd build-ui, then refresh.</p>',status_code=503)
+    return FileResponse(index,headers={'Cache-Control':'no-cache'})

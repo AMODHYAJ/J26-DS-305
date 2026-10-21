@@ -68,7 +68,7 @@ def reconstruct(frame: pd.DataFrame, threshold_mw=10.0, *, hidden=None, method='
         (d.reverse_flow,'observed_reverse_flow'),
         (d.true_mw.le(1e-6),'nonpositive_true_vli_undefined'),
         (d.true_mw.lt(0),'solar_or_boundary_inconsistent'),
-        (d.provenance.str.contains('CEB',na=False),'solar_profile_assumption;other_generation_storage_unobserved')]:
+        (d.provenance.str.startswith('CEB',na=False),'solar_profile_assumption;other_generation_storage_unobserved')]:
         d.loc[mask,'quality_flags'] += ';'+flag
     d['quality_flags']=d.quality_flags.str.lstrip(';')
     for _, g in d.groupby('feeder_id'):
