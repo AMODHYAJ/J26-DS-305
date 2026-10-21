@@ -1,0 +1,250 @@
+{
+  "provenance": "SYNTHETIC held-out chronological experiment; no CEB accuracy validation",
+  "split_dates": {
+    "train": [
+      "2026-01-01 00:00:00+05:30",
+      "2026-03-13 23:45:00+05:30"
+    ],
+    "calibration": [
+      "2026-03-14 00:00:00+05:30",
+      "2026-04-06 23:45:00+05:30"
+    ],
+    "test": [
+      "2026-04-07 00:00:00+05:30",
+      "2026-04-30 23:45:00+05:30"
+    ]
+  },
+  "benchmarks": {
+    "apparent": {
+      "overall": {
+        "n": 6885,
+        "mae_mw": 0.7310152408213849,
+        "rmse_mw": 1.3713950635476713,
+        "r2": -1.1425703509325662,
+        "mape_pct": 22.887692360993206,
+        "mape_excluded_zero_reference": 0,
+        "daily_peak_magnitude_recovery_pct": 97.78687314171509,
+        "daily_peak_timing_mae_minutes": 34.375
+      },
+      "by_feeder": {
+        "SYNTHETIC_F1": {
+          "n": 2295,
+          "mae_mw": 0.2652472463909547,
+          "rmse_mw": 0.4523763261004562,
+          "r2": 0.7652398040750851,
+          "mape_pct": 8.286191730216348,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 98.10919959516137,
+          "daily_peak_timing_mae_minutes": 3.125
+        },
+        "SYNTHETIC_F2": {
+          "n": 2289,
+          "mae_mw": 0.6949750227324696,
+          "rmse_mw": 1.1433026553880488,
+          "r2": -0.4727752032621111,
+          "mape_pct": 21.724327587647497,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 97.47305327207165,
+          "daily_peak_timing_mae_minutes": 49.375
+        },
+        "SYNTHETIC_F3": {
+          "n": 2301,
+          "mae_mw": 1.2314209802491838,
+          "rmse_mw": 2.0305236190077296,
+          "r2": -3.7166638280467934,
+          "mape_pct": 38.60841635656958,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 97.77836655791225,
+          "daily_peak_timing_mae_minutes": 50.625
+        }
+      }
+    },
+    "direct_solar_addition": {
+      "overall": {
+        "n": 6885,
+        "mae_mw": 0.13931508600239859,
+        "rmse_mw": 0.32728449448045205,
+        "r2": 0.8779716361837305,
+        "mape_pct": 4.348738092826695,
+        "mape_excluded_zero_reference": 0,
+        "daily_peak_magnitude_recovery_pct": 101.85035659060863,
+        "daily_peak_timing_mae_minutes": 25.416666666666668
+      },
+      "by_feeder": {
+        "SYNTHETIC_F1": {
+          "n": 2295,
+          "mae_mw": 0.04820592133442648,
+          "rmse_mw": 0.12037877307477375,
+          "r2": 0.9833764202952294,
+          "mape_pct": 1.51183540995295,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 100.35939165440512,
+          "daily_peak_timing_mae_minutes": 2.5
+        },
+        "SYNTHETIC_F2": {
+          "n": 2289,
+          "mae_mw": 0.12011414427267397,
+          "rmse_mw": 0.24474961166880965,
+          "r2": 0.9325071042205305,
+          "mape_pct": 3.7452914030035833,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 101.00965766671834,
+          "daily_peak_timing_mae_minutes": 1.875
+        },
+        "SYNTHETIC_F3": {
+          "n": 2301,
+          "mae_mw": 0.24928748432153625,
+          "rmse_mw": 0.49645166539780117,
+          "r2": 0.7180495601149738,
+          "mape_pct": 7.7785430168598735,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 104.18202045070247,
+          "daily_peak_timing_mae_minutes": 71.875
+        }
+      }
+    },
+    "historical_profile": {
+      "overall": {
+        "n": 6912,
+        "mae_mw": 0.3068295926455394,
+        "rmse_mw": 0.47872763096113113,
+        "r2": 0.7389291143913318,
+        "mape_pct": 9.012856609527562,
+        "mape_excluded_zero_reference": 0,
+        "daily_peak_magnitude_recovery_pct": 94.13941389221786,
+        "daily_peak_timing_mae_minutes": 64.375
+      },
+      "by_feeder": {
+        "SYNTHETIC_F1": {
+          "n": 2304,
+          "mae_mw": 0.3061257310228614,
+          "rmse_mw": 0.47726249409487015,
+          "r2": 0.7391325819349859,
+          "mape_pct": 8.99318247231418,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 93.2269074366509,
+          "daily_peak_timing_mae_minutes": 64.375
+        },
+        "SYNTHETIC_F2": {
+          "n": 2304,
+          "mae_mw": 0.3095688204135915,
+          "rmse_mw": 0.4870991840612392,
+          "r2": 0.7323243695750372,
+          "mape_pct": 9.09718127852314,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 94.75912656864826,
+          "daily_peak_timing_mae_minutes": 65.625
+        },
+        "SYNTHETIC_F3": {
+          "n": 2304,
+          "mae_mw": 0.30479422650016513,
+          "rmse_mw": 0.47169410697420217,
+          "r2": 0.7454212793621942,
+          "mape_pct": 8.94820607774537,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 94.43220767135438,
+          "daily_peak_timing_mae_minutes": 63.125
+        }
+      }
+    },
+    "xgboost": {
+      "overall": {
+        "n": 6885,
+        "mae_mw": 0.07542565013827748,
+        "rmse_mw": 0.18663472421433555,
+        "r2": 0.9603178836839592,
+        "mape_pct": 2.289910447456486,
+        "mape_excluded_zero_reference": 0,
+        "daily_peak_magnitude_recovery_pct": 100.24016992796601,
+        "daily_peak_timing_mae_minutes": 9.166666666666666
+      },
+      "by_feeder": {
+        "SYNTHETIC_F1": {
+          "n": 2295,
+          "mae_mw": 0.038487519597902774,
+          "rmse_mw": 0.10377557458712444,
+          "r2": 0.9876457888936291,
+          "mape_pct": 1.2073765728887897,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 99.96029203308358,
+          "daily_peak_timing_mae_minutes": 3.125
+        },
+        "SYNTHETIC_F2": {
+          "n": 2289,
+          "mae_mw": 0.07211687014974041,
+          "rmse_mw": 0.15917397303328282,
+          "r2": 0.9714531526840088,
+          "mape_pct": 2.191756365920738,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 99.92201364596512,
+          "daily_peak_timing_mae_minutes": 1.875
+        },
+        "SYNTHETIC_F3": {
+          "n": 2301,
+          "mae_mw": 0.11555898650677875,
+          "rmse_mw": 0.26130359246619667,
+          "r2": 0.9218894683547528,
+          "mape_pct": 3.4672637437486156,
+          "mape_excluded_zero_reference": 0,
+          "daily_peak_magnitude_recovery_pct": 100.8382041048493,
+          "daily_peak_timing_mae_minutes": 22.5
+        }
+      }
+    }
+  },
+  "uncertainty_nominal": 0.9,
+  "hidden_interval_coverage": 0.8904803240740741,
+  "calibration_q90_mw": 0.2150865243105473,
+  "scenarios": {
+    "cloudy": {
+      "n": 274,
+      "mae_mw": 0.2064063694340593,
+      "rmse_mw": 0.2862371762832005,
+      "r2": -0.7456737789705532,
+      "mape_pct": 6.630426233622449,
+      "mape_excluded_zero_reference": 0,
+      "daily_peak_magnitude_recovery_pct": 115.1806938951735,
+      "daily_peak_timing_mae_minutes": 101.25
+    },
+    "hidden_midday_peak": {
+      "n": 860,
+      "mae_mw": 0.10668956016454442,
+      "rmse_mw": 0.257966364688517,
+      "r2": 0.9540452972857564,
+      "mape_pct": 2.5061661665451025,
+      "mape_excluded_zero_reference": 0,
+      "daily_peak_magnitude_recovery_pct": 100.41498563578129,
+      "daily_peak_timing_mae_minutes": 25.0
+    },
+    "penetration_0.4": {
+      "n": 1919,
+      "mae_mw": 0.03421664879642142,
+      "rmse_mw": 0.1045050895911925,
+      "r2": 0.9862731466277918,
+      "mape_pct": 1.1110651364170314,
+      "mape_excluded_zero_reference": 0,
+      "daily_peak_magnitude_recovery_pct": 100.0,
+      "daily_peak_timing_mae_minutes": 0.0
+    },
+    "penetration_1.0": {
+      "n": 1910,
+      "mae_mw": 0.06067851969473895,
+      "rmse_mw": 0.1327566853649618,
+      "r2": 0.978402705358879,
+      "mape_pct": 1.9325512648787715,
+      "mape_excluded_zero_reference": 0,
+      "daily_peak_magnitude_recovery_pct": 100.0,
+      "daily_peak_timing_mae_minutes": 0.0
+    },
+    "penetration_2.0": {
+      "n": 1922,
+      "mae_mw": 0.09856374223637668,
+      "rmse_mw": 0.23431216434398894,
+      "r2": 0.9316837161645556,
+      "mape_pct": 3.106496788134147,
+      "mape_excluded_zero_reference": 0,
+      "daily_peak_magnitude_recovery_pct": 100.91762616870437,
+      "daily_peak_timing_mae_minutes": 21.428571428571427
+    }
+  }
+}

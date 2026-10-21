@@ -1,0 +1,76 @@
+{
+  "features": [
+    "net_mw",
+    "solar_mw",
+    "capacity_mw",
+    "sin_hour",
+    "cos_hour",
+    "day_of_week"
+  ],
+  "imputation_medians": {
+    "net_mw": 2.6675006396059255,
+    "solar_mw": 0.0,
+    "capacity_mw": 4.0,
+    "sin_hour": 6.123233995736766e-17,
+    "cos_hour": -6.123233995736765e-17,
+    "day_of_week": 3.0
+  },
+  "preprocessing": "numeric MW; train-only medians, no scaling, no target-derived or future/billing features",
+  "seed": 23177000,
+  "params": {
+    "objective": "reg:squarederror",
+    "max_depth": 4,
+    "eta": 0.06,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "seed": 23177000,
+    "nthread": 2,
+    "tree_method": "hist"
+  },
+  "rounds": 100,
+  "target_provenance": "synthetic latent PV generation; not measured CEB ground truth",
+  "split_dates": {
+    "train": [
+      "2026-01-01 00:00:00+05:30",
+      "2026-03-13 23:45:00+05:30"
+    ],
+    "calibration": [
+      "2026-03-14 00:00:00+05:30",
+      "2026-04-06 23:45:00+05:30"
+    ],
+    "test": [
+      "2026-04-07 00:00:00+05:30",
+      "2026-04-30 23:45:00+05:30"
+    ]
+  },
+  "train_feature_ranges": {
+    "net_mw": [
+      -4.307981864881095,
+      6.667036212090198
+    ],
+    "solar_mw": [
+      0.0,
+      7.2
+    ],
+    "capacity_mw": [
+      1.6,
+      8.0
+    ],
+    "sin_hour": [
+      -1.0,
+      1.0
+    ],
+    "cos_hour": [
+      -1.0,
+      1.0
+    ],
+    "day_of_week": [
+      0.0,
+      6.0
+    ]
+  },
+  "calibration_absolute_error_q90_mw": 0.2150865243105473,
+  "units": "MW",
+  "xgboost_version": "3.4.1",
+  "postprocessing": "clip hidden to [0,capacity]; force zero outside 06:00\u201318:00. SHAP explains raw prediction; correction reported separately."
+}
