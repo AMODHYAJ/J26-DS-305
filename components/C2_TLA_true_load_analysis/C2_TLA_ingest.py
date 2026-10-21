@@ -5,6 +5,7 @@ import hashlib
 import json
 import re
 import subprocess
+from itertools import chain, islice
 import numpy as np
 import pandas as pd
 from openpyxl import load_workbook
@@ -29,8 +30,10 @@ def capacities(root):
         w = load_workbook(p, read_only=True, data_only=True)
         for s in w:
             mode, csc = None, ''
-            for r in s.values:
-                if clean(r[0]) == 'CSC :': csc=clean(r[5])
+            it=iter(s.values); prefix=list(islice(it,8))
+            if not any(clean(r[0])=='Embedded Generation' for r in prefix): continue
+            for r in chain(prefix,it):
+                if clean(r[0]) == 'CSC :': csc=clean(r[5]) or clean(r[3])
                 if clean(r[0]) == 'No' and len(r) > 20:
                     mode='summary' if clean(r[13])=='SIN Cap.' else 'detail'
                 elif clean(r[0]).isdigit() and mode:
@@ -53,8 +56,11 @@ def load_measurements(root, *, gss='Embilipitiya'):
         if tuple(header[:6]) != ('GSS','Device Type','Device','Analog','Date','Day'): continue
         intervals=[(i,v) for i,v in enumerate(header) if isinstance(v,str) and re.fullmatch(r'\d{2}:\d{2}',v)]
         if len(intervals)!=96: raise ValueError(f'{s.title}: expected 96 quarter-hour columns.')
-        for r in it:
-            if r[0]!=gss or r[3]!='MW' or not re.fullmatch(r'3_EMBIL_F\d+',str(r[2])): continue
+        first=next(it,None)
+        if first is None or first[0]!=gss or first[3]!='MW' or not re.fullmatch(r'3_EMBIL_F\d+',str(first[2])): continue
+        identity=first[:4]
+        for r in chain([first],it):
+            if r[:4]!=identity: raise ValueError(f'{s.title}: mixed channel metadata; expected one channel per worksheet.')
             base=pd.Timestamp(r[4])
             # Export contains local dates/day labels and no offset. Explicit CEB-local assumption.
             base=base.tz_localize(TZ) if base.tzinfo is None else base.tz_convert(TZ)
@@ -162,5 +168,17 @@ def audit(root, out, *, access=True):
     result['measurement_summary']={'rows':len(d),'feeders':sorted(d.feeder_id.unique()),'start':str(d.timestamp.min()),'end':str(d.timestamp.max()),'statistics':column_audit(d[['net_mw']])}
     result['capacity_summary']=cap.groupby(['gss','register_feeder']).capacity_kw.sum().reset_index().to_dict('records')
     result['register_checks']={'summary_kw':float(cap.capacity_kw.sum()),'detail_kw':float(accounts.capacity_kw.sum()),'detail_rows':len(accounts)}
+    # Summary SIN has an alphabetic prefix; detail SIN uses numeric text.
+    # Keep GSS/CSC/section context so this normalization cannot merge unrelated SINs.
+    key=['csc','gss','register_feeder','section','sin_number']
+    groups=[]
+    for frame in [cap,accounts]:
+        part=frame.copy(); part['sin_number']=part.sin.str.extract(r'(\d+)',expand=False).astype('Int64')
+        groups.append(part.groupby(key,dropna=False).capacity_kw.sum())
+    comparison=pd.concat([groups[0].rename('summary_kw'),groups[1].rename('detail_kw')],axis=1)
+    mismatch=comparison.isna().any(axis=1)|(comparison.summary_kw-comparison.detail_kw).abs().gt(.05)
+    result['register_checks']['groups']=len(comparison)
+    result['register_checks']['mismatched_groups']=int(mismatch.sum())
+    result['register_checks']['mismatch_details']=json.loads(comparison[mismatch].reset_index().to_json(orient='records'))
     (out/'C2_TLA_data_audit.json').write_text(json.dumps(result,indent=2,default=str,allow_nan=False),encoding='utf-8')
     return result
