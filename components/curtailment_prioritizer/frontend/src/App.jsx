@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   Activity,
   AlertCircle,
@@ -16,10 +16,20 @@ import {
   ShieldCheck,
   SlidersHorizontal,
   Zap,
+  Scale,
+  Sun,
 } from 'lucide-react';
 import './App.css';
 
 const API_BASE = '/api';
+
+const PLANTS = [
+  { id: '6470900542', name: 'Laugfs Solar', capacity: 1 },
+  { id: '6470900534', name: 'Irish & Eco Solar', capacity: 1 },
+  { id: '6470900607', name: 'Dimo Solar / Thunkama', capacity: 1 },
+  { id: '6470900828', name: 'Chandrikawewa Floating Solar', capacity: 1 },
+  { id: '6470900836', name: 'Kiriibbanwewa Floating Solar', capacity: 1 },
+];
 
 function formatMW(value) {
   return typeof value === 'number' && Number.isFinite(value)
@@ -53,9 +63,11 @@ function statusLabel(status) {
 
 function StatusBadge({ status }) {
   const variant =
-    status === 'TARGET_MET' || status === 'NO_ACTION_REQUIRED'
+    status === 'TARGET_MET' ||
+    status === 'NO_ACTION_REQUIRED'
       ? 'success'
-      : status === 'TARGET_NOT_MET' || status === 'INSUFFICIENT_DATA'
+      : status === 'TARGET_NOT_MET' ||
+          status === 'INSUFFICIENT_DATA'
         ? 'warning'
         : 'neutral';
 
@@ -83,14 +95,67 @@ function MetricCard({ icon: Icon, label, value, detail, accent = false }) {
 }
 
 function App() {
-  // Temporary demo scenario until Component 1 warning integration is connected.
   const [scenarioId] = useState('S0001');
-
-
   const [operatorAuthorized, setOperatorAuthorized] = useState(false);
+
   const [assessment, setAssessment] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [assessmentLoading, setAssessmentLoading] = useState(false);
+  const [assessmentError, setAssessmentError] = useState('');
+
+  const [ranking, setRanking] = useState([]);
+  const [rankingLoading, setRankingLoading] = useState(false);
+  const [rankingError, setRankingError] = useState('');
+  const [rankingStatus, setRankingStatus] = useState('not-loaded');
+
+  const fetchRanking = useCallback(async () => {
+    setRankingLoading(true);
+    setRankingError('');
+    setRankingStatus('loading');
+
+    try {
+      const response = await fetch(
+        `${API_BASE}/fairness/ranking?recent_days=30`,
+        { headers: { Accept: 'application/json' } },
+      );
+
+      const body = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        const detail =
+          typeof body.detail === 'string'
+            ? body.detail
+            : `Fairness ranking request failed (HTTP ${response.status}).`;
+
+        throw new Error(detail);
+      }
+
+      // Support either a direct list or a wrapped API response.
+      const records = Array.isArray(body)
+        ? body
+        : body.rankings ?? body.ranking ?? body.results ?? [];
+
+      if (!Array.isArray(records) || records.length === 0) {
+        throw new Error('The API returned no ranking records.');
+      }
+
+      setRanking(records);
+      setRankingStatus('loaded');
+    } catch (err) {
+      setRanking([]);
+      setRankingStatus('unavailable');
+      setRankingError(
+        err instanceof TypeError
+          ? 'Could not connect to the API. Check that the backend is running.'
+          : err.message || 'The fairness ranking could not be loaded.',
+      );
+    } finally {
+      setRankingLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchRanking();
+  }, [fetchRanking]);
 
   async function runAssessment(event) {
     event.preventDefault();
@@ -98,12 +163,12 @@ function App() {
     const id = scenarioId.trim();
 
     if (!id) {
-      setError('Enter a scenario ID before running the assessment.');
+      setAssessmentError('Enter a scenario ID before running the assessment.');
       return;
     }
 
-    setLoading(true);
-    setError('');
+    setAssessmentLoading(true);
+    setAssessmentError('');
     setAssessment(null);
 
     try {
@@ -119,7 +184,9 @@ function App() {
 
       if (!response.ok) {
         const detail = Array.isArray(body.detail)
-          ? body.detail.map((item) => item.msg || JSON.stringify(item)).join('; ')
+          ? body.detail
+              .map((item) => item.msg || JSON.stringify(item))
+              .join('; ')
           : typeof body.detail === 'string'
             ? body.detail
             : body.detail
@@ -131,13 +198,13 @@ function App() {
 
       setAssessment(body);
     } catch (err) {
-      setError(
+      setAssessmentError(
         err instanceof TypeError
-          ? 'Could not connect to the API. Check that FastAPI is running at http://127.0.0.1:8000.'
+          ? 'Could not connect to the API. Check that FastAPI is running.'
           : err.message || 'The assessment could not be completed.',
       );
     } finally {
-      setLoading(false);
+      setAssessmentLoading(false);
     }
   }
 
@@ -148,34 +215,50 @@ function App() {
   const targetMet = assessment?.target_met;
   const hasAssessment = Boolean(assessment);
 
+  const knownPlants = new Set(PLANTS.map((plant) => plant.id));
+  const validRanking = ranking.filter((item) =>
+    knownPlants.has(String(item.ac_number)),
+  );
+
+  const rankingHasFivePlants = validRanking.length === PLANTS.length;
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <a className="brand" href="#overview" aria-label="Curtailment Intelligence home">
+        <a className="brand" href="#overview" aria-label="Solavera home">
           <span className="brand-mark">
             <Zap size={22} fill="currentColor" />
           </span>
           <span className="brand-copy">
             <strong>SOLAVERA</strong>
-            <small>GRID INTELLIGENCE</small>
+            <small>SOLAR INTELLIGENCE</small>
           </span>
         </a>
 
         <div className="sidebar-section-label">WORKSPACE</div>
+
         <nav className="sidebar-nav" aria-label="Main navigation">
           <a className="nav-item active" href="#overview">
             <Activity size={18} />
             <span>Overview</span>
             <span className="nav-indicator" />
           </a>
+
+          <a className="nav-item" href="#generation">
+            <Sun size={18} />
+            <span>Solar plants</span>
+          </a>
+
+          <a className="nav-item" href="#ranking">
+            <Scale size={18} />
+            <span>Fairness ranking</span>
+          </a>
+
           <a className="nav-item" href="#assessment">
             <SlidersHorizontal size={18} />
             <span>Assessment</span>
           </a>
-          <a className="nav-item" href="#recommendations">
-            <Leaf size={18} />
-            <span>Plant priorities</span>
-          </a>
+
           <a className="nav-item" href="#methodology">
             <CircleHelp size={18} />
             <span>Methodology</span>
@@ -187,26 +270,29 @@ function App() {
             <span className="system-pulse" />
             <div>
               <strong>Decision support</strong>
-              <small>Control commands disabled</small>
+              <small>Human review required</small>
             </div>
           </div>
-          <div className="sidebar-version">COMPONENT 04 · PROTOTYPE</div>
+          <div className="sidebar-version">SOLAR CURTAILMENT ANALYTICS</div>
         </div>
       </aside>
 
       <main className="main-content" id="overview">
         <header className="topbar">
           <div className="breadcrumb">
-            <span>Components</span>
+            <span>Workspace</span>
             <ChevronRight size={14} />
-            <strong>Curtailment prioritisation</strong>
+            <strong>Solar curtailment analytics</strong>
           </div>
+
           <div className="topbar-right">
             <span className="environment-label">
               <span className="environment-dot" />
-              Synthetic environment
+              {rankingStatus === 'loaded'
+                ? 'Ranking data loaded'
+                : 'Data status'}
             </span>
-            <div className="avatar">C4</div>
+            <div className="avatar">SL</div>
           </div>
         </header>
 
@@ -214,141 +300,368 @@ function App() {
           <div>
             <div className="eyebrow">
               <span className="eyebrow-line" />
-              DISTRIBUTION CONTROL CENTRE
+              SOLAR ENERGY MANAGEMENT
             </div>
-            <h1> Curtailment <span>intelligence.</span></h1>
+
+            <h1>
+              Curtailment <span>intelligence.</span>
+            </h1>
+
             <p>
-              Explainable, plant-level prioritisation for distribution
-              network loading scenarios.
+              Monitor five solar plants, review historical curtailment
+              patterns, and support fairer future curtailment decisions.
             </p>
           </div>
-          <div className="heading-status">
-            <span className="live-dot" />
-            Prototype online
+
+          <button
+            className="icon-button"
+            onClick={fetchRanking}
+            disabled={rankingLoading}
+            title="Refresh fairness ranking"
+            aria-label="Refresh fairness ranking"
+          >
+            {rankingLoading ? (
+              <LoaderCircle size={18} className="spin" />
+            ) : (
+              <RefreshCw size={18} />
+            )}
+          </button>
+        </section>
+
+        <section className="metrics-grid" aria-label="Dashboard metrics">
+          <MetricCard
+            icon={Sun}
+            label="Solar plants"
+            value={String(PLANTS.length)}
+            detail="Plants in the study"
+            accent
+          />
+
+          <MetricCard
+            icon={Gauge}
+            label="Installed capacity"
+            value="5 MW"
+            detail="Five plants × 1 MW each"
+          />
+
+          <MetricCard
+            icon={Scale}
+            label="Plants ranked"
+            value={rankingHasFivePlants ? '5 / 5' : `${validRanking.length} / 5`}
+            detail={
+              rankingStatus === 'loaded'
+                ? 'Ranking records returned'
+                : 'Awaiting valid ranking data'
+            }
+          />
+
+          <MetricCard
+            icon={Activity}
+            label="Assessment status"
+            value={hasAssessment ? 'Ready' : 'Not run'}
+            detail={
+              hasAssessment
+                ? statusLabel(assessment.assessment_status)
+                : 'No new assessment executed'
+            }
+          />
+        </section>
+
+        <section className="panel recommendations-panel" id="generation">
+          <div className="panel-heading recommendations-heading">
+            <div>
+              <div className="section-kicker">01 / SOLAR PORTFOLIO</div>
+              <h2>Plant overview</h2>
+              <p>Five plants included in the fairness-prioritisation study.</p>
+            </div>
+            <div className="table-count">{PLANTS.length} plants</div>
+          </div>
+
+          <div className="table-scroll">
+            <table className="recommendations-table">
+              <thead>
+                <tr>
+                  <th>PLANT</th>
+                  <th>ACCOUNT NUMBER</th>
+                  <th>CAPACITY</th>
+                  <th>RANKING STATUS</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {PLANTS.map((plant) => {
+                  const record = validRanking.find(
+                    (item) => String(item.ac_number) === plant.id,
+                  );
+
+                  return (
+                    <tr key={plant.id}>
+                      <td>
+                        <div className="plant-cell">
+                          <span className="plant-icon">
+                            <Leaf size={17} />
+                          </span>
+                          <div>
+                            <strong>{plant.name}</strong>
+                            <small>Solar power plant</small>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td>{plant.id}</td>
+                      <td className="numeric-cell">
+                        {formatMW(plant.capacity)}
+                      </td>
+
+                      <td>
+                        {record ? (
+                          <span className="status-badge success">
+                            <span className="status-dot" />
+                            Ranked #{record.priority_rank ?? '—'}
+                          </span>
+                        ) : (
+                          <span className="status-badge neutral">
+                            <span className="status-dot" />
+                            Awaiting data
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </section>
 
-        <section className="metrics-grid" aria-label="Assessment metrics">
-          <MetricCard
-            icon={Gauge}
-            label="Required reduction"
-            value={hasAssessment ? formatMW(target) : '—'}
-            detail="Calculated target"
-            accent
-          />
-          <MetricCard
-            icon={ArrowDownRight}
-            label="Proposed reduction"
-            value={hasAssessment ? formatMW(proposed) : '—'}
-            detail="Sum of recommendations"
-          />
-          <MetricCard
-            icon={AlertCircle}
-            label="Remaining shortfall"
-            value={hasAssessment ? formatMW(shortfall) : '—'}
-            detail="Unmet reduction target"
-          />
-          <MetricCard
-            icon={Leaf}
-            label="Plants prioritised"
-            value={hasAssessment ? String(recommendations.length) : '—'}
-            detail="Eligible recommendations"
-          />
+        <section className="panel recommendations-panel" id="ranking">
+          <div className="panel-heading recommendations-heading">
+            <div>
+              <div className="section-kicker">02 / HISTORICAL FAIRNESS</div>
+              <h2>Fairness ranking</h2>
+              <p>
+                Plants with a lower historical curtailment burden receive
+                higher priority for future curtailment.
+              </p>
+            </div>
+
+            <button
+              className="icon-button"
+              onClick={fetchRanking}
+              disabled={rankingLoading}
+              title="Refresh ranking"
+              aria-label="Refresh ranking"
+            >
+              {rankingLoading ? (
+                <LoaderCircle size={17} className="spin" />
+              ) : (
+                <RefreshCw size={17} />
+              )}
+            </button>
+          </div>
+
+          {rankingLoading ? (
+            <div className="empty-state">
+              <LoaderCircle size={24} className="spin" />
+              <strong>Loading historical ranking</strong>
+              <p>Retrieving the latest ranking from the API.</p>
+            </div>
+          ) : rankingError ? (
+            <div className="empty-state">
+              <div className="empty-icon">
+                <AlertCircle size={24} />
+              </div>
+              <strong>Ranking data unavailable</strong>
+              <p>{rankingError}</p>
+              <p>
+                The dashboard has not substituted sample rankings for missing
+                historical evidence.
+              </p>
+            </div>
+          ) : validRanking.length === 0 ? (
+            <div className="empty-state">
+              <div className="empty-icon">
+                <Scale size={24} />
+              </div>
+              <strong>No ranking records available</strong>
+              <p>
+                A ranking will appear when the API returns usable historical
+                curtailment data for the target plants.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="result-banner">
+                {rankingHasFivePlants ? (
+                  <CheckCircle2 size={19} />
+                ) : (
+                  <AlertCircle size={19} />
+                )}
+
+                <div>
+                  <strong>
+                    {rankingHasFivePlants
+                      ? 'Ranking returned for all five plants'
+                      : 'Partial ranking returned'}
+                  </strong>
+                  <p>
+                    Historical data and its coverage must be checked before
+                    treating the ranking as a validated operational result.
+                  </p>
+                </div>
+              </div>
+
+              <div className="table-scroll">
+                <table className="recommendations-table">
+                  <thead>
+                    <tr>
+                      <th>PRIORITY</th>
+                      <th>PLANT</th>
+                      <th>HISTORICAL ENERGY</th>
+                      <th>EVENTS</th>
+                      <th>BURDEN SCORE</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {[...validRanking]
+                      .sort(
+                        (a, b) =>
+                          (a.priority_rank ?? Infinity) -
+                          (b.priority_rank ?? Infinity),
+                      )
+                      .map((record) => {
+                        const plant = PLANTS.find(
+                          (item) =>
+                            item.id === String(record.ac_number),
+                        );
+
+                        return (
+                          <tr key={record.ac_number}>
+                            <td>
+                              <span className="rank-pill">
+                                {String(record.priority_rank ?? '—').padStart(
+                                  2,
+                                  '0',
+                                )}
+                              </span>
+                            </td>
+
+                            <td>
+                              <div className="plant-cell">
+                                <span className="plant-icon">
+                                  <Leaf size={17} />
+                                </span>
+                                <div>
+                                  <strong>
+                                    {record.plant_name ?? plant?.name ?? record.ac_number}
+                                  </strong>
+                                  <small>{record.ac_number}</small>
+                                </div>
+                              </div>
+                            </td>
+
+                            <td className="numeric-cell">
+                              {record.energy_history_known === false
+                                ? 'Unknown'
+                                : record.historical_energy_mwh != null
+                                  ? `${formatNumber(record.historical_energy_mwh, 2)} MWh`
+                                  : '—'}
+                            </td>
+
+                            <td className="numeric-cell">
+                              {formatNumber(record.event_count, 0)}
+                            </td>
+
+                            <td className="numeric-cell">
+                              {formatNumber(record.burden_score, 3)}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                </table>
+              </div>
+
+              <p className="muted-copy">
+                Ranking scores are decision-support indicators. Their
+                reliability depends on the completeness and verification of
+                historical curtailment records.
+              </p>
+            </>
+          )}
         </section>
 
         <section className="workspace-grid">
           <article className="panel assessment-panel" id="assessment">
             <div className="panel-heading">
               <div>
-                <div className="section-kicker">01 / GRID WARNING</div>
-                <h2>Active grid warning</h2>
+                <div className="section-kicker">03 / SCENARIO ASSESSMENT</div>
+                <h2>Reduction assessment</h2>
                 <p>
-                  Review the thermal threshold warning and initiate a
-                  plant-level reduction assessment.
+                  Run the existing scenario assessment to review its
+                  recommendations.
                 </p>
               </div>
+
               <div className="panel-icon">
                 <SlidersHorizontal size={19} />
               </div>
             </div>
 
+            <form onSubmit={runAssessment}>
+              <div className="authorization-note">
+                <div className="authorization-icon">
+                  <ShieldCheck size={19} />
+                </div>
 
-<form onSubmit={runAssessment}>
-  <div className="section-kicker">01 / GRID WARNING</div>
+                <div className="authorization-copy">
+                  <strong>Operator review required</strong>
+                  <p>
+                    This assessment generates recommendations only. It does
+                    not send curtailment commands to any plant.
+                  </p>
+                </div>
 
-  <div className="authorization-note">
-    <div className="authorization-icon">
-      <AlertCircle size={19} />
-    </div>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    checked={operatorAuthorized}
+                    onChange={(event) =>
+                      setOperatorAuthorized(event.target.checked)
+                    }
+                    disabled={assessmentLoading}
+                    aria-label="Set operator authorisation flag"
+                  />
+                  <span className="switch-track" />
+                </label>
+              </div>
 
-    <div className="authorization-copy">
-      <strong>Thermal threshold warning</strong>
-      <p>
-        Demo warning for interface testing. Component 1 is not
-        connected yet, so this is not a live grid alert.
-      </p>
-    </div>
-  </div>
+              <button
+                className="primary-button"
+                type="submit"
+                disabled={assessmentLoading}
+              >
+                {assessmentLoading ? (
+                  <>
+                    <LoaderCircle size={17} className="spin" />
+                    Preparing assessment
+                  </>
+                ) : (
+                  <>
+                    Run assessment
+                    <ArrowUpRight size={17} />
+                  </>
+                )}
+              </button>
+            </form>
 
-  <div className="field-label">Assessment status</div>
-  <p className="field-hint">
-    A curtailment assessment will be prepared using the temporary
-    synthetic scenario when you initiate it.
-  </p>
-
-  <div className="authorization-note">
-    <div className="authorization-icon">
-      <ShieldCheck size={19} />
-    </div>
-
-    <div className="authorization-copy">
-      <strong>Operator review required</strong>
-      <p>
-        This action generates recommendations only. It does not
-        send curtailment commands to any plant.
-      </p>
-    </div>
-
-    <label className="switch">
-      <input
-        type="checkbox"
-        checked={operatorAuthorized}
-        onChange={(event) =>
-          setOperatorAuthorized(event.target.checked)
-        }
-        disabled={loading}
-        aria-label="Set operator authorisation flag"
-      />
-      <span className="switch-track" />
-    </label>
-  </div>
-
-  <button
-    className="primary-button"
-    type="submit"
-    disabled={loading}
-  >
-    {loading ? (
-      <>
-        <LoaderCircle size={17} className="spin" />
-        Preparing reduction overview
-      </>
-    ) : (
-      <>
-        Start Reduction Overview
-        <ArrowUpRight size={17} />
-      </>
-    )}
-  </button>
-</form>
-
-
-            {error && (
+            {assessmentError && (
               <div className="error-banner" role="alert">
                 <AlertCircle size={18} />
                 <div>
                   <strong>Assessment failed</strong>
-                  <p>{error}</p>
+                  <p>{assessmentError}</p>
                 </div>
               </div>
             )}
@@ -357,10 +670,10 @@ function App() {
               <div className="result-banner">
                 <CheckCircle2 size={19} />
                 <div>
-                  <strong>Assessment returned successfully</strong>
+                  <strong>Assessment completed</strong>
                   <p>
                     Scenario {assessment.event_id} ·{' '}
-                    {recommendations.length} plant recommendation
+                    {recommendations.length} recommendation
                     {recommendations.length === 1 ? '' : 's'} returned.
                   </p>
                 </div>
@@ -370,22 +683,22 @@ function App() {
 
             <div className="assessment-footnote">
               <Clock3 size={14} />
-              Recommendations are advisory and require appropriate operational
-              review.
+              Recommendations are advisory and require operational review.
             </div>
           </article>
 
           <article className="panel outcome-panel">
             <div className="panel-heading">
               <div>
-                <div className="section-kicker">02 / ASSESSMENT OUTCOME</div>
+                <div className="section-kicker">04 / ASSESSMENT RESULTS</div>
                 <h2>Reduction overview</h2>
                 <p>
                   {hasAssessment
                     ? `Scenario ${assessment.event_id}`
-                    : 'Run a scenario to populate the assessment results.'}
+                    : 'Run an assessment to view its results.'}
                 </p>
               </div>
+
               {hasAssessment && (
                 <StatusBadge status={assessment.assessment_status} />
               )}
@@ -406,26 +719,37 @@ function App() {
                   <span className="ring-caption">Target coverage</span>
                 </div>
               </div>
+
               <div className="outcome-legend">
                 <div className="legend-row">
                   <span className="legend-swatch proposed-swatch" />
                   <span>Proposed reduction</span>
-                  <strong>{hasAssessment ? formatMW(proposed) : '—'}</strong>
+                  <strong>
+                    {hasAssessment ? formatMW(proposed) : '—'}
+                  </strong>
                 </div>
+
                 <div className="legend-row">
                   <span className="legend-swatch target-swatch" />
                   <span>Required reduction</span>
                   <strong>{hasAssessment ? formatMW(target) : '—'}</strong>
                 </div>
+
                 <div className="legend-row">
                   <span className="legend-swatch shortfall-swatch" />
                   <span>Remaining shortfall</span>
-                  <strong>{hasAssessment ? formatMW(shortfall) : '—'}</strong>
+                  <strong>
+                    {hasAssessment ? formatMW(shortfall) : '—'}
+                  </strong>
                 </div>
               </div>
             </div>
 
-            <div className={`outcome-message ${hasAssessment && !targetMet ? 'needs-attention' : ''}`}>
+            <div
+              className={`outcome-message ${
+                hasAssessment && !targetMet ? 'needs-attention' : ''
+              }`}
+            >
               {hasAssessment ? (
                 <>
                   {targetMet ? (
@@ -433,16 +757,17 @@ function App() {
                   ) : (
                     <AlertCircle size={18} />
                   )}
+
                   <div>
                     <strong>
                       {targetMet
                         ? 'Proposed reduction meets the target'
-                        : 'The reduction target remains unmet'}
+                        : 'Reduction target remains unmet'}
                     </strong>
                     <p>
                       {targetMet
                         ? 'The proposed allocation reaches the calculated target within the model tolerance.'
-                        : 'Eligible plant output was insufficient to meet the full target, or the model returned a partial assessment.'}
+                        : 'Review the available generation, recommendations, and assessment limitations.'}
                     </p>
                   </div>
                 </>
@@ -450,8 +775,8 @@ function App() {
                 <>
                   <CircleHelp size={18} />
                   <div>
-                    <strong>Awaiting scenario</strong>
-                    <p>Assessment results will appear here after execution.</p>
+                    <strong>Awaiting assessment</strong>
+                    <p>Results will appear here after execution.</p>
                   </div>
                 </>
               )}
@@ -463,7 +788,7 @@ function App() {
                 <strong>{hasAssessment ? assessment.event_id : '—'}</strong>
               </div>
               <div>
-                <span>Authorisation flag</span>
+                <span>Operator authorisation</span>
                 <strong>
                   {hasAssessment
                     ? assessment.operator_authorized
@@ -476,116 +801,15 @@ function App() {
           </article>
         </section>
 
-        <section className="panel recommendations-panel" id="recommendations">
-          <div className="panel-heading recommendations-heading">
-            <div>
-              <div className="section-kicker">03 / PRIORITY ALLOCATION</div>
-              <h2>Plant recommendations</h2>
-              <p>
-                Plants are displayed in the priority order returned by the
-                assessment engine.
-              </p>
-            </div>
-            <div className="table-count">
-              {hasAssessment ? recommendations.length : 0} recommendations
-            </div>
-          </div>
-
-          {!hasAssessment ? (
-            <div className="empty-state">
-              <div className="empty-icon">
-                <Leaf size={24} />
-              </div>
-              <strong>No assessment results yet</strong>
-              <p>Run a scenario to see its ranked plant recommendations.</p>
-            </div>
-          ) : recommendations.length === 0 ? (
-            <div className="empty-state">
-              <div className="empty-icon">
-                <CheckCircle2 size={24} />
-              </div>
-              <strong>No plant reductions recommended</strong>
-              <p>
-                This scenario returned no plant recommendations. Check its
-                assessment status and limitations for context.
-              </p>
-            </div>
-          ) : (
-            <div className="table-scroll">
-              <table className="recommendations-table">
-                <thead>
-                  <tr>
-                    <th>PRIORITY</th>
-                    <th>PLANT</th>
-                    <th>AVAILABLE GENERATION</th>
-                    <th>PROPOSED REDUCTION</th>
-                    <th>ALLOCATION</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {recommendations.map((plant) => {
-                    const allocation =
-                      plant.available_generation_mw > 0
-                        ? Math.min(
-                            100,
-                            (plant.recommended_reduction_mw /
-                              plant.available_generation_mw) *
-                              100,
-                          )
-                        : 0;
-
-                    return (
-                      <tr key={`${plant.plant_id}-${plant.priority_rank}`}>
-                        <td>
-                          <span className="rank-pill">
-                            {String(plant.priority_rank).padStart(2, '0')}
-                          </span>
-                        </td>
-                        <td>
-                          <div className="plant-cell">
-                            <span className="plant-icon">
-                              <Leaf size={17} />
-                            </span>
-                            <div>
-                              <strong>{plant.plant_name}</strong>
-                              <small>{plant.plant_id}</small>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="numeric-cell">
-                          {formatMW(plant.available_generation_mw)}
-                        </td>
-                        <td className="numeric-cell reduction-value">
-                          {formatMW(plant.recommended_reduction_mw)}
-                        </td>
-                        <td>
-                          <div className="allocation-cell">
-                            <div className="allocation-track">
-                              <div
-                                className="allocation-fill"
-                                style={{ width: `${allocation}%` }}
-                              />
-                            </div>
-                            <span>{formatNumber(allocation, 0)}%</span>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </section>
-
         {hasAssessment && (
           <section className="panel rationale-panel">
             <div className="panel-heading">
               <div>
-                <div className="section-kicker">04 / EXPLAINABILITY</div>
-                <h2>Why these plants?</h2>
-                <p>Rationale supplied by the assessment engine.</p>
+                <div className="section-kicker">05 / EXPLAINABILITY</div>
+                <h2>Assessment rationale</h2>
+                <p>Reasons supplied by the assessment engine.</p>
               </div>
+
               <div className="panel-icon">
                 <CircleHelp size={19} />
               </div>
@@ -594,7 +818,10 @@ function App() {
             {recommendations.length > 0 ? (
               <div className="rationale-list">
                 {recommendations.map((plant) => (
-                  <div className="rationale-item" key={plant.plant_id}>
+                  <div
+                    className="rationale-item"
+                    key={plant.plant_id}
+                  >
                     <div className="rationale-rank">
                       {String(plant.priority_rank).padStart(2, '0')}
                     </div>
@@ -607,7 +834,7 @@ function App() {
               </div>
             ) : (
               <p className="muted-copy">
-                No plant-level rationale was returned for this scenario.
+                No plant-level rationale was returned for this assessment.
               </p>
             )}
 
@@ -615,7 +842,7 @@ function App() {
               <div className="limitations-box">
                 <div className="limitations-heading">
                   <AlertCircle size={17} />
-                  <strong>Model assumptions and limitations</strong>
+                  <strong>Assumptions and limitations</strong>
                 </div>
                 <ul>
                   {assessment.limitations.map((limitation, index) => (
@@ -631,19 +858,24 @@ function App() {
           <div className="methodology-icon">
             <ShieldCheck size={20} />
           </div>
+
           <div>
-            <strong>Explainable decision support · Human oversight required</strong>
+            <strong>
+              Explainable decision support · Human oversight required
+            </strong>
             <p>
-              This prototype uses synthetic scenario data and an assumed
-              contribution score. Recommendations are not validated electrical
-              power-flow results and do not issue curtailment commands.
+              Fairness rankings depend on available historical records.
+              Scenario recommendations should be reviewed against operational
+              evidence before use. This dashboard does not issue curtailment
+              commands.
             </p>
           </div>
+
           <button
             className="icon-button"
             onClick={() => {
               setAssessment(null);
-              setError('');
+              setAssessmentError('');
             }}
             title="Clear assessment results"
             aria-label="Clear assessment results"
@@ -653,8 +885,8 @@ function App() {
         </section>
 
         <footer className="page-footer">
-          <span>SOLAVERA · GRID INTELLIGENCE</span>
-          <span>COMPONENT 04 / CURTAILMENT PRIORITISATION</span>
+          <span>SOLAVERA · SOLAR INTELLIGENCE</span>
+          <span>CURTAILMENT FAIRNESS & ANALYTICS</span>
         </footer>
       </main>
     </div>
