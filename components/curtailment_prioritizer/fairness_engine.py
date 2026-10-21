@@ -40,8 +40,7 @@ def rank_plants(
         weights: dict[str, float] | None = None,
 ) -> list[dict[str, Any]]:
     """
-    Rank the five identified solar plants by historical
-    curtailment burden.
+    Calculate provisional historical curtailment burden for five plants.
 
     Event fields:
         ac_number: plant account number
@@ -49,14 +48,20 @@ def rank_plants(
         curtailed_mwh: measured/estimated curtailed energy,
                        or None if unknown
 
-    Lower burden means higher priority for future curtailment.
+    Lower burden means higher priority for future curtailment,
+    but only when historical data coverage is adequate.
 
-    Important:
-        - Weights are provisional, not an approved fairness policy.
-        - Missing energy is not treated as confirmed zero energy.
-        - This function ranks plants only. It does not decide
-          whether curtailment is needed or calculate its amount.
+    This function does not decide whether curtailment is needed
+    or calculate the amount of curtailment.
+
+    IMPORTANT:
+        - Weights are provisional.
+        - Missing energy is not treated as zero energy.
+        - No recorded events do not prove that no curtailment occurred.
+        - A definitive priority order is withheld if any plant has
+          no recorded dated events.
     """
+
     if recent_days <= 0:
         raise ValueError("recent_days must be greater than zero.")
 
@@ -101,6 +106,7 @@ def rank_plants(
         for ac in PLANTS
     }
 
+    plants_with_events: set[str] = set()
     cutoff = as_of - timedelta(days=recent_days)
 
     for event in events:
@@ -127,19 +133,19 @@ def rank_plants(
                 f"{raw_timestamp!r}"
             ) from exc
 
-        # Align naive/aware datetimes for comparison.
+        # Align naive and timezone-aware datetimes.
         if timestamp.tzinfo is not None and as_of.tzinfo is None:
             timestamp = timestamp.replace(tzinfo=None)
         elif timestamp.tzinfo is None and as_of.tzinfo is not None:
             timestamp = timestamp.replace(tzinfo=as_of.tzinfo)
 
-        item = stats[ac]
-
-        # Ignore future events rather than counting them as history.
+        # Ignore future events.
         if timestamp > as_of:
             continue
 
+        item = stats[ac]
         item["event_count"] += 1
+        plants_with_events.add(ac)
 
         if (
                 item["last_event"] is None
@@ -181,8 +187,7 @@ def rank_plants(
             for key, value in values.items()
         }
 
-    # Score energy only if each plant has known energy history.
-    # If history is incomplete, exclude the energy indicator.
+    # Energy is used only when every plant has known energy history.
     energy_available = all(
         item["energy_known"] for item in stats.values()
     )
@@ -193,12 +198,9 @@ def rank_plants(
             for ac, item in stats.items()
         })
     else:
-        energy_values = {
-            ac: 0.0 for ac in stats
-        }
+        energy_values = {ac: 0.0 for ac in stats}
 
-    # Higher recency burden means the plant was curtailed recently.
-    # The burden decays linearly to zero over recent_days.
+    # Recent-event burden decays linearly over recent_days.
     recency_values = {}
 
     for ac, item in stats.items():
@@ -223,14 +225,11 @@ def rank_plants(
         for ac, item in stats.items()
     })
 
-    # If energy is unavailable, redistribute its weight across
-    # recency and frequency instead of assigning zero burden
-    # to every plant.
+    # Disable the energy indicator if energy history is incomplete.
     active_weights = dict(selected_weights)
 
     if not energy_available:
         active_weights["energy"] = 0.0
-
 
     active_total = sum(active_weights.values())
 
@@ -240,14 +239,11 @@ def rank_plants(
             for key, value in active_weights.items()
         }
     else:
-        # If every configured indicator is unavailable,
-        # use recency and frequency as a fallback.
         active_weights = {
             "energy": 0.0,
             "recent": 0.5,
             "frequency": 0.5,
-    }
-
+        }
 
     results = []
 
@@ -262,7 +258,7 @@ def rank_plants(
 
         if energy_available:
             reasons.append(
-                f"Normalised historical energy burden: "
+                "Normalised historical energy burden: "
                 f"{energy_values[ac]:.3f}"
             )
         else:
@@ -274,7 +270,6 @@ def rank_plants(
         reasons.append(
             f"{item['event_count']} dated curtailment event(s)."
         )
-
         reasons.append(
             f"{item['recent_event_count']} event(s) in the "
             f"last {recent_days} days."
@@ -286,7 +281,12 @@ def rank_plants(
                 f"{item['last_event'].isoformat()}."
             )
         else:
-            reasons.append("No dated curtailment events found.")
+            reasons.append(
+                "No dated curtailment events found; "
+                "historical coverage is unverified."
+            )
+
+        has_events = ac in plants_with_events
 
         results.append({
             "ac_number": ac,
@@ -306,11 +306,15 @@ def rank_plants(
                 else None
             ),
             "burden_score": round(burden, 4),
+            "history_coverage": (
+                "recorded_events_found"
+                if has_events
+                else "no_events_recorded_history_unverified"
+            ),
             "reasons": reasons,
         })
 
-    # Lower burden = higher priority.
-    # Account number provides deterministic tie-breaking.
+    # Lower burden comes first. Account number makes ties deterministic.
     results.sort(
         key=lambda row: (
             row["burden_score"],
@@ -318,7 +322,24 @@ def rank_plants(
         )
     )
 
+    # Do not present a priority order if any plant has no recorded events.
+    history_complete = all(
+        ac in plants_with_events for ac in PLANTS
+    )
+
+    if not history_complete:
+        for row in results:
+            row["priority_rank"] = None
+            row["ranking_status"] = (
+                "provisional_incomplete_history"
+            )
+
+        return results
+
+    # Even when every plant has events, the weights and completeness
+    # of the historical period still require validation and approval.
     for rank, row in enumerate(results, start=1):
         row["priority_rank"] = rank
+        row["ranking_status"] = "provisional"
 
     return results

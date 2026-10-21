@@ -61,6 +61,17 @@ function statusLabel(status) {
   );
 }
 
+function thresholdWasExceeded(data) {
+  if (!data || typeof data !== 'object') return false;
+  return (
+    data.threshold_exceeded === true ||
+    data.thresholdExceeded === true ||
+    ['THRESHOLD_EXCEEDED', 'EXCEEDED', 'THRESHOLD_EXCEEDED_RED'].includes(data.threshold_status) ||
+    data.operating_status === 'THRESHOLD_EXCEEDED' ||
+    data.status === 'THRESHOLD_EXCEEDED'
+  );
+}
+
 function StatusBadge({ status }) {
   const variant =
     status === 'TARGET_MET' ||
@@ -221,6 +232,22 @@ function App() {
   );
 
   const rankingHasFivePlants = validRanking.length === PLANTS.length;
+  const rankingHasValidOrder =
+    rankingHasFivePlants &&
+    validRanking.every(
+      (item) =>
+        Number.isFinite(item.priority_rank) &&
+        item.priority_rank > 0 &&
+        item.ranking_status !== 'provisional_incomplete_history',
+    );
+  const rankingHistoryIncomplete =
+    validRanking.some(
+      (item) =>
+        item.priority_rank == null ||
+        item.ranking_status === 'provisional_incomplete_history' ||
+        item.history_coverage === 'no_events_recorded_history_unverified',
+    ) || !rankingHasFivePlants;
+  const thresholdExceeded = thresholdWasExceeded(assessment);
 
   return (
     <div className="app-shell">
@@ -328,6 +355,19 @@ function App() {
           </button>
         </section>
 
+        {thresholdExceeded && (
+          <section className="threshold-alert" role="alert" aria-live="assertive">
+            <AlertCircle size={22} />
+            <div>
+              <strong>THRESHOLD EXCEEDED</strong>
+              <p>
+                The assessment API reported an operating threshold exceedance.
+                Review operating conditions and recommendations before taking action.
+              </p>
+            </div>
+          </section>
+        )}
+
         <section className="metrics-grid" aria-label="Dashboard metrics">
           <MetricCard
             icon={Sun}
@@ -347,10 +387,10 @@ function App() {
           <MetricCard
             icon={Scale}
             label="Plants ranked"
-            value={rankingHasFivePlants ? '5 / 5' : `${validRanking.length} / 5`}
+            value={`${validRanking.filter((item) => item.priority_rank != null).length} / 5`}
             detail={
               rankingStatus === 'loaded'
-                ? 'Ranking records returned'
+                ? 'Plants with a valid priority rank'
                 : 'Awaiting valid ranking data'
             }
           />
@@ -414,10 +454,15 @@ function App() {
                       </td>
 
                       <td>
-                        {record ? (
+                        {record && record.priority_rank != null ? (
                           <span className="status-badge success">
                             <span className="status-dot" />
-                            Ranked #{record.priority_rank ?? '—'}
+                            Ranked #{record.priority_rank}
+                          </span>
+                        ) : record ? (
+                          <span className="status-badge warning">
+                            <span className="status-dot" />
+                            History incomplete
                           </span>
                         ) : (
                           <span className="status-badge neutral">
@@ -491,22 +536,22 @@ function App() {
             </div>
           ) : (
             <>
-              <div className="result-banner">
-                {rankingHasFivePlants ? (
+              <div className={`result-banner ${rankingHistoryIncomplete ? 'ranking-warning' : ''}`}>
+                {rankingHasValidOrder ? (
                   <CheckCircle2 size={19} />
                 ) : (
                   <AlertCircle size={19} />
                 )}
-
                 <div>
                   <strong>
-                    {rankingHasFivePlants
-                      ? 'Ranking returned for all five plants'
-                      : 'Partial ranking returned'}
+                    {rankingHasValidOrder
+                      ? 'Provisional priority order available'
+                      : 'Historical data incomplete — ranking unavailable'}
                   </strong>
                   <p>
-                    Historical data and its coverage must be checked before
-                    treating the ranking as a validated operational result.
+                    {rankingHasValidOrder
+                      ? 'A provisional order was returned. Verify historical coverage and obtain approval of the fairness weights before operational use.'
+                      : 'Records were returned, but one or more plants have no recorded event history. No priority order is presented; missing records must not be interpreted as zero curtailment.'}
                   </p>
                 </div>
               </div>
@@ -520,6 +565,7 @@ function App() {
                       <th>HISTORICAL ENERGY</th>
                       <th>EVENTS</th>
                       <th>BURDEN SCORE</th>
+                      <th>DATA COVERAGE</th>
                     </tr>
                   </thead>
 
@@ -539,11 +585,10 @@ function App() {
                         return (
                           <tr key={record.ac_number}>
                             <td>
-                              <span className="rank-pill">
-                                {String(record.priority_rank ?? '—').padStart(
-                                  2,
-                                  '0',
-                                )}
+                              <span className={`rank-pill ${record.priority_rank == null ? 'rank-unavailable' : ''}`}>
+                                {record.priority_rank == null
+                                  ? '—'
+                                  : String(record.priority_rank).padStart(2, '0')}
                               </span>
                             </td>
 
@@ -576,6 +621,14 @@ function App() {
                             <td className="numeric-cell">
                               {formatNumber(record.burden_score, 3)}
                             </td>
+                            <td>
+                              <span className={`status-badge ${record.history_coverage === 'recorded_events_found' ? 'neutral' : 'warning'}`}>
+                                <span className="status-dot" />
+                                {record.history_coverage === 'recorded_events_found'
+                                  ? 'Events found; completeness unverified'
+                                  : 'History unverified'}
+                              </span>
+                            </td>
                           </tr>
                         );
                       })}
@@ -584,9 +637,11 @@ function App() {
               </div>
 
               <p className="muted-copy">
-                Ranking scores are decision-support indicators. Their
-                reliability depends on the completeness and verification of
-                historical curtailment records.
+                Ranking scores are decision-support indicators. The current
+                dataset contains 116 deduplicated working records, but event
+                history is unverified for plants with no recorded events.
+                Missing records are not evidence of zero curtailment. No
+                automatic curtailment commands are issued.
               </p>
             </>
           )}
