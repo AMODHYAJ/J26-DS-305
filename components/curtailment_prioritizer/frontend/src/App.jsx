@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Activity,
   AlertCircle,
@@ -83,64 +83,10 @@ function MetricCard({ icon: Icon, label, value, detail, accent = false }) {
 }
 
 function App() {
-  const [scenarioId, setScenarioId] = useState('');
-  const [scenarios, setScenarios] = useState([]);
-  const [scenariosLoading, setScenariosLoading] = useState(true);
-  const [scenariosError, setScenariosError] = useState('');
+  // Temporary demo scenario until Component 1 warning integration is connected.
+  const [scenarioId] = useState('S0001');
 
-  useEffect(() => {
-    let cancelled = false;
 
-    async function loadScenarios() {
-      setScenariosLoading(true);
-      setScenariosError('');
-
-      try {
-        const response = await fetch(`${API_BASE}/scenarios`, {
-          headers: { Accept: 'application/json' },
-        });
-
-        const body = await response.json().catch(() => ({}));
-
-        if (!response.ok) {
-          throw new Error(
-            body.detail || `Could not load scenarios (HTTP ${response.status}).`,
-          );
-        }
-
-        const items = Array.isArray(body.scenarios)
-          ? body.scenarios
-          : [];
-
-        if (!cancelled) {
-          setScenarios(items);
-          setScenarioId((current) => {
-            if (items.some((item) => item.scenario_id === current)) {
-              return current;
-            }
-
-            return items[0]?.scenario_id ?? '';
-          });
-        }
-      } catch (err) {
-        if (!cancelled) {
-          setScenariosError(
-            err.message || 'Could not load the scenario list.',
-          );
-        }
-      } finally {
-        if (!cancelled) {
-          setScenariosLoading(false);
-        }
-      }
-    }
-
-    loadScenarios();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
   const [operatorAuthorized, setOperatorAuthorized] = useState(false);
   const [assessment, setAssessment] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -314,112 +260,88 @@ function App() {
           <article className="panel assessment-panel" id="assessment">
             <div className="panel-heading">
               <div>
-                <div className="section-kicker">01 / SCENARIO INPUT</div>
-                <h2>Run an assessment</h2>
-                <p>Evaluate a scenario and review proposed plant reductions.</p>
+                <div className="section-kicker">01 / GRID WARNING</div>
+                <h2>Active grid warning</h2>
+                <p>
+                  Review the thermal threshold warning and initiate a
+                  plant-level reduction assessment.
+                </p>
               </div>
               <div className="panel-icon">
                 <SlidersHorizontal size={19} />
               </div>
             </div>
 
-            <form onSubmit={runAssessment}>
-              <label className="field-label" htmlFor="scenario-id">
-                Scenario identifier
-              </label>
-              <label className="field-label" htmlFor="scenario-id">
-                Select operating scenario
-              </label>
 
-              <div className="input-wrap">
-                <Activity size={17} />
+<form onSubmit={runAssessment}>
+  <div className="section-kicker">01 / GRID WARNING</div>
 
-                <select
-                  id="scenario-id"
-                  value={scenarioId}
-                  onChange={(event) => setScenarioId(event.target.value)}
-                  required
-                  disabled={loading || scenariosLoading || scenarios.length === 0}
-                >
-                  {scenariosLoading ? (
-                    <option value="">Loading available scenarios...</option>
-                  ) : scenarios.length === 0 ? (
-                    <option value="">No scenarios available</option>
-                  ) : (
-                    scenarios.map((scenario) => (
-                      <option
-                        key={scenario.scenario_id}
-                        value={scenario.scenario_id}
-                      >
-                        {scenario.scenario_id}
-                        {scenario.transformer_id
-                          ? ` — Transformer ${scenario.transformer_id}`
-                          : ''}
-                        {scenario.scenario_description
-                          ? ` — ${scenario.scenario_description}`
-                          : ''}
-                      </option>
-                    ))
-                  )}
-                </select>
-              </div>
+  <div className="authorization-note">
+    <div className="authorization-icon">
+      <AlertCircle size={19} />
+    </div>
 
-              <p className="field-hint">
-                Choose from the available scenarios in the synthetic dataset.
-              </p>
+    <div className="authorization-copy">
+      <strong>Thermal threshold warning</strong>
+      <p>
+        Demo warning for interface testing. Component 1 is not
+        connected yet, so this is not a live grid alert.
+      </p>
+    </div>
+  </div>
 
-              {scenariosError && (
-                <div className="error-banner" role="alert">
-                  <AlertCircle size={18} />
-                  <div>
-                    <strong>Could not load scenarios</strong>
-                    <p>{scenariosError}</p>
-                  </div>
-                </div>
-              )}
-              <p className="field-hint">
-                Use a scenario ID available in the synthetic dataset.
-              </p>
+  <div className="field-label">Assessment status</div>
+  <p className="field-hint">
+    A curtailment assessment will be prepared using the temporary
+    synthetic scenario when you initiate it.
+  </p>
 
-              <div className="authorization-note">
-                <div className="authorization-icon">
-                  <ShieldCheck size={19} />
-                </div>
-                <div className="authorization-copy">
-                  <strong>Operator authorisation flag</strong>
-                  <p>
-                    Records the flag in the assessment response. It does not
-                    authenticate an operator or authorise physical control.
-                  </p>
-                </div>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    checked={operatorAuthorized}
-                    onChange={(event) =>
-                      setOperatorAuthorized(event.target.checked)
-                    }
-                    disabled={loading}
-                    aria-label="Set operator authorisation flag"
-                  />
-                  <span className="switch-track" />
-                </label>
-              </div>
+  <div className="authorization-note">
+    <div className="authorization-icon">
+      <ShieldCheck size={19} />
+    </div>
 
-              <button className="primary-button" type="submit" disabled={loading}>
-                {loading ? (
-                  <>
-                    <LoaderCircle size={17} className="spin" />
-                    Assessing scenario
-                  </>
-                ) : (
-                  <>
-                    Run assessment
-                    <ArrowUpRight size={17} />
-                  </>
-                )}
-              </button>
-            </form>
+    <div className="authorization-copy">
+      <strong>Operator review required</strong>
+      <p>
+        This action generates recommendations only. It does not
+        send curtailment commands to any plant.
+      </p>
+    </div>
+
+    <label className="switch">
+      <input
+        type="checkbox"
+        checked={operatorAuthorized}
+        onChange={(event) =>
+          setOperatorAuthorized(event.target.checked)
+        }
+        disabled={loading}
+        aria-label="Set operator authorisation flag"
+      />
+      <span className="switch-track" />
+    </label>
+  </div>
+
+  <button
+    className="primary-button"
+    type="submit"
+    disabled={loading}
+  >
+    {loading ? (
+      <>
+        <LoaderCircle size={17} className="spin" />
+        Preparing reduction overview
+      </>
+    ) : (
+      <>
+        Start Reduction Overview
+        <ArrowUpRight size={17} />
+      </>
+    )}
+  </button>
+</form>
+
 
             {error && (
               <div className="error-banner" role="alert">
