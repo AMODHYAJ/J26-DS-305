@@ -665,6 +665,41 @@ function App() {
             </div>
 
             <form onSubmit={runAssessment}>
+              <div
+                className="ramp-alert-placeholder"
+                role="status"
+                aria-live="polite"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: '16px',
+                  marginBottom: '16px',
+                  border: '1px solid rgba(190, 242, 100, 0.16)',
+                  borderRadius: '12px',
+                  background: 'rgba(190, 242, 100, 0.035)',
+                  minHeight: '68px',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'grid',
+                    placeItems: 'center',
+                    flex: '0 0 36px',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '10px',
+                    background: 'rgba(190, 242, 100, 0.12)',
+                    color: '#d9ff72',
+                  }}
+                >
+                  <AlertCircle size={19} />
+                </div>
+                <strong style={{ color: '#f4f7ed', fontSize: '14px' }}>
+                  Ramp-up alert
+                </strong>
+              </div>
+
               <div className="authorization-note">
                 <div className="authorization-icon">
                   <ShieldCheck size={19} />
