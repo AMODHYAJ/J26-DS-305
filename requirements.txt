@@ -3,15 +3,15 @@ requests
 pandas
 streamlit
 numpy
-# Add when starting Component 3 (GIS Risk Mapper) work:
 openpyxl
 pyproj
-# dss-python
+lightgbm
+scikit-learn
+pvlib
+fastapi
+shap
+uvicorn
+scipy
+# pulp
 # geopandas
 # folium
-# Add when starting Component 1 model training:
-# lightgbm
-# scikit-learn
-# Add when starting Component 4 optimisation:
-# pulp
-# scipy

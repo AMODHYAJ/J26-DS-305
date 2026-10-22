@@ -22,15 +22,20 @@ components/solar_forecasting/data/
 *.xls
 *.mdb
 
-# Model artifacts
+# Model artifacts and weights
 components/solar_forecasting/artifacts/
+components/solar_forecasting/models/
+*.pkl
+
+# Generated simulation outputs and logs
+components/solar_forecasting/outputs/
 
 # C3 generated outputs
 components/gis_risk_mapper/output/transformer_risk.json
 components/gis_risk_mapper/frontend/public/data/transformer_risk.json
 
-# Frontend dependencies
+# Frontend dependencies & build outputs
 node_modules/
-
-# Frontend build outputs
 dist/
+.next/
+>>>>>>> origin/main
