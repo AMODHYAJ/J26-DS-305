@@ -11,7 +11,15 @@ if not exist "%C2_TLA_PY%" (
 set "PYTHONPATH=%CD%\%C2_TLA_DIR%;%CD%"
 set "PYTHONUTF8=1"
 if /i "%~1"=="ui" (
-  "%C2_TLA_PY%" -m streamlit run "%C2_TLA_DIR%\C2_TLA_app.py" --server.address 127.0.0.1 --server.headless true --browser.gatherUsageStats false --theme.base dark --theme.primaryColor "#ff4b4b" --theme.backgroundColor "#0e1117" --theme.secondaryBackgroundColor "#262730" --theme.textColor "#fafafa"
+  if not exist "%C2_TLA_DIR%\C2_TLA_web\C2_TLA_index.html" (
+    "%C2_TLA_PY%" "%C2_TLA_DIR%\C2_TLA_build_ui.py"
+    if errorlevel 1 exit /b 1
+  )
+  if not defined C2_TLA_UI_PORT set "C2_TLA_UI_PORT=8502"
+  goto serveui
+)
+if /i "%~1"=="build-ui" (
+  "%C2_TLA_PY%" "%C2_TLA_DIR%\C2_TLA_build_ui.py"
   exit /b
 )
 if /i "%~1"=="api" (
@@ -23,3 +31,6 @@ if /i "%~1"=="test" (
   exit /b
 )
 "%C2_TLA_PY%" "%C2_TLA_DIR%\C2_TLA_pipeline.py" %*
+exit /b
+:serveui
+"%C2_TLA_PY%" -m uvicorn C2_TLA_api:app --app-dir "%C2_TLA_DIR%" --host 127.0.0.1 --port "%C2_TLA_UI_PORT%"

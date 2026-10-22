@@ -5,6 +5,7 @@
 C2_TLA_tools/
 components/C2_TLA_true_load_analysis/C2_TLA_outputs/
 components/C2_TLA_true_load_analysis/C2_TLA_models/
+components/C2_TLA_true_load_analysis/C2_TLA_web/
 .pytest_cache/
 
 # Python cache

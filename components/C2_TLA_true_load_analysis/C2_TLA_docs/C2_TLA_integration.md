@@ -8,7 +8,7 @@ flowchart LR
   XGB --> SHAP[Tree SHAP with physical correction]
   Ingest --> Transfer[Explicit unvalidated model transfer]
   XGB --> Transfer
-  Balance --> UI[Streamlit workbench and downloads]
+  Balance --> UI[React and Recharts workbench with downloads]
   Transfer --> UI
   SHAP --> UI
   Balance --> API[FastAPI v1 reconstruction contract]
@@ -45,3 +45,13 @@ Response envelope: `schema_version=c2.tla.v1`, timezone, boundary and records. E
 Duplicate keys, naive timestamps, non-finite values, inconsistent interval spacing, invalid units and solar bounds yield 422 errors. Exact feeder/timestamp joins reject missing C1 matches; no interpolation, fuzzy mapping or CSI-as-MW conversion occurs. Tests use an explicitly labelled local mock. CSI conversion requires clear-sky AC MW for the same feeder and time; deriving this reference remains a documented modelling responsibility.
 
 `C2_TLA_API_TOKEN` enables Bearer authentication. Loopback-only defaults support independent local use. HTTPS, credential management and operator governance must be configured before remote deployment. API outputs provide information, not autonomous switching or curtailment actions.
+
+## React workbench migration
+
+The UI now matches main's C3 React design tokens (#1B1D1C charcoal, #D7FA75 lime, #A996F3 lilac), pill navigation, rounded statistic cards, filter panels, tables and Recharts styling. It uses the same React, Recharts, Lucide and Vite versions found in that frontend. C3/C4 source files are unchanged; no whole teammate branch is merged.
+
+FastAPI serves `/` from the local Vite production build and `/C2_TLA_assets/` from its prefixed assets directory. The workbench uses same-origin authenticated endpoints: `GET /v1/dashboard/bootstrap`; `POST /v1/dashboard/catalog`, `/analyze`, `/explain`, and `/export?format=csv|json`. Requests identify `source=ceb|synthetic`, optional `ceb_path`, exact feeder ID, local start/end dates, method, positive MW threshold and bounded solar sensitivity assumptions. Catalog replies define valid source-specific feeder/date options. Analysis replies retain per-interval provenance, units, uncertainty, flags and indicators, plus summaries, consistency and explicitly synthetic benchmark evidence. Explanations sample up to 384 evenly spaced intervals, with global contributions, raw prediction/base and physical correction.
+
+Source-data caching keys include the selected path and actual workbook modification signatures. Parameter changes recompute estimates without reparsing unchanged sources. An invalid explicit CEB path never falls back to synthetic data or the default cache. Source changes reset feeder/date selections. No Python/Node implementation details are inserted into the normal operator flow.
+
+React build instructions are in the README. The previous Streamlit app is preserved in Git history and removed from the active tree to avoid competing interfaces. Existing `/v1/reconstruct` consumers and model files remain compatible. The UI runs at port 8502 by default; its API/docs are on the same port, with an optional separate port-8002 API launcher.

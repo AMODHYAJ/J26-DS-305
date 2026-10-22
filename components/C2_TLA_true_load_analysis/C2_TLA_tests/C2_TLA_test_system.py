@@ -198,28 +198,65 @@ def test_real_ceb_loader_and_register_reconciliation():
     assert abs(report['energy_balance_error_mwh'])<1e-8
 
 
-def test_ui_synthetic_controls_charts_downloads_and_errors(monkeypatch):
-    from streamlit.testing.v1 import AppTest
-    appfile=Path(__file__).resolve().parents[1]/'C2_TLA_app.py'
-    at=AppTest.from_file(str(appfile),default_timeout=120).run()
-    at.radio[0].set_value('Synthetic demonstration').run()
-    assert not at.exception
-    assert len(at.get('vega_lite_chart'))+len(at.get('arrow_vega_lite_chart'))>=5
-    assert len(at.get('download_button'))==2
-    at.selectbox[0].set_value('XGBoost experiment').run()
-    assert not at.exception and len(at.success)>0
-    at.text_input[0].set_value('Z:/C2_TLA_missing').run()
-    at.radio[0].set_value('CEB-based estimates').run()
-    assert not at.exception and len(at.error)>0
+def test_react_workbench_synthetic_analysis_explanations_and_exports():
+    client=TestClient(app)
+    c=client.post('/v1/dashboard/catalog',json={'source':'synthetic'})
+    assert c.status_code==200
+    assert c.json()['feeders']==['SYNTHETIC_F1','SYNTHETIC_F2','SYNTHETIC_F3']
+    q={'source':'synthetic','feeder_id':'SYNTHETIC_F3','start':'2026-01-01','end':'2026-01-03'}
+    r=client.post('/v1/dashboard/analyze',json=q)
+    assert r.status_code==200,r.text
+    d=r.json(); assert len(d['records'])==288
+    assert d['summary']['reverse_intervals']>0
+    assert 'solar_profile_assumption' not in d['quality_counts']
+    assert 'SYNTHETIC' in d['evaluation']['provenance']
+    q['method']='xgboost'
+    assert client.post('/v1/dashboard/analyze',json=q).status_code==200
+    e=client.post('/v1/dashboard/explain',json=q)
+    assert e.status_code==200 and e.json()['info']['max_additivity_error_mw']<1e-4
+    for fmt in ['csv','json']:
+        export=client.post('/v1/dashboard/export?format='+fmt,json=q)
+        assert export.status_code==200
+        assert 'C2_TLA_selected_results.'+fmt in export.headers['content-disposition']
+        if fmt=='json': assert len(export.json())==288
 
 
-@pytest.mark.skipif(not CEB_PATH,reason='Set C2_TLA_CEB_PATH for real CEB UI checks')
-def test_ui_ceb_mode(monkeypatch):
-    from streamlit.testing.v1 import AppTest
-    monkeypatch.setenv('C2_TLA_CEB_PATH',CEB_PATH)
-    at=AppTest.from_file(str(Path(__file__).resolve().parents[1]/'C2_TLA_app.py'),default_timeout=120).run()
-    assert not at.exception
-    assert at.radio[0].value=='CEB-based estimates'
-    assert len(at.metric)==4 and len(at.get('download_button'))==2
-    at.selectbox[1].set_value('3_EMBIL_F6').run()
-    assert not at.exception and len(at.error)>0
+def test_react_workbench_validation_no_silent_fallback_and_auth(monkeypatch):
+    client=TestClient(app)
+    assert client.post('/v1/dashboard/catalog',json={'source':'ceb','ceb_path':'Z:/C2_TLA_missing'}).status_code==422
+    q={'source':'synthetic','feeder_id':'wrong_feeder','start':'2026-01-01','end':'2026-01-02'}
+    assert client.post('/v1/dashboard/analyze',json=q).status_code==422
+    q['feeder_id']='SYNTHETIC_F1'; q['end']='2025-01-01'
+    assert client.post('/v1/dashboard/analyze',json=q).status_code==422
+    q.update(start='2026-01-01',end='2026-01-02',capacity_scale=1.5)
+    assert client.post('/v1/dashboard/analyze',json=q).status_code==422
+    monkeypatch.setenv('C2_TLA_API_TOKEN','workbench-test')
+    assert client.get('/v1/dashboard/bootstrap').status_code==401
+    assert client.get('/v1/dashboard/bootstrap',headers={'Authorization':'Bearer workbench-test'}).status_code==200
+
+
+@pytest.mark.skipif(not CEB_PATH,reason='Set C2_TLA_CEB_PATH for real React workbench integration checks')
+def test_react_workbench_ceb_mode():
+    client=TestClient(app)
+    q={'source':'ceb','ceb_path':CEB_PATH}
+    c=client.post('/v1/dashboard/catalog',json=q)
+    assert c.status_code==200 and c.json()['rows']==61824
+    q.update(feeder_id='3_EMBIL_F2',start='2026-07-01',end='2026-07-03')
+    baseline=client.post('/v1/dashboard/analyze',json=q)
+    assert baseline.status_code==200
+    q['capacity_scale']=1.5
+    sensitivity=client.post('/v1/dashboard/analyze',json=q)
+    assert sensitivity.status_code==200
+    assert sensitivity.json()['summary']['hidden_peak_mw']==pytest.approx(1.5*baseline.json()['summary']['hidden_peak_mw'])
+    q.update(feeder_id='3_EMBIL_F6',capacity_scale=1)
+    d=client.post('/v1/dashboard/analyze',json=q).json()
+    assert 'near_zero_channel_review' in d['quality_counts']
+
+
+def test_react_static_entry_is_served():
+    client=TestClient(app); r=client.get('/')
+    # Fresh checkouts need build-ui; built workspaces serve React with cache revalidation.
+    assert r.status_code in [200,503]
+    if r.status_code==200:
+        assert 'id="root"' in r.text and 'C2_TLA_assets/' in r.text
+        assert r.headers['cache-control']=='no-cache'

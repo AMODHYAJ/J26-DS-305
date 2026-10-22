@@ -39,8 +39,9 @@ def default_path():
 
 def fingerprint(path):
     p=Path(path)
+    if (p/'CEB_data').is_dir(): p=p/'CEB_data'
     if p.is_dir():
-        return tuple((str(f),f.stat().st_mtime_ns,f.stat().st_size) for f in sorted(p.rglob('*.xlsx')))
+        return tuple((str(f),f.stat().st_mtime_ns,f.stat().st_size) for f in sorted(p.glob('*.xlsx')))
     cached=ROOT/'C2_TLA_outputs'/'C2_TLA_ceb_reconstruction.csv'
     return (cached.stat().st_mtime_ns,) if cached.exists() else ()
 

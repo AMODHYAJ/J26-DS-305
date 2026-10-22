@@ -17,3 +17,5 @@ set "C2_TLA_PY=.venv\Scripts\python.exe"
 "%C2_TLA_PY%" -m pip install -r components\C2_TLA_true_load_analysis\C2_TLA_lock.txt
 if errorlevel 1 exit /b 1
 call components\C2_TLA_true_load_analysis\C2_TLA_launch.cmd prepare
+if errorlevel 1 exit /b 1
+call components\C2_TLA_true_load_analysis\C2_TLA_launch.cmd build-ui
