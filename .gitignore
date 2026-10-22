@@ -34,3 +34,30 @@ node_modules/
 
 # Frontend build outputs
 dist/
+
+# Python environments and cache
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE
+.idea/
+
+# Solar forecaster artifacts
+components/solar_forecaster/artifacts/
+
+# Frontend dependencies and build output
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# C4 generated data and artifacts
+components/curtailment_prioritizer/data/
+components/curtailment_prioritizer/artifacts/
+
+# GIS risk mapper generated output and restricted data
+components/gis_risk_mapper/output/
