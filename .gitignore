@@ -2,6 +2,11 @@
 .idea/
 .venv/
 .env
+C2_TLA_tools/
+components/C2_TLA_true_load_analysis/C2_TLA_outputs/
+components/C2_TLA_true_load_analysis/C2_TLA_models/
+components/C2_TLA_true_load_analysis/C2_TLA_web/
+.pytest_cache/
 
 # Python cache
 __pycache__/
@@ -33,3 +38,4 @@ components/gis_risk_mapper/frontend/public/data/transformer_risk.json
 node_modules/
 dist/
 .next/
+>>>>>>> origin/main
