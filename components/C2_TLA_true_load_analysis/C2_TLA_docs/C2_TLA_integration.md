@@ -65,3 +65,25 @@ The verified live main commit at integration time is `9b968f000ce57393e849f25aa5
 `POST /v1/integration/c3-context` accepts the same selection schema as the workbench. It validates C3's data basis, compound CSC/SIN uniqueness, nameplate kVA, solar kW, simulated scores and snapshot date. The exact provisional `3_EMBIL_Fn → (Embilipitiya, Feeder nn)` crosswalk supplies transformer context, not measured transformer load. Installed solar kW is divided by 1000 for comparison with C2 MW. Capacity discrepancies and separate synthetic/measurement time bases remain visible. There is no fuzzy match, no crosswalk for synthetic C2 feeder IDs, and no conversion of C3 classifier scores into observed risk, demand or curtailment targets.
 
 `GET /v1/integration/status` reports C2/C3 connectivity and explicitly marks C4 unavailable on this main snapshot. `prepare-team` invokes main's real C3 exporter against its existing local data and a hash-checked, Git-known C3 model, producing the ignored prefixed JSON. Missing snapshots fail explicitly rather than silently substituting mock results. This is a tested C2/C3 shared-interface and context integration; it does not claim a C4 data consumer or electrical decision-policy integration.
+
+## C4 branch integration - 2026-10-22
+
+This section supersedes the earlier current-main-only C4 availability notes.
+Merged `origin/feature/c4-curtailment-ranking` at `0bf80ab` into the local
+`feature/merge-c2-c3-c4` branch. Both sides' `.gitignore` rules are preserved.
+The existing C4 React frontend is built as a third isolated entry, `/c4/`,
+and its FastAPI routes are included at `/api` with shared session Bearer
+authentication. C4's standalone server and frontend remain usable.
+
+The status endpoint reports C4 connectivity and actual private-history file
+availability separately. C4's real candidate history is excluded from Git. The user-supplied
+D: drive CSV was copied into C4's ignored data directory with matching
+SHA-256. The API loads 116 candidate rows for five plants, with zero skipped
+records. The engine reports incomplete history and null priority ranks
+for all plants; the dashboard preserves this limitation. Missing data returns 503 and is
+shown by the dashboard. Tests exercise ranking with an isolated temporary
+fixture; this fixture is never installed as operational history. Seed-42
+synthetic data supports the existing scenario assessment and is ignored.
+The previous static ramp-up label is now an explicit synthetic-scenario label.
+This is a shared dashboard/API integration, not an electrical decision-policy
+join: C2 demand and C3 simulated risk never automatically drive C4 reductions.

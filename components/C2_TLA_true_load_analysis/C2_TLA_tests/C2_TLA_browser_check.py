@@ -95,7 +95,22 @@ def main():
         expect(page.get_by_role('heading',name='True Load Analysis')).to_be_visible()
         expect(page.locator('.chart-wrap svg.recharts-surface').first).to_be_visible()
         assert not errors,errors
-        result={'passed':True,'flows':['CEB default','synthetic switch','XGBoost','individual/global SHAP','evidence','CSV download','solar uncertainty','VLI','table pagination','near-zero telemetry','invalid path without fallback','recovery','mobile layout','provisional C2-C3 feeder context','actual current-main C3 dashboard','C3 GIS map and table','shared workspace navigation'], 'javascript_errors':errors}
+        page.get_by_role('button',name='Curtailment intelligence · C4',exact=True).click()
+        c4=page.frame_locator('iframe[title="C4 curtailment intelligence dashboard"]')
+        expect(c4.get_by_role('heading',name='Fairness ranking',exact=True)).to_be_visible()
+        expect(c4.locator('#ranking tbody tr')).to_have_count(5)
+        c4.get_by_role('button',name='Run assessment',exact=True).click()
+        expect(c4.get_by_text('Assessment completed',exact=True)).to_be_visible()
+        expect(c4.get_by_role('heading',name='Assessment rationale',exact=True)).to_be_visible()
+        page.screenshot(path=str(out/'C2_TLA_shared_c4_desktop.png'),full_page=True)
+        page.set_viewport_size({'width':390,'height':844})
+        assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth + 1')
+        assert c4.locator('body').evaluate('(el)=>document.documentElement.scrollWidth <= window.innerWidth + 1')
+        page.screenshot(path=str(out/'C2_TLA_shared_c4_mobile.png'),full_page=True)
+        page.get_by_role('button',name='Demand intelligence · C2',exact=True).click()
+        expect(page.get_by_role('heading',name='True Load Analysis')).to_be_visible()
+        assert not errors,errors
+        result={'passed':True,'flows':['CEB default','synthetic switch','XGBoost','individual/global SHAP','evidence','CSV download','solar uncertainty','VLI','table pagination','near-zero telemetry','invalid path without fallback','recovery','mobile layout','provisional C2-C3 feeder context','actual current-main C3 dashboard','C3 GIS map and table','shared workspace navigation','C4 actual candidate-history ranking','C4 synthetic assessment','C4 mobile layout','return from C4 to C2'], 'javascript_errors':errors}
         (out/'C2_TLA_react_browser_results.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
         print(json.dumps(result))
         browser.close()

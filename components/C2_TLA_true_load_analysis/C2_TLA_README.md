@@ -72,3 +72,24 @@ All interval active power is **MW**; interval energy is **MWh**; capacity-regist
 The capacity-to-telemetry crosswalk is explicit but provisional. Telemetry sign, scale, capacity effective dates and boundary completeness require CEB review. F6–F8 have near-zero channels; F1/F4 include export exceeding the assumed PV envelope. Outputs retain these contradictions rather than modifying observations. Historical capacity snapshots are applied as static sensitivity assumptions, not claimed commissioning histories.
 
 The API and UI bind to loopback. Set `C2_TLA_API_TOKEN` to require Bearer authentication on reconstruction and workbench requests; React presents a token-entry form when required, keeping it in browser session storage. Remote deployment additionally requires TLS and a managed access policy. No live C1 power forecast or C4 consumer is available on main; adapters and contract tests are present, but team integration and operational validation remain outstanding.
+
+## C2 / C3 / C4 workspace (2026-10-22)
+
+The local `feature/merge-c2-c3-c4` branch merges C4 ranking branch commit
+`0bf80ab`. The shared workspace now includes Demand (C2), Grid (C3), and
+Curtailment (C4) navigation. C4 is served at `/c4/`; its original API is
+available at `/api/*` under the same optional Bearer authentication as C2/C3.
+
+Run `C2_TLA_launch.cmd build-ui` after source updates, then
+`C2_TLA_launch.cmd ui`. To prepare the explicitly synthetic C4 assessment
+inputs, run `C2_TLA_launch.cmd prepare-c4` once (this regenerates its seeded
+synthetic CSV files). Keep the existing C3 `prepare-team` step.
+
+Real candidate fairness ranking additionally requires the teammate's private
+`components/curtailment_prioritizer/data/curtailment_events_2026_unique_review.csv`.
+It is excluded from Git. The supplied D: drive copy was installed locally and its SHA-256 verified. Without it,
+the dashboard displays the API's unavailable-data message; it never invents
+rankings. Synthetic scenario S0001 remains available for assessment testing.
+C2/C3 context and C4 candidate-history/scenario data retain separate time,
+identity, and provenance boundaries. No automatic C2/C3-to-C4 dispatch policy
+or validated plant mapping is implemented.

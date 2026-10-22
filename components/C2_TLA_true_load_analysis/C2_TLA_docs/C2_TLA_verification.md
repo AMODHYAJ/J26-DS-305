@@ -52,3 +52,34 @@ Both servers were launched. HTTP requests to Streamlit `/_stcore/health`, FastAP
 One-year in-memory reconstruction of **105,120 rows** (three feeders × 365 days × 96 intervals) took **1.58 seconds** after vectorizing quality flags. A real-source optimized ingestion probe processed 61,824 rows in **19.41 seconds**. Initial unoptimized source reads took 58–92 seconds. These are separate from the approximately five-second updated-input reconstruction target; full workbook audit and training are offline operations. Performance is hardware/load dependent and no production latency SLA is claimed.
 
 Naming, ignored outputs/raw data, staged file types and `git diff --check` were inspected. The portable demo is approximately 182 KB. Only the new prefixed component tree and a minimal shared `.gitignore` change are intended for commits. Main remains unmerged; no teammate implementation was overwritten. External limitations: approved crosswalk/telemetry scale, generation/storage coverage, independent measured labels, expert review, live C1 power forecasts and a C4 C2-output consumer.
+
+## C4 merged workspace verification - 2026-10-22
+
+Merged C4 ranking branch `0bf80ab` and built all three React entries successfully.
+The full C2/C3/shared-API suite passed: **30 tests**, 146.83 seconds, with the
+existing Starlette/httpx deprecation warning. C4 fairness unit tests passed
+**4 tests**. Its scenario verifier checked **1,000** seeded synthetic scenarios:
+349 NO_ACTION_REQUIRED and 651 TARGET_MET; all output schemas and allocation
+invariants passed. Normal, no-action and insufficient-capacity edge cases passed.
+
+Installed Chrome passed **21 browser flows** with **zero JavaScript page errors**
+at `http://127.0.0.1:8503`. These include the existing 17 C2/C3 flows plus actual
+C4 candidate-history rendering, synthetic assessment S0001, C4 mobile layout,
+and returning to C2. Both desktop and 390px mobile C4 screenshots were visually
+inspected. Browser artifacts remain in ignored local outputs. The assessment
+returned TARGET_MET, 0.95 MW proposed/required and zero shortfall.
+
+The user supplied `D:/curtailment_events_2026_unique_review.csv`. It was copied
+without modifying the original into C4's ignored data directory; both copies
+have SHA-256 `96a3e17db04384c81f73d7fe7981b68ba63cbc248c8de5cc9fa8a83c6be8affc`.
+The actual API loaded 116 candidate records, zero skipped, for five plants.
+All five retain `provisional_incomplete_history` with null priority ranks;
+the browser correctly renders the incomplete-history notice and no priority
+order. A separate temporary API fixture verifies ranking and shared Bearer
+authentication; missing private history explicitly returns 503.
+
+C2/C3/C4 status reports connected, C3 contains 357 transformer records, and
+C4 history availability reports true. This verifies the shared dashboard and
+API, with separate provenance; it does not validate an automatic cross-component
+electrical dispatch policy. No private CSV, synthetic outputs, browser artifacts,
+runtime or generated frontend build is committed.

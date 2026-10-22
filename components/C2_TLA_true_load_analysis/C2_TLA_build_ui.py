@@ -35,6 +35,10 @@ def main():
     (work/'C2_TLA_C3_App.jsx').write_text((c3/'App.jsx').read_text(encoding='utf-8').replace("'./App.css'","'./C2_TLA_C3_App.css'"),encoding='utf-8')
     shutil.copy2(c3/'App.css',work/'C2_TLA_C3_App.css')
     shutil.copy2(c3/'index.css',work/'C2_TLA_C3_index.css')
+    c4=REPO/'components'/'curtailment_prioritizer'/'frontend'/'src'
+    (work/'C2_TLA_C4_App.jsx').write_text((c4/'App.jsx').read_text(encoding='utf-8').replace("'./App.css'","'./C2_TLA_C4_App.css'"),encoding='utf-8')
+    shutil.copy2(c4/'App.css',work/'C2_TLA_C4_App.css')
+    shutil.copy2(c4/'index.css',work/'C2_TLA_C4_index.css')
     manifest=json.loads((source/'C2_TLA_package.json').read_text())
     direct={**manifest['dependencies'],**manifest['devDependencies']}
     installed=all((work/'node_modules'/name/'package.json').exists() and json.loads((work/'node_modules'/name/'package.json').read_text())['version']==version for name,version in direct.items())

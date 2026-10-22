@@ -22,6 +22,10 @@ if /i "%~1"=="build-ui" (
   "%C2_TLA_PY%" "%C2_TLA_DIR%\C2_TLA_build_ui.py"
   exit /b
 )
+if /i "%~1"=="prepare-c4" (
+  "%C2_TLA_PY%" -m components.curtailment_prioritizer.generate_synthetic_data
+  exit /b
+)
 if /i "%~1"=="prepare-team" (
   "%C2_TLA_PY%" "%C2_TLA_DIR%\C2_TLA_prepare_team.py"
   exit /b

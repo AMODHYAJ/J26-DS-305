@@ -54,7 +54,7 @@ def test_shared_c3_data_route_and_missing_input_are_explicit(snapshot,tmp_path,m
     response=client.get('/data/transformer_risk.json')
     assert response.status_code==200 and len(response.json()['transformers'])==2
     status=client.get('/v1/integration/status').json()
-    assert status['c3']['connected'] and status['c4']['connected'] is False
+    assert status['c3']['connected'] and status['c4']['connected'] is True
     monkeypatch.setenv('C2_TLA_API_TOKEN','shared-test')
     assert client.get('/data/transformer_risk.json').status_code==401
     assert client.get('/data/transformer_risk.json',headers={'Authorization':'Bearer shared-test'}).status_code==200
@@ -70,3 +70,22 @@ def test_actual_current_main_c3_snapshot():
     assert len(p['transformers'])==357
     assert sum(r['has_coordinates'] for r in p['transformers'])==62
     assert p['metadata']['data_basis']=='REAL_CEB_ATTRIBUTES_PLUS_SYNTHETIC_OPERATING_SCENARIOS'
+
+
+def test_c4_shared_api_auth_and_missing_history(tmp_path,monkeypatch):
+    from components.curtailment_prioritizer import main as c4
+    monkeypatch.setattr(c4,'CURTAILMENT_HISTORY_FILE',tmp_path/'missing.csv')
+    client=TestClient(app)
+    assert client.get('/api/health').status_code==200
+    assert client.get('/api/fairness/ranking').status_code==503
+    monkeypatch.setenv('C2_TLA_API_TOKEN','c4-test')
+    assert client.get('/api/health').status_code==401
+    headers={'Authorization':'Bearer c4-test'}
+    assert client.get('/api/health',headers=headers).status_code==200
+    # Exercise the actual ranking endpoint with an explicitly isolated fixture.
+    history=tmp_path/'fixture.csv'
+    history.write_text('ac_number,curtailment_date\n6470900542,2026-10-10\n6470900534,2026-10-11\n')
+    monkeypatch.setattr(c4,'CURTAILMENT_HISTORY_FILE',history)
+    result=client.get('/api/fairness/ranking',headers=headers)
+    assert result.status_code==200 and result.json()['count']==5
+    assert result.json()['data_status']=='candidate_records_not_fully_validated'

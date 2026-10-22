@@ -77,6 +77,12 @@ def create_team_router(authorize):
         if not path.exists(): raise HTTPException(503,'Build the shared React workspace with C2_TLA_launch.cmd build-ui.')
         return FileResponse(path,headers={'Cache-Control':'no-cache'})
 
+    @router.get('/c4/',include_in_schema=False)
+    def c4_page():
+        path=ROOT/'C2_TLA_web'/'C2_TLA_C4_index.html'
+        if not path.exists(): raise HTTPException(503,'Build the shared React workspace first.')
+        return FileResponse(path,headers={'Cache-Control':'no-cache'})
+
     @router.get('/data/transformer_risk.json',dependencies=[Depends(authorize)],include_in_schema=False)
     def c3_data():
         try:return read_snapshot()
@@ -88,10 +94,12 @@ def create_team_router(authorize):
             p=read_snapshot(); c3={'connected':True,'transformers':len(p['transformers']),'data_basis':p['metadata']['data_basis']}
         except (ValueError,OSError) as e:c3={'connected':False,'message':str(e)}
         return {'c2':{'connected':True,'interface':'React/FastAPI'},'c3':c3,
-            'c4':{'connected':False,'reason':'Current main contains only components/curtailment_prioritizer/.gitkeep; no C4 implementation was imported from another branch.'}}
+            'c4':{'connected':True,'interface':'React/FastAPI','api_prefix':'/api','history_available':(REPO/'components/curtailment_prioritizer/data/curtailment_events_2026_unique_review.csv').exists(),'integration_scope':'Shared workspace; C4 scenarios and candidate history retain their separate provenance. C2/C3 outputs do not automatically trigger curtailment.'}}
 
     @router.post('/v1/integration/c3-context',dependencies=[Depends(authorize)])
     def context(q:Selection):
         try:return feeder_context(q,read_snapshot())
         except (ValueError,OSError,KeyError) as e: raise HTTPException(422,str(e)) from e
+    from components.curtailment_prioritizer.main import app as c4_app
+    router.include_router(c4_app.router,prefix='/api',dependencies=[Depends(authorize)])
     return router
