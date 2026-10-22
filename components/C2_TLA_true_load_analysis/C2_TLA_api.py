@@ -103,6 +103,8 @@ from fastapi.staticfiles import StaticFiles
 from C2_TLA_dashboard import create_router
 
 app.include_router(create_router(authorize))
+from C2_TLA_team import create_team_router
+app.include_router(create_team_router(authorize))
 WEB=Path(__file__).resolve().parent/'C2_TLA_web'
 app.mount('/C2_TLA_assets',StaticFiles(directory=WEB/'C2_TLA_assets',check_dir=False),name='C2_TLA_assets')
 

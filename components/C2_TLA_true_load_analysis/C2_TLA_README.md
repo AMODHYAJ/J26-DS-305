@@ -30,6 +30,9 @@ $env:C2_TLA_CEB_PATH = "$env:TEMP\C2_TLA_raw\CEB_data"
 
 # Rebuild after changing React sources:
 .\components\C2_TLA_true_load_analysis\C2_TLA_launch.cmd build-ui
+
+# Refresh current-main C3 predictions for the shared workspace:
+.\components\C2_TLA_true_load_analysis\C2_TLA_launch.cmd prepare-team
 ```
 
 Set `C2_TLA_CEB_PATH` in each terminal that needs private data. Without it, portable tests explicitly skip the two real-input checks. The UI starts with a working synthetic example when no CEB inputs/cache are present; its source selector labels this visibly. Selecting CEB with invalid inputs displays an error and never switches to synthetic.
@@ -44,7 +47,11 @@ All project-owned files/directories start with `C2_TLA_`. Imports use the compon
 
 React sources and prefixed npm manifest/lock/config live in `C2_TLA_frontend/`. `C2_TLA_build_ui.py` creates an ignored npm workspace under `C2_TLA_tools/C2_TLA_react_build`, where conventional tool-managed `package.json`, `package-lock.json` and `node_modules` stay local. Vite outputs prefixed production assets to ignored `C2_TLA_web/`; setup builds them reproducibly. The launcher builds missing assets before serving. The default port is 8502; override with `C2_TLA_UI_PORT` if needed. No external CDN or teammate service is needed at runtime.
 
-The UI provides Overview, Demand analysis, Explanations and Research evidence. Source, feeder, method and local dates are selected in the filter panel. The expandable assumptions panel contains the CEB path, threshold and sensitivity controls. CSV/JSON export always uses the displayed selection. All chart timestamps use Asia/Colombo explicitly.
+The workspace component switch connects **Demand intelligence · C2** and **Grid intelligence · C3**. C2 provides Overview, Demand analysis, Explanations and Research evidence. Source, feeder, method and local dates are selected in the filter panel. The expandable assumptions panel contains the CEB path, threshold and sensitivity controls. CSV/JSON export always uses the displayed selection. All C2 chart timestamps use Asia/Colombo explicitly.
+
+C3's existing React source from `components/gis_risk_mapper/frontend/src` is built into a separate same-origin view; its files are not modified. A frame isolates its original styles, while the shared FastAPI process serves its real transformer attributes/synthetic-risk snapshot. C2 Overview shows matching C3 transformer counts, installed solar, simulated exposure tiers and the different snapshot date. The explicit feeder crosswalk remains provisional; C3 scores do not alter C2 reconstructed demand. Synthetic C2 feeder IDs are never joined to real CEB IDs.
+
+`prepare-team` runs main's existing C3 exporter and checks its model matches the known Git-tracked artifact before that exporter loads it. It writes only `C2_TLA_outputs/C2_TLA_c3_transformer_risk.json` (ignored). C2 itself continues using UBJ model serialization. Existing C3 source CSVs/model must be available locally. C3 map tiles and optional web fonts use the same external providers as main's original dashboard. Current main (`9b968f0` at integration time) has no C4 implementation beyond `.gitkeep`; no C4 feature branch is imported or presented as connected. Main remains unmerged; all changes stay on the C2 feature branch.
 
 Optional real-browser checks use installed Chrome:
 

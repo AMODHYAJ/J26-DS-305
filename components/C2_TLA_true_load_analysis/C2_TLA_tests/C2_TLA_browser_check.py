@@ -81,7 +81,21 @@ def main():
         assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth + 1'),'Mobile page overflows horizontally'
         page.screenshot(path=str(out/'C2_TLA_react_mobile.png'),full_page=True)
         assert not errors,errors
-        result={'passed':True,'flows':['CEB default','synthetic switch','XGBoost','individual/global SHAP','evidence','CSV download','solar uncertainty','VLI','table pagination','near-zero telemetry','invalid path without fallback','recovery','mobile layout'], 'javascript_errors':errors}
+        page.set_viewport_size({'width':1440,'height':1050})
+        expect(page.get_by_role('heading',name='Connected C3 transformer context')).to_be_visible()
+        expect(page.locator('.team-context')).to_contain_text('PROVISIONAL')
+        page.get_by_role('button',name='Grid intelligence · C3',exact=True).click()
+        frame=page.frame_locator('iframe[title="C3 grid intelligence dashboard"]')
+        expect(frame.get_by_role('heading',name='Transformer Intelligence')).to_be_visible()
+        expect(frame.get_by_role('heading',name='Transformer GIS map')).to_be_visible()
+        expect(frame.locator('.leaflet-container')).to_be_visible()
+        assert frame.locator('tbody tr').count()>0
+        page.screenshot(path=str(out/'C2_TLA_shared_c3_desktop.png'),full_page=True)
+        page.get_by_role('button',name='Demand intelligence · C2',exact=True).click()
+        expect(page.get_by_role('heading',name='True Load Analysis')).to_be_visible()
+        expect(page.locator('.chart-wrap svg.recharts-surface').first).to_be_visible()
+        assert not errors,errors
+        result={'passed':True,'flows':['CEB default','synthetic switch','XGBoost','individual/global SHAP','evidence','CSV download','solar uncertainty','VLI','table pagination','near-zero telemetry','invalid path without fallback','recovery','mobile layout','provisional C2-C3 feeder context','actual current-main C3 dashboard','C3 GIS map and table','shared workspace navigation'], 'javascript_errors':errors}
         (out/'C2_TLA_react_browser_results.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
         print(json.dumps(result))
         browser.close()

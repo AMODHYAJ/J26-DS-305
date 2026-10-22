@@ -2,7 +2,17 @@
 
 Environment: Windows, Python 3.12.10 x64, CPU-only XGBoost with two threads. Exact installed versions are recorded in `C2_TLA_lock.txt`; the documented setup launcher was executed successfully. No system-wide execution-policy/security changes were made. The ignored local Python runtime substitutes for `.venv` on this laptop because no usable Python installation was initially on PATH.
 
-## Automated checks
+## React and current-main integration verification — 2026-10-22
+
+The current UI uses React, Recharts and FastAPI. The Streamlit results below are historical. The complete current automated suite passed: **29 tests**, one upstream Starlette/httpx deprecation warning, 103.65 seconds. After extending the missing-snapshot assertion, the eight C3 integration cases passed again.
+
+Installed Chrome passed 17 browser flows with **zero JavaScript page errors**: CEB and synthetic sources, XGBoost, local/global SHAP, evidence, CSV download, uncertainty, VLI, pagination, near-zero telemetry, invalid-path errors and recovery, mobile layout, provisional C2/C3 context, the original main C3 dashboard, GIS/table rendering and component navigation. Desktop and mobile screenshots were visually inspected. Browser results and screenshots remain in ignored local outputs.
+
+The combined Vite build succeeded. Integration uses current remote main `9b968f000ce57393e849f25aa59f6f2d1680b31c`; the existing C3 source files are unchanged. Its existing predictor generated 357 transformer records with 62 coordinates. The F2 context matched 42 transformers and 2.667 MW solar capacity, with zero capacity discrepancy. C3 probabilities and its February simulated date remain explicitly distinct from C2's July–September measured net-demand records. Joins are provisional context, not validation of reconstructed demand.
+
+C2 and C3 are available through the same React workspace. Current main has only a C4 placeholder, so no C4 implementation or alternate feature branch was imported. Original C3 map tiles retain their external network dependency. Private snapshots, generated assets, raw data and runtimes remain ignored.
+
+## Historical automated checks
 
 `C2_TLA_launch.cmd test` was executed with `C2_TLA_CEB_PATH` set to the supplied extracted files. The suite contains **19 tests**, including parameterized invalid-input cases. It covers signed/zero/missing/non-finite demand, units and aware timestamps, duplicates and joins, electrical balance, VLI reverse-flow/denominator behavior, thresholds and irregular intervals, night/energy checks, deterministic cloud/penetration/missing-data simulation, chronological split isolation and training-only medians, inference schema and target-feature exclusion, UBJ save/reload, physical correction and SHAP additivity, SHAP-package/native consistency, API validation/authentication, real CEB loader/register reconciliation, CSV/JSON round trips, portable demo reload, and both Streamlit modes.
 

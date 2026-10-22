@@ -19,3 +19,5 @@ if errorlevel 1 exit /b 1
 call components\C2_TLA_true_load_analysis\C2_TLA_launch.cmd prepare
 if errorlevel 1 exit /b 1
 call components\C2_TLA_true_load_analysis\C2_TLA_launch.cmd build-ui
+if errorlevel 1 exit /b 1
+call components\C2_TLA_true_load_analysis\C2_TLA_launch.cmd prepare-team

@@ -9,7 +9,7 @@ export default defineConfig({
     emptyOutDir: false,
     assetsDir: 'C2_TLA_assets',
     rolldownOptions: {
-      input: path.resolve('C2_TLA_index.html'),
+      input: { C2_TLA_index:path.resolve('C2_TLA_index.html'), C2_TLA_C3_index:path.resolve('C2_TLA_C3_index.html') },
       output: {
         entryFileNames: 'C2_TLA_assets/C2_TLA_app-[hash].js',
         chunkFileNames: 'C2_TLA_assets/C2_TLA_chunk-[hash].js',

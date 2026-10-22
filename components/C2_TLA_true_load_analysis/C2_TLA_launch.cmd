@@ -22,6 +22,10 @@ if /i "%~1"=="build-ui" (
   "%C2_TLA_PY%" "%C2_TLA_DIR%\C2_TLA_build_ui.py"
   exit /b
 )
+if /i "%~1"=="prepare-team" (
+  "%C2_TLA_PY%" "%C2_TLA_DIR%\C2_TLA_prepare_team.py"
+  exit /b
+)
 if /i "%~1"=="api" (
   "%C2_TLA_PY%" -m uvicorn C2_TLA_api:app --app-dir "%C2_TLA_DIR%" --host 127.0.0.1 --port 8002
   exit /b
