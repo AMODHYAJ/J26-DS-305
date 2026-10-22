@@ -1,0 +1,5 @@
+location_id,n_transformers,rooftop_solar_kw,lat,lon,n_transformers_with_coords,altitude_m,source,openmeteo_grid_lat,openmeteo_grid_lon
+emb,125,12924.8,6.30786,80.85806,15,63,"centroid of transformers with coords (Gnodes, EPSG:5234->4326); altitude from CAMS auto-detect",6.29174,80.88703
+god,88,5976.4,6.51197,80.69227,25,241,"centroid of transformers with coords (Gnodes, EPSG:5234->4326); altitude from CAMS auto-detect",6.50264,80.71309
+kol,52,2900.5,6.36618,80.70113,14,269,"centroid of transformers with coords (Gnodes, EPSG:5234->4326); altitude from CAMS auto-detect",6.36204,80.72865
+uda,92,6142.9,6.39983,80.85726,8,91,"centroid of transformers with coords (Gnodes, EPSG:5234->4326); altitude from CAMS auto-detect",6.43234,80.87175
