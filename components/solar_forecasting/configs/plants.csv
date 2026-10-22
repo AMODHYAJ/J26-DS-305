@@ -1,0 +1,8 @@
+plant_id,ceb_sn,plant_name,area,csc_ceb,type,capacity_mw,location_id,lat,lon
+P081,6470900542,Laugfs Solar,Embilipitiya,Embilipitiya,Solar,1,emb,6.279688,80.859623
+P082,6470900534,Irish & Eco Solar,Embilipitiya,Embilipitiya,Solar,1,emb,6.280131,80.858371
+P083,6470900607,Dimo Solar,Embilipitiya,Embilipitiya,Solar,1,emb,6.282831,80.876149
+P084,N/A,Hingura Solar,Embilipitiya,Embilipitiya,Solar,3,emb,6.274338,80.878756
+P085,9986400001,Parakumpura Solar,Embilipitiya,Embilipitiya,Solar,5,emb,6.275017,80.843899
+P086,6470900828,Chandrikawewa (Floating),Embilipitiya,Embilipitiya,Floating Solar,1,emb,6.309192,80.863178
+P087,6470900836,Kiriibbanwewa (Floating),Embilipitiya,Embilipitiya,Floating Solar,1,emb,6.380783,80.963414

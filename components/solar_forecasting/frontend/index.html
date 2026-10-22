@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embilipitiya GSS Digital Twin Console</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for solar curves -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans antialiased min-h-screen p-8">
+<div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <header class="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
+        <div>
+            <h1 class="text-3xl font-bold tracking-tight text-white">Embilipitiya GSS Digital Twin</h1>
+            <p class="text-gray-400 text-sm mt-1">Grid-Integrated Solar Forecasting, Ramp Detection & BESS Management</p>
+        </div>
+        <div id="status-badge" class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-1.5 rounded-full text-sm font-medium">
+            ● System Operational
+        </div>
+    </header>
+
+    <!-- Control Panel / Selector -->
+    <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-8 grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+        <div>
+            <label for="plant-select" class="block text-sm font-medium text-gray-300 mb-2">Plant Cluster / Feeder</label>
+            <select id="plant-select" onchange="fetchPlantData()" class="bg-gray-950 border border-gray-700 rounded-lg px-4 py-2 text-white w-full focus:outline-none focus:border-emerald-500">
+                <option value="">Loading plants...</option>
+            </select>
+        </div>
+        <div>
+            <label for="mode-select" class="block text-sm font-medium text-gray-300 mb-2">Operational Mode</label>
+            <select id="mode-select" onchange="toggleMode()" class="bg-gray-950 border border-gray-700 rounded-lg px-4 py-2 text-white w-full focus:outline-none focus:border-emerald-500">
+                <option value="live">Live Forecast (Today)</option>
+                <option value="historical">Historical Replay (Past Date)</option>
+            </select>
+        </div>
+        <div id="date-picker-container" class="hidden">
+            <label for="date-select" class="block text-sm font-medium text-gray-300 mb-2">Select Past Date</label>
+            <input type="date" id="date-select" value="2026-03-15" onchange="fetchPlantData()" class="bg-gray-950 border border-gray-700 rounded-lg px-4 py-2 text-white w-full focus:outline-none focus:border-emerald-500">
+        </div>
+        <div class="flex items-end h-full">
+            <button onclick="fetchPlantData()" class="bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-semibold px-5 py-2 rounded-lg transition w-full">
+                Refresh Telemetry
+            </button>
+        </div>
+        <div class="flex items-end h-full">
+            <button onclick="exportCSV()" class="bg-sky-500 hover:bg-sky-600 text-gray-950 font-semibold px-5 py-2 rounded-lg transition w-full">
+                Export Audit Log
+            </button>
+        </div>
+    </div>
+
+    <!-- Metrics Grid (MW / MWh) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Generation Card -->
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+            <div class="flex justify-between items-start">
+                <p class="text-gray-400 text-sm font-medium">Generation (MW)</p>
+                <button onclick="showExplainability()" class="text-xs bg-gray-800 hover:bg-gray-700 text-sky-400 px-2.5 py-1 rounded transition">AI Explain</button>
+            </div>
+            <p id="metric-gen" class="text-3xl font-bold text-white mt-2">-- MW</p>
+            <span id="metric-ramp" class="inline-block mt-3 text-xs px-2.5 py-1 rounded-md bg-gray-800 text-gray-300">Ramp Status: --</span>
+        </div>
+        <!-- Discharge Headroom Card -->
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+            <p class="text-gray-400 text-sm font-medium">BESS Discharge Headroom</p>
+            <p id="metric-discharge-headroom" class="text-3xl font-bold text-emerald-400 mt-2">-- %</p>
+            <p class="text-gray-500 text-xs mt-3">Reserve available for Ramp-Down absorption</p>
+        </div>
+        <!-- SoC Card -->
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-6">
+            <p class="text-gray-400 text-sm font-medium">Battery State of Charge (SoC)</p>
+            <p id="metric-soc" class="text-3xl font-bold text-sky-400 mt-2">-- MWh</p>
+            <p class="text-gray-500 text-xs mt-3">Rating: 1 MW / 2 MWh Battery Storage</p>
+        </div>
+    </div>
+
+    <!-- Solar Forecasting Curve & Ramp Events Section -->
+    <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-8">
+        <div class="flex justify-between items-center mb-6">
+            <div>
+                <h2 class="text-xl font-bold text-white flex items-center">
+                    Solar Generation & Forecasting Curve
+                    <span id="active-mode-badge" class="ml-3 text-xs font-medium px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">Live Mode</span>
+                </h2>
+                <p class="text-xs text-gray-400 mt-0.5">15-minute resolution comparing Clear-Sky Potential, Actual Generation, and Forecast Trajectory (MW)</p>
+            </div>
+            <div class="flex items-center space-x-4 text-xs">
+                <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-amber-400 inline-block mr-1.5"></span> Clear-Sky Power</span>
+                <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-emerald-400 inline-block mr-1.5"></span> Measured Generation</span>
+                <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-sky-400 inline-block mr-1.5"></span> 15-Min Forecast</span>
+            </div>
+        </div>
+        <div class="h-80 w-full">
+            <canvas id="solarChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Explainability Modal -->
+<div id="explain-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center hidden z-50">
+    <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 max-w-lg w-full mx-4">
+        <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
+            <h3 class="text-lg font-bold text-white">Ramp Event Model Explainability (SHAP)</h3>
+            <button onclick="closeExplainability()" class="text-gray-400 hover:text-white">&times;</button>
+        </div>
+        <div id="explain-content" class="text-sm text-gray-300 space-y-3">
+            Loading attribution scores...
+        </div>
+        <div class="mt-6 flex justify-end">
+            <button onclick="closeExplainability()" class="bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-semibold px-4 py-2 rounded-lg text-sm">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const API_URL = "http://127.0.0.1:8000";
+    let solarChart = null;
+
+    function toggleMode() {
+        const mode = document.getElementById('mode-select').value;
+        const picker = document.getElementById('date-picker-container');
+        if (mode === 'historical') {
+            picker.classList.remove('hidden');
+        } else {
+            picker.classList.add('hidden');
+        }
+        fetchPlantData();
+    }
+
+    async function loadPlants() {
+        try {
+            const res = await fetch(`${API_URL}/plants`);
+            const data = await res.json();
+            const select = document.getElementById('plant-select');
+            select.innerHTML = '';
+            data.plants.forEach(plant => {
+                const opt = document.createElement('option');
+                opt.value = plant.plant_id;
+                opt.textContent = `${plant['Plant Name']} (${plant.plant_id}) - ${plant.capacity_mw} MW`;
+                select.appendChild(opt);
+            });
+            if (data.plants.length > 0) {
+                fetchPlantData();
+            }
+        } catch (err) {
+            console.error("Error loading plants:", err);
+        }
+    }
+
+    async function fetchPlantData() {
+        const plantId = document.getElementById('plant-select').value;
+        const mode = document.getElementById('mode-select').value;
+        const selectedDate = document.getElementById('date-select').value;
+        if (!plantId) return;
+
+        let bessUrl = `${API_URL}/bess/${plantId}`;
+        let forecastUrl = `${API_URL}/forecast/${plantId}`;
+
+        if (mode === 'historical' && selectedDate) {
+            bessUrl += `?date=${selectedDate}`;
+            forecastUrl += `?date=${selectedDate}`;
+        }
+
+        try {
+            const bessRes = await fetch(bessUrl);
+            const bessData = await bessRes.json();
+
+            document.getElementById('metric-gen').textContent = `${bessData.generation_mw.toFixed(3)} MW`;
+            document.getElementById('metric-soc').textContent = `${bessData.bess_soc_mwh.toFixed(3)} MWh`;
+            document.getElementById('metric-discharge-headroom').textContent = `${(bessData.discharge_headroom_score * 100).toFixed(1)}%`;
+
+            const rampBadge = document.getElementById('metric-ramp');
+            rampBadge.textContent = `Ramp Status: ${bessData.ramp_status}`;
+            if (bessData.ramp_status === 'Ramp-Down') {
+                rampBadge.className = "inline-block mt-3 text-xs px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-400 font-semibold";
+            } else if (bessData.ramp_status === 'Ramp-Up') {
+                rampBadge.className = "inline-block mt-3 text-xs px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400 font-semibold";
+            } else {
+                rampBadge.className = "inline-block mt-3 text-xs px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-semibold";
+            }
+
+            const forecastRes = await fetch(forecastUrl);
+            const forecastData = await forecastRes.json();
+
+            document.getElementById('active-mode-badge').textContent = forecastData.mode || "Active";
+            renderSolarChart(forecastData);
+        } catch (err) {
+            console.error("Error fetching telemetry:", err);
+        }
+    }
+
+    async function showExplainability() {
+        const plantId = document.getElementById('plant-select').value;
+        if (!plantId) return;
+
+        document.getElementById('explain-modal').classList.remove('hidden');
+        const content = document.getElementById('explain-content');
+        content.innerHTML = "Calculating SHAP feature attributions...";
+
+        try {
+            const res = await fetch(`${API_URL}/ramps/explain/${plantId}`);
+            const data = await res.json();
+
+            let html = `<p class="font-semibold text-emerald-400">Model: ${data.model_version}</p>`;
+            html += `<p class="italic text-gray-400 mb-3">${data.primary_alert}</p>`;
+            html += `<ul class="space-y-2">`;
+            data.top_contributing_features.forEach(f => {
+                html += `<li class="bg-gray-950 p-2.5 rounded border border-gray-800 flex justify-between items-center">
+                    <span>${f.description} (<code class="text-xs text-sky-400">${f.feature}</code>)</span>
+                    <span class="font-bold text-amber-400">+${(f.impact_score * 100).toFixed(0)}%</span>
+                </li>`;
+            });
+            html += `</ul>`;
+            content.innerHTML = html;
+        } catch (err) {
+            content.innerHTML = "Failed to load explanation.";
+        }
+    }
+
+    function closeExplainability() {
+        document.getElementById('explain-modal').classList.add('hidden');
+    }
+
+    async function exportCSV() {
+        const plantId = document.getElementById('plant-select').value;
+        if (!plantId) return;
+        window.open(`${API_URL}/export/csv?plant_id=${plantId}`, '_blank');
+    }
+
+    function renderSolarChart(data) {
+        const ctx = document.getElementById('solarChart').getContext('2d');
+        if (solarChart) {
+            solarChart.destroy();
+        }
+
+        solarChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.timestamps,
+                datasets: [
+                    {
+                        label: 'Clear-Sky Power (MW)',
+                        data: data.clear_sky_power_mw,
+                        borderColor: '#fbbf24',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Measured Generation (MW)',
+                        data: data.measured_power_mw,
+                        borderColor: '#34d399',
+                        backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                        borderWidth: 2.5,
+                        pointRadius: 2,
+                        fill: true,
+                        tension: 0.2
+                    },
+                    {
+                        label: '15-Min Forecast (MW)',
+                        data: data.forecast_power_mw,
+                        borderColor: '#38bdf8',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.parsed.y} MW`;
+                            },
+                            footer: function(tooltipItems) {
+                                const index = tooltipItems[0].dataIndex;
+                                const ramp = data.ramp_classes[index] || 'Stable';
+                                return `Ramp Event Classification: ${ramp}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(75, 85, 99, 0.2)' },
+                        ticks: { color: '#9ca3af', maxTicksLimit: 12 }
+                    },
+                    y: {
+                        grid: { color: 'rgba(75, 85, 99, 0.2)' },
+                        ticks: { color: '#9ca3af' },
+                        title: { display: true, text: 'Power Output (MW)', color: '#9ca3af' }
+                    }
+                }
+            }
+        });
+    }
+
+    loadPlants();
+</script>
+</body>
+</html>
